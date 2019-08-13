@@ -23,7 +23,7 @@ import bg1 from '../../../assets/content/bg/bg1.jpg';
 class Hero extends React.Component{
     render(){
         return(
-            <MDBRow>
+            <MDBRow className="w-100">
                 <MDBCol md="6">
                     <MDBView src={bg1} >
                         <MDBMask className="rgba-purple-slight d-flex justify-content-center align-items-center">
