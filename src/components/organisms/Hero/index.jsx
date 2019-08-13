@@ -35,6 +35,7 @@ class Hero extends React.Component{
                         <h2>than</h2>
                         <h2>Coffee</h2>
                         <span>It's an intellectual drink,</span><span>for the chosen ones.</span>
+                        <MDBBtn color="lupi-blue" rounded>Take a sip<MDBIcon icon="arrow-right" className="pl-2"/></MDBBtn>
                     </div>
                 </MDBCol>
             </MDBRow>

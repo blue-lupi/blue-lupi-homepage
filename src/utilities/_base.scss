@@ -1,3 +1,7 @@
+*, html, body{
+	font-family: 'Heavitas', 'Arial Black', Helvetica;
+}
+
 .flyout {
 	display:flex;
 	flex-direction: column;
@@ -5,7 +9,7 @@
 	justify-content: space-between;
 }
 
-// Navigation
+// Custom colors
 .lupi-blue{
 	background-color: $lupiBlue !important;
 	&.darken-1{
@@ -27,9 +31,37 @@
 		background-color: lighten($lupiBlue, 30%) !important;
 	}
 }
+.btn-lupi-blue{
+	background-color: $lupiBlue;
+	color: white;
+	&:hover{
+		background-color: darken($lupiBlue, 5%);
+		color: white;
+	}
+	&:focus{
+		background-color: darken($lupiBlue, 10%);
+		color: white;
+	}
+}
 .blue-text{
 	color: $lupiBlue !important;
 }
+
+// Custom buttons
+.btn{
+	box-shadow: none;
+	&:hover{
+		box-shadow: none;
+	}
+	&:focus{
+		box-shadow: none;
+	}
+}
+.btn-rounded{
+	border-radius: 10px !important;
+}
+
+
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
