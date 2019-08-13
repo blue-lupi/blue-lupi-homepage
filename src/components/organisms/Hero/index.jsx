@@ -23,13 +23,13 @@ import bg1 from '../../../assets/content/bg/bg1.jpg';
 class Hero extends React.Component{
     render(){
         return(
-            <MDBRow className="w-100">
-                <MDBCol md="6">
+            <MDBRow className="w-100 m-0">
+                <MDBCol md="6" className="pl-0">
                     <MDBView src={bg1} >
                         <MDBMask pattern={5} className="rgba-purple-slight d-flex justify-content-center align-items-center"></MDBMask>
                     </MDBView>
                 </MDBCol>
-                <MDBCol md="6" className="hero-side">
+                <MDBCol md="6" className="hero-side pr-0">
                     <div>
                         <h2>More</h2>
                         <h2>than</h2>
