@@ -30,7 +30,12 @@ class Hero extends React.Component{
                     </MDBView>
                 </MDBCol>
                 <MDBCol md="6" className="hero-side">
-
+                    <div>
+                        <h2>More</h2>
+                        <h2>than</h2>
+                        <h2>Coffee</h2>
+                        <span>It's an intellectual drink,</span><span>for the chosen ones.</span>
+                    </div>
                 </MDBCol>
             </MDBRow>
         );
