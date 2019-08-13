@@ -5,8 +5,10 @@
 @import 'utilities/base';
 
 //> Components
-// Homepage (Template page)
+// Homepage
 @import 'components/pages/HomePage/HomePage.scss';
+// Hero
+@import 'components/organisms/Hero/hero.scss';
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)

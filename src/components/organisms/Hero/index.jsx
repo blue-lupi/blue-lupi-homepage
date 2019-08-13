@@ -26,12 +26,10 @@ class Hero extends React.Component{
             <MDBRow className="w-100">
                 <MDBCol md="6">
                     <MDBView src={bg1} >
-                        <MDBMask className="rgba-purple-slight d-flex justify-content-center align-items-center">
-
-                        </MDBMask>
+                        <MDBMask pattern={5} className="rgba-purple-slight d-flex justify-content-center align-items-center"></MDBMask>
                     </MDBView>
                 </MDBCol>
-                <MDBCol md="6">
+                <MDBCol md="6" className="hero-side">
 
                 </MDBCol>
             </MDBRow>
