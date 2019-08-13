@@ -17,13 +17,15 @@ import {
 //> Images
 // Logo of MDB React
 import lupiLogoWhite from '../../../assets/logo_white.png';
+// Background
+import bg1 from '../../../assets/content/bg/bg1.jpg';
 
 class Hero extends React.Component{
     render(){
         return(
             <MDBRow>
                 <MDBCol md="6">
-                    <MDBView src={`https://mdbootstrap.com/img/Photos/Others/gradient2.png`} >
+                    <MDBView src={bg1} >
                         <MDBMask className="rgba-purple-slight d-flex justify-content-center align-items-center">
 
                         </MDBMask>
