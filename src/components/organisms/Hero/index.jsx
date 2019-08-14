@@ -16,6 +16,7 @@ import {
  MDBBtn,
  MDBIcon,
  MDBContainer,
+ MDBAnimation,
 } from 'mdbreact';
 
 //> Images
@@ -41,24 +42,24 @@ class Hero extends React.Component{
                 </div>
                 <MDBRow className="w-100 m-0">
                     <MDBCol md="6" className="p-0">
-                        <MDBView src={bg1} >
-                            <MDBMask pattern={5} className="rgba-purple-slight d-flex justify-content-center align-items-center"></MDBMask>
-                        </MDBView>
+                        <MDBAnimation type="fadeInLeft" duration="900ms">
+                            <MDBView src={bg1} >
+                                <MDBMask pattern={5} className="rgba-purple-slight d-flex justify-content-center align-items-center"></MDBMask>
+                            </MDBView>
+                        </MDBAnimation>
                     </MDBCol>
                     <MDBCol md="6" className="p-0">
-                        
                         <div className="hero-side">
                             <Parallax className="parallax" y={[-40, 40]} tagOuter="figure">
-                            <div>
-                                <h2>More</h2>
-                                <h2>than</h2>
-                                <h2>Coffee</h2>
-                                <span>It's an intellectual drink,</span><span>for the chosen ones.</span>
-                                <MDBBtn color="lupi-blue" rounded>Take a sip<MDBIcon icon="arrow-right" className="pl-2"/></MDBBtn>
-                            </div>
+                                <div>
+                                    <h2>More</h2>
+                                    <h2>than</h2>
+                                    <h2>Coffee</h2>
+                                    <span>It's an intellectual drink,</span><span>for the chosen ones.</span>
+                                    <MDBBtn color="lupi-blue" rounded>Take a sip<MDBIcon icon="arrow-right" className="pl-2"/></MDBBtn>
+                                </div>
                             </Parallax>
                         </div>
-                    
                     </MDBCol>
                 </MDBRow>
             </div>

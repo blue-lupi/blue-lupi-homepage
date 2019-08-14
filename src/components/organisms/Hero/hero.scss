@@ -1,7 +1,10 @@
 #hero{
+    .row{
+        background-color: $gold;
+    }
     .hero-side{
         height: 100%;
-        background-color: $gold;
+        
         color: $lightgold;
         display: flex;
         align-items: center;
