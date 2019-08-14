@@ -27,7 +27,7 @@ class Footer extends React.Component{
                             <ul>
                             <li className="list-unstyled">
                                 <Link to="/service/online-presence">
-                                <   MDBIcon icon="globe" />Shop
+                                    <MDBIcon icon="globe" />Shop
                                 </Link>
                             </li>
                             </ul>
