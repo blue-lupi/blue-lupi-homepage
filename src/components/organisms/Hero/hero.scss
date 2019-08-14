@@ -67,11 +67,10 @@
         }
         .btn{
             margin-left: 0;
-         
+            letter-spacing: .2em;
+            padding-left: 1em;
+            padding-right: 1em;
             margin-top: 2em;
-            &:hover > i{
-                transform: scale(1.4,1);
-            }
         }
     }
     .overlay{

@@ -88,7 +88,7 @@ class Hero extends React.Component{
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="100ms">
                                     <MDBBtn color="lupi-blue" rounded> Take a sip
-                                        <MDBIcon icon="arrow-right" className="pl-2"/>
+                                        <MDBIcon icon="arrow-right" className="pl-3 fa-lg"/>
                                     </MDBBtn>
                                     </MDBAnimation>
                                 </div>
