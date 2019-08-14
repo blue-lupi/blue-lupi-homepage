@@ -2,6 +2,10 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 
+//> Additional libraies
+// Parallax
+import { Parallax } from 'react-scroll-parallax';
+
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
@@ -29,9 +33,11 @@ class Hero extends React.Component{
         return(
             <div id="hero">
                 <div className="overlay d-flex justify-content-center align-items-center">
-                    <div className="circle">
-                        <img src={coffee} className="img-fluid" alt=""/>
-                    </div>
+                    <Parallax className="custom-class" y={[-10, 10]} tagOuter="figure">
+                        <div className="circle">
+                            <img src={coffee} className="img-fluid" alt=""/>
+                        </div>
+                    </Parallax>
                 </div>
                 <MDBRow className="w-100 m-0">
                     <MDBCol md="6" className="p-0">
@@ -40,7 +46,9 @@ class Hero extends React.Component{
                         </MDBView>
                     </MDBCol>
                     <MDBCol md="6" className="p-0">
+                        
                         <div className="hero-side">
+                            <Parallax className="custom-class" y={[-40, 40]} tagOuter="figure">
                             <div>
                                 <h2>More</h2>
                                 <h2>than</h2>
@@ -48,7 +56,9 @@ class Hero extends React.Component{
                                 <span>It's an intellectual drink,</span><span>for the chosen ones.</span>
                                 <MDBBtn color="lupi-blue" rounded>Take a sip<MDBIcon icon="arrow-right" className="pl-2"/></MDBBtn>
                             </div>
+                            </Parallax>
                         </div>
+                    
                     </MDBCol>
                 </MDBRow>
             </div>
