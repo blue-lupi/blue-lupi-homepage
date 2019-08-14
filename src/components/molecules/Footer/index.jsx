@@ -79,7 +79,7 @@ class Footer extends React.Component{
                     <MDBContainer fluid>
                         &copy; 2017 - {new Date().getFullYear()} Copyright: Blue Lupi
                         <p className="my-2 font-weight-bold">
-                            Made with <i className="fas fa-heart pulse red-text" aria-hidden="true"></i> by <a href="https://www.aichner-christian.com">Werbeagentur Christian Aichner</a>
+                            Made with <i className="fas fa-heart pulse red-text" aria-hidden="true"></i> by <a href="https://www.aichner-christian.com" target="_blank" rel="noopener noreferrer">Werbeagentur Christian Aichner</a>
                         </p>
                     </MDBContainer>
                 </div>
