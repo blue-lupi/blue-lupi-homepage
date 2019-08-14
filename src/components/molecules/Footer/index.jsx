@@ -15,21 +15,13 @@ import {
   MDBIcon,
 } from 'mdbreact';
 
-//> Images
-// Logo
-// Logo of Blue Lupi (white)
-import Logo from '../../../assets/logo_white_text.png';
-
 class Footer extends React.Component{
     render(){
         return(
             <MDBFooter color="elegant-color">
                 <MDBContainer className="text-center text-md-left pt-4">
                     <MDBRow>
-                        <MDBCol md="2">
-                            <img src={Logo} className="img-fluid" alt="Blue Lupi Logo" />
-                        </MDBCol>
-                        <MDBCol md="3">
+                        <MDBCol md="4">
                             <h5 className="title">Dienste</h5>
                             <hr className="agency-red mb-4 mt-0 d-inline-block" />
                             <ul>
@@ -40,7 +32,7 @@ class Footer extends React.Component{
                             </li>
                             </ul>
                         </MDBCol>
-                        <MDBCol md="3">
+                        <MDBCol md="4">
                             <h5 className="title">Nützliche Links</h5>
                             <hr className="agency-red mb-4 mt-0 d-inline-block" />
                             <ul>
@@ -87,7 +79,7 @@ class Footer extends React.Component{
                     <MDBContainer fluid>
                         &copy; 2017 - {new Date().getFullYear()} Copyright: Blue Lupi
                         <p className="my-2 font-weight-bold">
-                            Made with <i className="fas fa-heart pulse red-text" aria-hidden="true"></i> by Werbeagentur Christian Aichner
+                            Made with <i className="fas fa-heart pulse red-text" aria-hidden="true"></i> by <a href="https://www.aichner-christian.com">Werbeagentur Christian Aichner</a>
                         </p>
                     </MDBContainer>
                 </div>
