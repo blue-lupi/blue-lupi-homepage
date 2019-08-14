@@ -15,8 +15,12 @@ import {
 } from 'mdbreact';
 
 //> Images
-// Logo of MDB React
+// Blue logo of Blue Lupi
+import lupiLogoBlue from '../../../assets/logo_blue.png';
+// Blue logo of Blue Lupi
 import lupiLogoWhite from '../../../assets/logo_white.png';
+// Coffee center image
+import coffee from '../../../assets/content/coffee_lupi.png';
 // Background
 import bg1 from '../../../assets/content/bg/bg1.jpg';
 
@@ -24,18 +28,18 @@ class Hero extends React.Component{
     render(){
         return(
             <div id="hero">
-                <div className="overlay">
-                    <MDBView src={lupiLogoWhite} >
-                        <MDBMask className="d-flex justify-content-center align-items-center"></MDBMask>
-                    </MDBView>
+                <div className="overlay d-flex justify-content-center align-items-center">
+                    <div className="circle">
+                        <img src={coffee} className="img-fluid" alt=""/>
+                    </div>
                 </div>
                 <MDBRow className="w-100 m-0">
-                    <MDBCol md="6" className="pl-0">
+                    <MDBCol md="6" className="p-0">
                         <MDBView src={bg1} >
                             <MDBMask pattern={5} className="rgba-purple-slight d-flex justify-content-center align-items-center"></MDBMask>
                         </MDBView>
                     </MDBCol>
-                    <MDBCol md="6" className="pr-0">
+                    <MDBCol md="6" className="p-0">
                         <div className="hero-side">
                             <div>
                                 <h2>More</h2>
