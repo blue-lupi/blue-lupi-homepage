@@ -48,7 +48,7 @@ class Hero extends React.Component{
                     <MDBCol md="6" className="p-0">
                         
                         <div className="hero-side">
-                            <Parallax className="custom-class" y={[-40, 40]} tagOuter="figure">
+                            <Parallax className="parallax" y={[-40, 40]} tagOuter="figure">
                             <div>
                                 <h2>More</h2>
                                 <h2>than</h2>

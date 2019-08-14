@@ -6,13 +6,16 @@
         display: flex;
         align-items: center;
         padding: 0 0 0 21%;
+        .parallax{
+            position: relative;
+            z-index: 2;
+        }
         h2{
             font-size: 5em;
             line-height: 1em;
             letter-spacing: 0.01em;
             text-transform: uppercase;
             margin: 0;
-            z-index: 2;
         }
         span{
             display: block;
@@ -21,11 +24,9 @@
             text-transform: uppercase;
             line-height: 1em;
             letter-spacing: .02em;
-            z-index: 2;
         }
         .btn{
             margin-top: 2em;
-            z-index: 2;
             &:hover > i{
                 transform: scale(1.4,1);
             }
