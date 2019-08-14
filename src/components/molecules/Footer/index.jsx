@@ -2,6 +2,9 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 
+// Links (replaces <a> tags)
+import { Link } from 'react-router-dom';
+
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
@@ -9,61 +12,83 @@ import {
   MDBRow,
   MDBCol,
   MDBContainer,
+  MDBIcon,
 } from 'mdbreact';
+
+//> Images
+// Logo
+// Logo of Blue Lupi (white)
+import Logo from '../../../assets/logo_white_text.png';
 
 class Footer extends React.Component{
     render(){
         return(
-            <MDBFooter color="agency-red" className="font-small pt-4 mt-4">
-                <MDBContainer className="text-center text-md-left">
+            <MDBFooter color="elegant-color">
+                <MDBContainer className="text-center text-md-left pt-4">
                     <MDBRow>
-                    <MDBCol md="6">
-                        <h5 className="title">Footer Content</h5>
-                        <p>
-                        Here you can use rows and columns here to organize your footer
-                        content.
-                        </p>
-                    </MDBCol>
-                    <MDBCol md="3">
-                        <h5 className="title">Links</h5>
-                        <ul>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 1</a>
-                        </li>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 2</a>
-                        </li>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 4</a>
-                        </li>
-                        </ul>
-                    </MDBCol>
-                     <MDBCol md="3">
-                        <h5 className="title">Links</h5>
-                        <ul>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 1</a>
-                        </li>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 2</a>
-                        </li>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 3</a>
-                        </li>
-                        <li className="list-unstyled">
-                            <a href="#!">Link 4</a>
-                        </li>
-                        </ul>
-                    </MDBCol>
+                        <MDBCol md="2">
+                            <img src={Logo} className="img-fluid" alt="Blue Lupi Logo" />
+                        </MDBCol>
+                        <MDBCol md="3">
+                            <h5 className="title">Dienste</h5>
+                            <hr className="agency-red mb-4 mt-0 d-inline-block" />
+                            <ul>
+                            <li className="list-unstyled">
+                                <Link to="/service/online-presence">
+                                <   MDBIcon icon="globe" />Shop
+                                </Link>
+                            </li>
+                            </ul>
+                        </MDBCol>
+                        <MDBCol md="3">
+                            <h5 className="title">Nützliche Links</h5>
+                            <hr className="agency-red mb-4 mt-0 d-inline-block" />
+                            <ul>
+                            <li className="list-unstyled">
+                                <Link to="/faq">
+                                    <MDBIcon icon="question" />FAQ
+                                </Link>
+                            </li>
+                            </ul>
+                        </MDBCol>
+                        <MDBCol md="4">
+                            <h5 className="title">Kontakt</h5>
+                            <hr className="agency-red mb-4 mt-0 d-inline-block" />
+                            <ul>
+                            <li className="list-unstyled">
+                                <MDBIcon icon="home" />Kärnten, Austria
+                            </li>
+                            <li className="list-unstyled">
+                                <a href="mailto:ci@s.co">
+                                    <MDBIcon far icon="envelope" />ci@s.co
+                                </a>
+                            </li>
+                            <li className="list-unstyled">
+                                <a href="tel:004368120502754">
+                                    <MDBIcon icon="phone" />+43 111 123 123 12
+                                </a>
+                            </li>
+                            <hr />
+                            <li className="list-unstyled">
+                                <Link to="/about">
+                                    <MDBIcon far icon="file-alt" />Impressum
+                                </Link>
+                            </li>
+                            <li className="list-unstyled">
+                                <Link to="/privacy">
+                                    <MDBIcon icon="balance-scale" />Datenschutzerklärung
+                                </Link>
+                            </li>
+                            </ul>
+                        </MDBCol>
                     </MDBRow>
                 </MDBContainer>
                 <div className="footer-copyright text-center py-3">
                     <MDBContainer fluid>
-                        &copy; {new Date().getFullYear()} Copyright: 
-                        <a href="https://www.aichner-christian.com" target="_blank" rel="noopener noreferrer"> Werbeagentur Christian Aichner </a>
+                        &copy; 2017 - {new Date().getFullYear()} Copyright: Blue Lupi
+                        <p className="my-2 font-weight-bold">
+                            Made with <i className="fas fa-heart pulse red-text" aria-hidden="true"></i> by Werbeagentur Christian Aichner
+                        </p>
                     </MDBContainer>
                 </div>
             </MDBFooter>
