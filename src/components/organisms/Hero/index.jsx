@@ -15,15 +15,12 @@ import {
  MDBCol,
  MDBBtn,
  MDBIcon,
- MDBContainer,
  MDBAnimation,
 } from 'mdbreact';
 
 //> Images
 // Blue logo of Blue Lupi
-import lupiLogoBlue from '../../../assets/logo_blue.png';
-// Blue logo of Blue Lupi
-import lupiLogoWhite from '../../../assets/logo_white.png';
+import lupiLogoWhite from '../../../assets/logo_white_text.png';
 // Coffee center image
 import coffee from '../../../assets/content/coffee_lupi.png';
 // Background
@@ -33,6 +30,9 @@ class Hero extends React.Component{
     render(){
         return(
             <div id="hero">
+                <div className="logo-icon">
+                    <img src={lupiLogoWhite} alt="Logo"/>
+                </div>
                 <div className="overlay d-flex justify-content-center align-items-center">
                     <Parallax className="custom-class" y={[-10, 10]} tagOuter="figure">
                         <div className="circle">
