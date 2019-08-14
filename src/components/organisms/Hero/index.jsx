@@ -81,7 +81,7 @@ class Hero extends React.Component{
                                     <h2>Coffee</h2>
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="300ms">
-                                    <span>An intellectual drink,</span>
+                                    <span className="pt-2">An intellectual drink,</span>
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="200ms">
                                     <span>for the chosen ones.</span>
