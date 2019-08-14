@@ -4,6 +4,10 @@ import React from 'react';
 // This serves as an entry point to the DOM and server renderers for React
 import ReactDOM from 'react-dom';
 
+//> Additional libraries
+// Parallax Provider
+import { ParallaxProvider } from 'react-scroll-parallax';
+
 //> Font Awesome
 // Font Awesome is an awesome icon library
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -26,7 +30,12 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 // Render the root component to <div id="root"></div>
-ReactDOM.render( <App /> , document.getElementById('root'));
+ReactDOM.render(
+    <ParallaxProvider>
+        <App />
+    </ParallaxProvider>,
+    document.getElementById('root')
+);
 
 registerServiceWorker();
 

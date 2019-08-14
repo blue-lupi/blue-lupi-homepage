@@ -1,0 +1,98 @@
+#hero{
+    // Background of the entire section
+    .row{
+        background-color: $gold;
+    }
+    // Icon left
+    .logo-icon{
+        position: fixed;
+        top: 30px;
+        left: 0px;
+        z-index: 3;
+        padding: 5px 5px 5px 3px;
+        background-color: $lupiBlue;
+        img{
+            width: 80px;
+            margin: auto;
+            height: auto;
+            display: block;
+            margin-top: .2em;
+        }
+    }
+    // Menu right
+    .menu-icon{
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        z-index: 3;
+        color: white;
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255,255,255,.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    // Right side
+    .hero-side{
+        height: 100%;
+        
+        color: $lightgold;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 21%;
+        .parallax{
+            position: relative;
+            z-index: 2;
+        }
+        h2{
+            font-size: 5em;
+            line-height: 1em;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        span{
+            display: block;
+            color: white;
+            font-size: 1.7em;
+            text-transform: uppercase;
+            line-height: 1em;
+            letter-spacing: .02em;
+        }
+        .btn{
+            margin-top: 2em;
+            &:hover > i{
+                transform: scale(1.4,1);
+            }
+        }
+    }
+    .overlay{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        .circle{
+            height: 600px;
+            width: 600px;
+            margin: auto;
+            /*background-color: white;
+            border-radius: 45em;*/
+            img{
+                width: 100%;
+            }
+        }
+    }
+    // Custom pattern
+    .pattern-5{
+        background-image: url('assets/content/bg/pattern.png') !important;
+        background-size: 7px;
+        background-repeat: repeat;
+    }
+}
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */
