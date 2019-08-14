@@ -31,12 +31,18 @@ class Hero extends React.Component{
         return(
             <div id="hero">
                 <div className="logo-icon">
-                    <img src={lupiLogoWhite} alt="Logo"/>
+                    <div class="view">
+                        <img src={lupiLogoWhite} alt="Logo"/>
+                        <div class="mask"></div>
+                    </div>
                 </div>
                 <div className="overlay d-flex justify-content-center align-items-center">
                     <Parallax className="custom-class" y={[-10, 10]} tagOuter="figure">
                         <div className="circle">
-                            <img src={coffee} className="img-fluid" alt=""/>
+                            <div class="view">
+                                <img src={coffee} className="img-fluid" alt="Coffee"/>
+                                <div class="mask"></div>
+                            </div>
                         </div>
                     </Parallax>
                 </div>
