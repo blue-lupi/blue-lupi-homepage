@@ -36,12 +36,18 @@ class Hero extends React.Component{
                         <div className="mask"></div>
                     </div>
                 </div>
+                <div className="menu-icon">
+                    <div className="view">
+                        <MDBIcon icon="bars" className="fa-2x" />
+                        <div className="mask"></div>
+                    </div>
+                </div>
                 <div className="overlay d-flex justify-content-center align-items-center">
                     <Parallax className="custom-class" y={[-10, 10]} tagOuter="figure">
                         <div className="circle">
                             <div className="view">
-                                <MDBAnimation reveal type="fadeIn" duration="500ms">
-                                    <MDBAnimation reveal type="rotateIn" duration="1000ms">
+                                <MDBAnimation type="fadeIn" duration="500ms">
+                                    <MDBAnimation type="rotateIn" duration="1000ms">
                                         <img src={coffee} className="img-fluid" alt="Coffee"/>
                                     </MDBAnimation>
                                 </MDBAnimation>
@@ -65,22 +71,22 @@ class Hero extends React.Component{
                         <div className="hero-side">
                             <Parallax className="parallax" y={[-40, 40]} tagOuter="figure">
                                 <div>
-                                    <MDBAnimation reveal type="fadeInUp" duration="500ms" delay="450ms">
+                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="450ms">
                                         <h2>More</h2>
                                     </MDBAnimation>
-                                    <MDBAnimation reveal type="fadeInUp" duration="500ms" delay="400ms">
+                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="400ms">
                                     <h2>than</h2>
                                     </MDBAnimation>
-                                    <MDBAnimation reveal type="fadeInUp" duration="500ms" delay="350ms">
+                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="350ms">
                                     <h2>Coffee</h2>
                                     </MDBAnimation>
-                                    <MDBAnimation reveal type="fadeInUp" duration="500ms" delay="300ms">
+                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="300ms">
                                     <span>An intellectual drink,</span>
                                     </MDBAnimation>
-                                    <MDBAnimation reveal type="fadeInUp" duration="500ms" delay="200ms">
+                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="200ms">
                                     <span>for the chosen ones.</span>
                                     </MDBAnimation>
-                                    <MDBAnimation reveal type="fadeInUp" duration="500ms" delay="100ms">
+                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="100ms">
                                     <MDBBtn color="lupi-blue" rounded> Take a sip
                                         <MDBIcon icon="arrow-right" className="pl-2"/>
                                     </MDBBtn>
