@@ -19,7 +19,7 @@ import {
 } from 'mdbreact';
 
 //> Images
-// Blue logo of Blue Lupi
+// Logo of Blue Lupi (white)
 import lupiLogoWhite from '../../../assets/logo_white_text.png';
 // Coffee center image
 import coffee from '../../../assets/content/coffee_lupi.png';
