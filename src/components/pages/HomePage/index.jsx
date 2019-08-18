@@ -5,12 +5,20 @@ import React from 'react';
 //> Components
 import {
   Hero,
+  Shop,
+  Story,
+  Associate,
 } from '../../organisms';
 
 class HomePage extends React.Component {
   render() {
     return (
-      <Hero />
+      <React.Fragment>
+        <Hero />
+        <Associate />
+        <Shop />
+        <Story />
+      </React.Fragment>
     );
   }
 }

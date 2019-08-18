@@ -1,0 +1,23 @@
+#story{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 150vh;
+    border: solid black 20px;
+}
+
+.roots{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 50%;
+    height: 100%;
+    background-image: url(https://erebos.xyz/roots.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

@@ -1,0 +1,54 @@
+@media screen and (max-width: 1000px) {
+    .desktop-only{
+        display: none;
+    }
+    .companies{
+        .col-md-auto, .col-4{
+            &:first-child{
+                text-align: center !important;
+            }
+            &:last-child{
+                text-align: center !important;
+            }
+        }
+    }
+}
+/* Company list in header */
+.companies{
+    //position: absolute;
+    z-index: 2;
+    bottom: 0;
+    //background: rgb(255,255,255);
+    //background: linear-gradient(0deg, rgba(255,255,255,.1) 33%, rgba(255,0,0,.1) 33%, rgba(255,0,0,.1) 66%, rgba(252,221,9,.1) 66%);
+    background: rgb(255,0,0);
+    background: linear-gradient(0deg, rgba(255,0,0,.1) 33%, rgba(255,255,255,.1) 33%, rgba(255,255,255,.1) 66%, rgba(255,0,0,.1) 66%);
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: .5rem;
+    .row{
+        margin: 0;
+    }
+    .col-md-auto, .col-4{
+        max-height: 70px;
+        margin: 0;
+        padding: .5rem;
+        align-self: center;
+        &:first-child{
+            text-align: right;
+        }
+        &:last-child{
+            text-align: left;
+        }
+    }
+    img{
+        max-height: 50px;
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }
+}
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */
