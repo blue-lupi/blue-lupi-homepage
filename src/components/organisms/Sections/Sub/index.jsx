@@ -4,19 +4,13 @@ import React from 'react';
 
 //> Additional libraies
 // Parallax
-import { Parallax } from 'react-scroll-parallax';
+//import { Parallax } from 'react-scroll-parallax';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-    MDBView,
-    MDBMask,
     MDBRow,
     MDBCol,
-    MDBBtn,
-    MDBIcon,
-    MDBAnimation,
-    MDBContainer,
 } from 'mdbreact';
 
 //> Images
@@ -27,9 +21,7 @@ class Sub extends React.Component{
         return(
             <section id="subscription">
                 <MDBRow className="m-0">
-                    <MDBCol md="3">
-
-                    </MDBCol>
+                    <MDBCol md="3"></MDBCol>
                     <MDBCol md="5">
                         <h2 className="h2-responsive font-weight-bold">Wer mit den Wölfen schreitet, lernt zu heulen.</h2>
                         <p className="lead">Für den täglichen Genuss.</p>
@@ -39,7 +31,6 @@ class Sub extends React.Component{
                         !! Parallax Mond.jpg !!
                     </MDBCol>
                 </MDBRow>
-                
             </section>
         );
     }
