@@ -25,7 +25,7 @@ class Story extends React.Component{
     render(){
         return(
             <section id="story">
-                <MDBRow>
+                <MDBRow className="m-0">
                     <MDBCol md="6">
                         !! Image !!
                     </MDBCol>

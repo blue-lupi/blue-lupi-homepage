@@ -26,7 +26,7 @@ class Sub extends React.Component{
     render(){
         return(
             <section id="subscription">
-                <MDBRow>
+                <MDBRow className="m-0">
                     <MDBCol md="3">
 
                     </MDBCol>
