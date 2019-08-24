@@ -20,8 +20,8 @@ const companies = [
     { name: "Test 1", url: "www.test1.at", image: "test1.jpg" },
     { name: "Test 2", url: "www.test2.at", image: "test2.jpg" },
     { name: "Test 3", url: "www.test3.at", image: "test3.jpg" },
-    { name: "Test 4", url: "www.test4.at", image: "test4.jpg" },
-]
+    { name: "Test 4", url: "www.test4.at", image: "test4.jpg" }
+];
 
 class Trust extends React.Component{
     render(){
