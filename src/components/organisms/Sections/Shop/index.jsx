@@ -13,6 +13,12 @@ import {
     MDBMask,
     MDBRow,
     MDBCol,
+    MDBCard,
+    MDBCardTitle,
+    MDBCardImage,
+    MDBCardText,
+    MDBCardBody,
+    MDBContainer,
     MDBBtn,
     MDBIcon,
     MDBAnimation,
@@ -25,7 +31,55 @@ class Shop extends React.Component{
     render(){
         return(
             <section id="shop">
-
+                <MDBContainer>
+                    <MDBRow>
+                        <MDBCol>
+                            <MDBCard>
+                                <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
+                                <MDBCardBody>
+                                <MDBCardTitle>Card title</MDBCardTitle>
+                                <MDBCardText>
+                                    Some quick example text to build on the card title and make
+                                    up the bulk of the card&apos;s content.
+                                </MDBCardText>
+                                <div className="text-left">
+                                    <MDBBtn href="#">MDBBtn</MDBBtn>
+                                </div>
+                                </MDBCardBody>
+                            </MDBCard>
+                        </MDBCol>
+                        <MDBCol>
+                            <MDBCard>
+                                <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/44.jpg" waves />
+                                <MDBCardBody>
+                                <MDBCardTitle>Card title</MDBCardTitle>
+                                <MDBCardText>
+                                    Some quick example text to build on the card title and make
+                                    up the bulk of the card&apos;s content.
+                                </MDBCardText>
+                                <div className="text-center">
+                                    <MDBBtn href="#">MDBBtn</MDBBtn>
+                                </div>
+                                </MDBCardBody>
+                            </MDBCard>
+                        </MDBCol>
+                        <MDBCol>
+                            <MDBCard>
+                                <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/45.jpg" waves />
+                                <MDBCardBody>
+                                <MDBCardTitle>Card title</MDBCardTitle>
+                                <MDBCardText>
+                                    Some quick example text to build on the card title and make
+                                    up the bulk of the card&apos;s content.
+                                </MDBCardText>
+                                <div className="text-right">
+                                    <MDBBtn href="#">MDBBtn</MDBBtn>
+                                </div>
+                                </MDBCardBody>
+                            </MDBCard>
+                        </MDBCol>
+                    </MDBRow>
+                </MDBContainer>
             </section>
         );
     }
