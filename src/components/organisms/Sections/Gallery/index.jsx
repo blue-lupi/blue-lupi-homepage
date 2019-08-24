@@ -2,30 +2,21 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 
-//> Additional libraies
-// Parallax
-import { Parallax } from 'react-scroll-parallax';
-
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-    MDBView,
-    MDBMask,
-    MDBRow,
-    MDBCol,
-    MDBBtn,
-    MDBIcon,
-    MDBAnimation,
+    MDBContainer,
 } from 'mdbreact';
-
-//> Images
-// To be added
 
 class Gallery extends React.Component{
     render(){
         return(
             <section id="gallery">
-
+                <MDBContainer>
+                    <div className="text-center">
+                        !! Embed Instagram feed !!
+                    </div>
+                </MDBContainer>
             </section>
         );
     }
