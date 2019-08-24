@@ -16,6 +16,7 @@ import {
     MDBBtn,
     MDBIcon,
     MDBAnimation,
+    MDBContainer,
 } from 'mdbreact';
 
 //> Images
@@ -25,7 +26,20 @@ class Sub extends React.Component{
     render(){
         return(
             <section id="subscription">
+                <MDBRow>
+                    <MDBCol md="3">
 
+                    </MDBCol>
+                    <MDBCol md="5">
+                        <h2 className="h2-responsive font-weight-bold">Wer mit den Wölfen schreitet, lernt zu heulen.</h2>
+                        <p className="lead">Für den täglichen Genuss.</p>
+                        !! Interactive wolf + Direkte Handlungsaufforderung !!
+                    </MDBCol>
+                    <MDBCol md="4">
+                        !! Parallax Mond.jpg !!
+                    </MDBCol>
+                </MDBRow>
+                
             </section>
         );
     }
