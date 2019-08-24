@@ -14,6 +14,7 @@ import {
   Story,
   Sub,
   Trust,
+  About,
 } from '../../organisms/Sections';
 
 class HomePage extends React.Component {
@@ -25,6 +26,7 @@ class HomePage extends React.Component {
         <Shop />
         <Sub />
         <Story />
+        <About />
         <Gallery />
       </>
     );
