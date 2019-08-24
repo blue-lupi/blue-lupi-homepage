@@ -23,7 +23,9 @@ class Sub extends React.Component{
                 <MDBRow className="m-0">
                     <MDBCol md="3"></MDBCol>
                     <MDBCol md="5">
-                        <h2 className="h2-responsive font-weight-bold">Wer mit den Wölfen schreitet, lernt zu heulen.</h2>
+                        <h2 className="h2-responsive font-weight-bold">
+                        Wer mit den Wölfen schreitet, lernt zu heulen.
+                        </h2>
                         <p className="lead">Für den täglichen Genuss.</p>
                         !! Interactive wolf + Direkte Handlungsaufforderung !!
                     </MDBCol>
