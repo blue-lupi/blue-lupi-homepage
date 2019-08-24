@@ -3,14 +3,32 @@
 import React from 'react';
 
 //> Components
+// Hero
 import {
   Hero,
 } from '../../organisms';
+// Sections
+import {
+  Gallery,
+  Shop,
+  Story,
+  Sub,
+  Trust,
+  About,
+} from '../../organisms/Sections';
 
 class HomePage extends React.Component {
   render() {
     return (
-      <Hero />
+      <>
+        <Hero />
+        <Trust />
+        <Shop />
+        <Sub />
+        <Story />
+        <About />
+        <Gallery />
+      </>
     );
   }
 }

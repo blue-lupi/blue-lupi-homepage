@@ -9,13 +9,13 @@ import { Parallax } from 'react-scroll-parallax';
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
- MDBView,
- MDBMask,
- MDBRow,
- MDBCol,
- MDBBtn,
- MDBIcon,
- MDBAnimation,
+    MDBView,
+    MDBMask,
+    MDBRow,
+    MDBCol,
+    MDBBtn,
+    MDBIcon,
+    MDBAnimation,
 } from 'mdbreact';
 
 //> Images
@@ -75,21 +75,21 @@ class Hero extends React.Component{
                                         <h2>More</h2>
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="400ms">
-                                    <h2>than</h2>
+                                        <h2>than</h2>
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="350ms">
-                                    <h2>Coffee</h2>
+                                        <h2>Coffee</h2>
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="300ms">
-                                    <span className="pt-2">An intellectual drink,</span>
+                                        <span className="pt-2">An intellectual drink,</span>
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="200ms">
-                                    <span>for the chosen ones.</span>
+                                        <span>for the chosen ones.</span>
                                     </MDBAnimation>
                                     <MDBAnimation type="fadeInUp" duration="500ms" delay="100ms">
-                                    <MDBBtn color="lupi-blue" rounded> Take a sip
-                                        <MDBIcon icon="arrow-right" className="pl-3 fa-lg"/>
-                                    </MDBBtn>
+                                        <MDBBtn color="lupi-blue" rounded> Take a sip
+                                            <MDBIcon icon="arrow-right" className="pl-3 fa-lg"/>
+                                        </MDBBtn>
                                     </MDBAnimation>
                                 </div>
                             </Parallax>

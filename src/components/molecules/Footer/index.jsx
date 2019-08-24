@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-  MDBFooter,
-  MDBRow,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
+    MDBFooter,
+    MDBRow,
+    MDBCol,
+    MDBContainer,
+    MDBIcon,
 } from 'mdbreact';
 
 class Footer extends React.Component{

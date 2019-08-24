@@ -9,9 +9,6 @@
 # Production
 /build
 
-# MDB React Pro
-mdbreact-*
-
 # All editor configs but vscode
 .editorconfig
 .idea
