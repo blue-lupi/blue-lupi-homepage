@@ -31,7 +31,11 @@ class Shop extends React.Component{
                     <MDBRow>
                         <MDBCol>
                             <MDBCard>
-                                <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
+                                <MDBCardImage
+                                className="img-fluid"
+                                src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                                waves
+                                />
                                 <MDBCardBody>
                                 <MDBCardTitle>Card title</MDBCardTitle>
                                 <MDBCardText>
@@ -46,7 +50,11 @@ class Shop extends React.Component{
                         </MDBCol>
                         <MDBCol>
                             <MDBCard>
-                                <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/44.jpg" waves />
+                                <MDBCardImage
+                                className="img-fluid"
+                                src="https://mdbootstrap.com/img/Photos/Others/images/44.jpg"
+                                waves
+                                />
                                 <MDBCardBody>
                                 <MDBCardTitle>Card title</MDBCardTitle>
                                 <MDBCardText>
@@ -61,7 +69,11 @@ class Shop extends React.Component{
                         </MDBCol>
                         <MDBCol>
                             <MDBCard>
-                                <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/45.jpg" waves />
+                                <MDBCardImage
+                                className="img-fluid"
+                                src="https://mdbootstrap.com/img/Photos/Others/images/45.jpg"
+                                waves
+                                />
                                 <MDBCardBody>
                                 <MDBCardTitle>Card title</MDBCardTitle>
                                 <MDBCardText>
