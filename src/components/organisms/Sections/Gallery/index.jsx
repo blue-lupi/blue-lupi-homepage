@@ -22,7 +22,7 @@ import './gallery.scss';
 // Instagram Gallery configuration
 const INSTAGRAM_ID = "8684517164";
 const THUMBNAIL_WIDTH = 320;
-const PHOTO_COUNT = 12;
+const PHOTO_COUNT = 9;
 
 class Gallery extends React.Component{
     render(){
