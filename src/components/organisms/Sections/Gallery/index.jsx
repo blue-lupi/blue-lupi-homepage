@@ -2,20 +2,38 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 
+//> Helpers
+// Gallery
+import InstagramGallery from "../../../helpers/InstagramFeed";
+
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBContainer,
 } from 'mdbreact';
 
+//> CSS
+import './gallery.scss';
+
+/*
+ * This can be retrieved with a 
+ * GET https://www.instagram.com/web/search/topsearch/?context=blended&query=INSTAGRAM_USERNAME
+ */
+// Instagram Gallery configuration
+const INSTAGRAM_ID = "8684517164";
+const THUMBNAIL_WIDTH = 320;
+const PHOTO_COUNT = 12;
+
 class Gallery extends React.Component{
     render(){
         return(
             <section id="gallery">
                 <MDBContainer>
-                    <div className="text-center">
-                        !! Embed Instagram feed !!
-                    </div>
+                    <InstagramGallery
+                        userId={INSTAGRAM_ID}
+                        thumbnailWidth={THUMBNAIL_WIDTH}
+                        photoCount={PHOTO_COUNT}
+                    />
                 </MDBContainer>
             </section>
         );
