@@ -35,7 +35,7 @@ class Trust extends React.Component{
                 <MDBRow className="flex-center m-0">
                     {companies.map((company, i) => {
                         return(
-                            <MDBCol md="2" className="text-center">
+                            <MDBCol key={i} md="2" className="text-center">
                             <a href={company.url} target="_blank" rel="noopener noreferrer">
                                 <img className="img-fluid" src={company.logo} alt={company.name}/>
                             </a>
