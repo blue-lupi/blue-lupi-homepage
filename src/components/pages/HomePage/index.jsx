@@ -11,7 +11,7 @@ import {
 import {
   Gallery,
   Shop,
-  Story,
+  Steps,
   Sub,
   Trust,
   About,
@@ -26,9 +26,9 @@ class HomePage extends React.Component {
         <Trust />
         <Shop />
         <Sub />
-        <Story />
         <About />
         <Gallery />
+        <Steps />
         <FAQ />
       </>
     );
