@@ -15,75 +15,85 @@ import {
     MDBCardTitle,
     MDBCardImage,
     MDBCardText,
+    MDBCardFooter,
     MDBCardBody,
     MDBContainer,
     MDBBtn,
 } from 'mdbreact';
 
 //> Images
-// To be added
+import product1 from '../../../../assets/content/sections/shop/product1.png';
+import product2 from '../../../../assets/content/sections/shop/product2.png';
+import product3 from '../../../../assets/content/sections/shop/product3.png';
+
+//> CSS
+import './shop.scss';
 
 class Shop extends React.Component{
     render(){
         return(
             <section id="shop">
                 <MDBContainer>
-                    <MDBRow>
+                    <MDBRow className="text-center">
                         <MDBCol>
                             <MDBCard>
                                 <MDBCardImage
-                                className="img-fluid"
-                                src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
+                                className="img-fluid m-auto pl-5 pr-5 pt-3"
+                                src={product1}
                                 waves
                                 />
                                 <MDBCardBody>
-                                <MDBCardTitle>Card title</MDBCardTitle>
-                                <MDBCardText>
-                                    Some quick example text to build on the card title and make
-                                    up the bulk of the card&apos;s content.
-                                </MDBCardText>
-                                <div className="text-left">
-                                    <MDBBtn href="#">MDBBtn</MDBBtn>
-                                </div>
+                                    <MDBCardTitle>Blue Lupi 250g</MDBCardTitle>
+                                    <MDBCardText>
+                                        <p>Some quick example text to build on the card title and make
+                                        up the bulk of the card&apos;s content.</p>
+                                        <small>250g, geröstet und gemahlen</small>
+                                    </MDBCardText>
                                 </MDBCardBody>
+                                <MDBCardFooter>
+                                    <MDBBtn color="lupi-blue" href="#">Jetzt genießen</MDBBtn>
+                                </MDBCardFooter>
+                                
                             </MDBCard>
                         </MDBCol>
                         <MDBCol>
                             <MDBCard>
                                 <MDBCardImage
-                                className="img-fluid"
-                                src="https://mdbootstrap.com/img/Photos/Others/images/44.jpg"
+                                className="img-fluid m-auto pl-5 pr-5 pt-3"
+                                src={product2}
                                 waves
                                 />
                                 <MDBCardBody>
-                                <MDBCardTitle>Card title</MDBCardTitle>
+                                <MDBCardTitle>Blue Lupi 500g</MDBCardTitle>
                                 <MDBCardText>
-                                    Some quick example text to build on the card title and make
-                                    up the bulk of the card&apos;s content.
+                                    <p>Some quick example text to build on the card title and make
+                                    up the bulk of the card&apos;s content.</p>
+                                    <small>500g, geröstet und gemahlen</small>
                                 </MDBCardText>
-                                <div className="text-center">
-                                    <MDBBtn href="#">MDBBtn</MDBBtn>
-                                </div>
                                 </MDBCardBody>
+                                <MDBCardFooter>
+                                    <MDBBtn color="lupi-blue" href="#">Jetzt genießen</MDBBtn>
+                                </MDBCardFooter>
                             </MDBCard>
                         </MDBCol>
                         <MDBCol>
                             <MDBCard>
                                 <MDBCardImage
-                                className="img-fluid"
-                                src="https://mdbootstrap.com/img/Photos/Others/images/45.jpg"
+                                className="img-fluid m-auto pl-5 pr-5 pt-3"
+                                src={product3}
                                 waves
                                 />
                                 <MDBCardBody>
-                                <MDBCardTitle>Card title</MDBCardTitle>
+                                <MDBCardTitle>Blue Lupi Kapseln</MDBCardTitle>
                                 <MDBCardText>
-                                    Some quick example text to build on the card title and make
-                                    up the bulk of the card&apos;s content.
+                                    <p>Some quick example text to build on the card title and make
+                                    up the bulk of the card&apos;s content.</p>
+                                    <small>100, bald verfügbar</small>
                                 </MDBCardText>
-                                <div className="text-right">
-                                    <MDBBtn href="#">MDBBtn</MDBBtn>
-                                </div>
                                 </MDBCardBody>
+                                <MDBCardFooter>
+                                    <MDBBtn color="lupi-blue" href="#">Jetzt genießen</MDBBtn>
+                                </MDBCardFooter>
                             </MDBCard>
                         </MDBCol>
                     </MDBRow>
