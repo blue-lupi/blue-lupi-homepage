@@ -14,13 +14,18 @@ import {
 } from 'mdbreact';
 
 //> Images
-// To be added
+import trivida from '../../../../assets/content/sections/trusted/trivida.png';
+import creativeCompany from '../../../../assets/content/sections/trusted/creative-company.png';
+import lovelyIn from '../../../../assets/content/sections/trusted/lovely-in.png';
 
+//> CSS
+import './trust.scss';
+
+// Data
 const companies = [
-    { name: "Test 1", url: "www.test1.at", image: "test1.jpg" },
-    { name: "Test 2", url: "www.test2.at", image: "test2.jpg" },
-    { name: "Test 3", url: "www.test3.at", image: "test3.jpg" },
-    { name: "Test 4", url: "www.test4.at", image: "test4.jpg" }
+    { name: "Trivida", url: "https://trividavegan.at/", logo: trivida },
+    { name: "Creative Company", url: "https://www.creative-company.cc", logo: creativeCompany },
+    { name: "Lovely In", url: "http://www.lovely-in.at", logo: lovelyIn }
 ];
 
 class Trust extends React.Component{
@@ -31,8 +36,9 @@ class Trust extends React.Component{
                     {companies.map((company, i) => {
                         return(
                             <MDBCol md="2" className="text-center">
-                                {company.name}
-                                <p>Logo to be added.</p>
+                            <a href={company.url} target="_blank" rel="noopener noreferrer">
+                                <img className="img-fluid" src={company.logo} alt={company.name}/>
+                            </a>
                             </MDBCol>
                         )
                     })}
