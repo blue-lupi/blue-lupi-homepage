@@ -4,7 +4,7 @@ import React from 'react';
 
 //> Additional libraies
 // Parallax
-//import { Parallax } from 'react-scroll-parallax';
+import { Parallax } from 'react-scroll-parallax';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
@@ -14,9 +14,30 @@ import {
 } from 'mdbreact';
 
 //> Images
-// To be added
+import moon from '../../../../assets/content/sections/sub/moon.png';
+import { ReactComponent as Wolf } from '../../../../assets/content/sections/sub/wolf.svg';
 
 class Sub extends React.Component{
+
+    componentDidMount = () => {
+        let frames = document.querySelectorAll('.frame');
+        let currentFrame = 0;
+        let previousFrame = 7;
+
+        setInterval(function () {
+            frames[currentFrame].style.visibility = 'visible';
+            frames[previousFrame].style.visibility = 'hidden';
+
+            if (currentFrame < frames.length - 1) {
+                currentFrame += 1;
+                previousFrame = currentFrame - 1;
+            } else {
+                currentFrame = 0;
+                previousFrame = 7;
+            }
+        }, 75);
+    }
+
     render(){
         return(
             <section id="subscription">
@@ -27,10 +48,14 @@ class Sub extends React.Component{
                         Wer mit den Wölfen schreitet, lernt zu heulen.
                         </h2>
                         <p className="lead">Für den täglichen Genuss.</p>
-                        !! Interactive wolf + Direkte Handlungsaufforderung !!
+                        <div className="box">
+                            <Wolf />
+                        </div>
                     </MDBCol>
                     <MDBCol md="4">
-                        !! Parallax Mond.jpg !!
+                        <Parallax className="parallax" y={[-40, 40]} tagOuter="figure">
+                            <img src={moon} alt="Mond"/>
+                        </Parallax>
                     </MDBCol>
                 </MDBRow>
             </section>

@@ -1,0 +1,52 @@
+#about{
+
+    background-color: #f6ede0;
+    padding-left: 15%;
+    padding-right: 15%;
+
+    @media only screen and (max-width: 640px) {
+        padding-left: 0;
+        padding-right: 0;
+        .card{
+            text-align: center;
+        }
+    }
+    
+    .card{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: none;
+    }
+
+    .circle{
+        $size: 200px;
+        background-color: white;
+        height: $size;
+        width: $size;
+        border-radius: 50%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        padding: 2rem;
+        .icon{
+            height: 100%;
+            width: 100%;
+            img{
+                transition: transform .2s ease-in-out;
+            }
+            &:hover{
+                cursor: pointer;
+                img{
+                    transform: rotate(10deg) scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

@@ -11,6 +11,10 @@ import {
     MDBIcon,
 } from 'mdbreact';
 
+//> CSS
+import './faq.scss';
+
+// Dummy data
 const items = [
     {
         icon: "leaf",
@@ -31,17 +35,20 @@ class FAQ extends React.Component{
         return(
             <section id="faq">
                 <MDBContainer>
-                    <MDBRow className="text-center">
+                    <h2 className="text-center font-weight-bold">Häufig gestellte Fragen</h2>
+                    <MDBRow className="text-center mt-5">
                     {items.map((item, i) => {
                         return (
-                            <MDBCol md="6">
+                            <MDBCol key={i} md="6">
                                 {item.icon &&
                                     <MDBIcon icon={item.icon} />
                                 }
                                 <h4>{item.heading}</h4>
                                 <p>{item.text}</p>
                                 {item.link && 
-                                    <a href={item.link} target="_blank" rel="noopener noreferrer">Mehr dazu</a>
+                                    <a href={item.link} target="_blank" rel="noopener noreferrer">
+                                    Mehr dazu
+                                    </a>
                                 }
                             </MDBCol>
                         );

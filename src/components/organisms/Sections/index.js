@@ -1,7 +1,7 @@
 //> Components
 // Import all components to export them for easy access from parent components
 import Shop from './Shop';
-import Story from './Story';
+import Steps from './Steps';
 import Sub from './Sub';
 import Trust from './Trust';
 import Gallery from './Gallery';
@@ -10,7 +10,7 @@ import FAQ from './FAQ';
 
 export {
     Shop,
-    Story,
+    Steps,
     Sub,
     Trust,
     Gallery,

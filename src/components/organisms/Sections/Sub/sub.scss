@@ -1,6 +1,15 @@
 #subscription{
     background-color: #001f3d;
     color: #f9e093;
+
+    svg{
+        transform: scaleX(-1);
+        height: 150px;
+        width: auto;
+    }
+    #wolf{
+        fill: #fff;
+    }
 }
 
 /** 

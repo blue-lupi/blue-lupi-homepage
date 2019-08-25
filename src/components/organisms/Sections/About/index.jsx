@@ -11,58 +11,73 @@ import React from 'react';
 import {
     MDBRow,
     MDBCol,
+    MDBCard,
 } from 'mdbreact';
 
+//> CSS
+import './about.scss';
+
 //> Images
-// To be added
+import tempIcon from '../../../../assets/content/sections/about/temp.png';
 
 class About extends React.Component{
     render(){
         return(
             <section id="about">
-                <MDBRow className="m-0 p-2">
-                    <MDBCol md="6">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                        venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                        Aliquam erat volutpat. Ut a porta risus, eu porttitor nisi. Pellentesque turpis turpis, 
-                        mattis lobortis justo sagittis, tempus ornare dui.
+                <h2 className="font-weight-bold text-center">Über mich</h2>
+                <MDBRow className="m-0 p-2 flex-center">
+                    <MDBCol md="5">
+                        <MDBCard className="p-4">
+                            <h3>Test</h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
+                            </p>
+                        </MDBCard>
+                        <MDBCard className="p-4">
+                            <h3>Test</h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
+                            </p>
+                        </MDBCard>
+                        <MDBCard className="p-4">
+                            <h3>Test</h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
+                            </p>
+                        </MDBCard>
                     </MDBCol>
-                    <MDBCol md="6" className="text-right">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                        venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                        Aliquam erat volutpat. Ut a porta risus, eu porttitor nisi. Pellentesque turpis turpis, 
-                        mattis lobortis justo sagittis, tempus ornare dui.
+                    <MDBCol md="2" className="text-center">
+                        <div className="circle">
+                            <div className="icon">
+                                <img src={tempIcon} className="img-fluid" alt="Icon"/>
+                            </div>
+                        </div>
                     </MDBCol>
-                </MDBRow>
-                <MDBRow className="m-0 p-2">
-                    <MDBCol md="4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                        venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                        Aliquam erat volutpat. Ut a porta risus, eu porttitor nisi. Pellentesque turpis turpis, 
-                        mattis lobortis justo sagittis, tempus ornare dui.
-                    </MDBCol>
-                    <MDBCol md="4" className="text-center">
-                        Center Icon / Image
-                    </MDBCol>
-                    <MDBCol md="4" className="text-right">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                        venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                        Aliquam erat volutpat. Ut a porta risus, eu porttitor nisi. Pellentesque turpis turpis, 
-                        mattis lobortis justo sagittis, tempus ornare dui.
-                    </MDBCol>
-                </MDBRow>
-                <MDBRow className="m-0 p-2">
-                    <MDBCol md="6">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                        venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                        Aliquam erat volutpat. Ut a porta risus, eu porttitor nisi. Pellentesque turpis turpis, 
-                        mattis lobortis justo sagittis, tempus ornare dui.
-                    </MDBCol>
-                    <MDBCol md="6" className="text-right">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                        venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                        Aliquam erat volutpat. Ut a porta risus, eu porttitor nisi. Pellentesque turpis turpis, 
-                        mattis lobortis justo sagittis, tempus ornare dui.
+                    <MDBCol md="5" className="text-right">
+                        <MDBCard className="p-4">
+                            <h3>Test</h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
+                            </p>
+                        </MDBCard>
+                        <MDBCard className="p-4">
+                            <h3>Test</h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
+                            </p>
+                        </MDBCard>
+                        <MDBCard className="p-4">
+                            <h3>Test</h3>
+                            <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
+                            </p>
+                        </MDBCard>
                     </MDBCol>
                 </MDBRow>
             </section>
