@@ -25,15 +25,15 @@ class Sub extends React.Component{
         let previousFrame = 7;
 
         setInterval(function () {
-            frames[currentFrame].style.visibility = 'visible'
-            frames[previousFrame].style.visibility = 'hidden'
+            frames[currentFrame].style.visibility = 'visible';
+            frames[previousFrame].style.visibility = 'hidden';
 
             if (currentFrame < frames.length - 1) {
-            currentFrame += 1;
-            previousFrame = currentFrame - 1;
+                currentFrame += 1;
+                previousFrame = currentFrame - 1;
             } else {
-            currentFrame = 0;
-            previousFrame = 7;
+                currentFrame = 0;
+                previousFrame = 7;
             }
         }, 75);
     }

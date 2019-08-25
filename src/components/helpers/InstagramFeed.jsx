@@ -26,7 +26,7 @@ export default class extends React.Component {
             const { id } = node;
             const caption = node.edge_media_to_caption.edges[0].node.text;
             const thumbnail = node.thumbnail_resources.find(
-                thumbnail => thumbnail.config_width === this.props.thumbnailWidth
+                (thumbnail) => thumbnail.config_width === this.props.thumbnailWidth
             );
             const { src, config_width: width, config_height: height } = thumbnail;
             const url = `https://www.instagram.com/p/${node.shortcode}`;
@@ -42,7 +42,7 @@ export default class extends React.Component {
         );
         this.setState({ photos });
         } catch (error) {
-        console.error(error);
+            //console.error(error);
         }
     }
 
