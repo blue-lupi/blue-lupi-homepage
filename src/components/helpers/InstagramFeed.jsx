@@ -53,8 +53,8 @@ export default class extends React.Component {
             {this.state.photos &&
             this.state.photos.map(({ src, url }) => (
                 <MDBCol md="4">
-                    <a href={url} target="_blank">
-                        <img className="img-fluid" src={src} />
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                        <img className="img-fluid" alt="Instagram Feed" src={src} />
                     </a>
                 </MDBCol>
             ))}
