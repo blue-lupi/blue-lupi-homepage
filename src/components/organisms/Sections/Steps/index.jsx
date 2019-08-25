@@ -2,10 +2,6 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 
-//> Additional libraies
-// Parallax
-//import { Parallax } from 'react-scroll-parallax';
-
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
@@ -17,14 +13,18 @@ import {
 //> Images
 // To be added
 
+//> CSS
+import './steps.scss';
+
 class Story extends React.Component{
     render(){
         return(
-            <section id="story">
+            <section id="steps">
                 <MDBContainer>
-                    <MDBRow className="m-0">
+                    <h2 className="text-center font-weight-bold">Wie wird Blue Lupi produziert?</h2>
+                    <MDBRow className="m-0 mt-5">
                         <MDBCol md="6">
-                            !! Image !!
+                            <img className="img-fluid" src="" alt=""/>
                         </MDBCol>
                         <MDBCol md="6" className="pr-5 pl-5">
                             <h2>Bla bla bla</h2>
@@ -49,10 +49,10 @@ class Story extends React.Component{
                             </p>
                         </MDBCol>
                         <MDBCol md="6">
-                            !! Image !!
+                            <img className="img-fluid" src="" alt=""/>
                         </MDBCol>
                         <MDBCol md="6">
-                            !! Image !!
+                            <img className="img-fluid" src="" alt=""/>
                         </MDBCol>
                         <MDBCol md="6" className="pr-5 pl-5">
                             <h2>Bla bla bla</h2>
@@ -77,7 +77,7 @@ class Story extends React.Component{
                             </p>
                         </MDBCol>
                         <MDBCol md="6">
-                            !! Image !!
+                            <img className="img-fluid" src="" alt=""/>
                         </MDBCol>
                         
                     </MDBRow>
