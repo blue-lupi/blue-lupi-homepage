@@ -20,7 +20,7 @@ const items = [
     },
     {
         icon: "leaf",
-        heading: "Schmeckt dieser Kaffee gleich?",
+        heading: "Wie schmeckt Lupinien Kaffee?",
         text: "Lorem Ipsum dolor sit amet",
         link: "test"
     }
