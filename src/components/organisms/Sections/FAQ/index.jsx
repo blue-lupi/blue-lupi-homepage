@@ -24,7 +24,7 @@ const items = [
         text: "Lorem Ipsum dolor sit amet",
         link: "test"
     }
-]
+];
 
 class FAQ extends React.Component{
     render(){
