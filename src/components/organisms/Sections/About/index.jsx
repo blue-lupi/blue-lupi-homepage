@@ -13,6 +13,9 @@ import {
     MDBCol,
 } from 'mdbreact';
 
+//> CSS
+import './about.scss';
+
 //> Images
 // To be added
 
