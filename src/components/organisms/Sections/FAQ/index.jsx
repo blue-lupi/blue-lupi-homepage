@@ -17,16 +17,28 @@ import './faq.scss';
 // Dummy data
 const items = [
     {
-        icon: "leaf",
-        heading: "Wie brät man Lorem Ipsum?",
-        text: "Lorem Ipsum dolor sit amet",
+        icon: "coffee",
+        heading: "Woher bekomme ich den Lupinien Kaffee?",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         link: ""
     },
     {
         icon: "leaf",
         heading: "Wie schmeckt Lupinien Kaffee?",
-        text: "Lorem Ipsum dolor sit amet",
+        text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         link: "test"
+    },
+    {
+        icon: "dog",
+        heading: "Fängt man echt an zu heulen?",
+        text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        link: "test"
+    },
+    {
+        icon: "user",
+        heading: "Woher beziehst du deine Lupinien?",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        link: ""
     }
 ];
 
@@ -39,9 +51,9 @@ class FAQ extends React.Component{
                     <MDBRow className="text-center mt-5">
                     {items.map((item, i) => {
                         return (
-                            <MDBCol key={i} md="6">
+                            <MDBCol key={i} md="6" className="my-3">
                                 {item.icon &&
-                                    <MDBIcon icon={item.icon} />
+                                    <MDBIcon icon={item.icon} className="fa-lg"/>
                                 }
                                 <h4>{item.heading}</h4>
                                 <p>{item.text}</p>
