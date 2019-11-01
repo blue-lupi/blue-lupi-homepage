@@ -24,7 +24,11 @@ class Story extends React.Component{
                     <h2 className="text-center font-weight-bold">Wie wird Blue Lupi produziert?</h2>
                     <MDBRow className="m-0 mt-5">
                         <MDBCol md="6">
-                            <img className="img-fluid" src="https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg" alt=""/>
+                            <img 
+                            className="img-fluid"
+                            src="https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg"
+                            alt=""
+                            />
                         </MDBCol>
                         <MDBCol md="6" className="pr-5 pl-5">
                             <h2>Bla bla bla</h2>
@@ -49,7 +53,11 @@ class Story extends React.Component{
                             </p>
                         </MDBCol>
                         <MDBCol md="6">
-                            <img className="img-fluid" src="https://previews.123rf.com/images/arkadivna/arkadivna1705/arkadivna170500001/78085874-coffee-machine-isolated-on-white-background-vector-illustration-of-a-sketch-style-.jpg" alt=""/>
+                            <img
+                            className="img-fluid"
+                            src="https://previews.123rf.com/images/arkadivna/arkadivna1705/arkadivna170500001/78085874-coffee-machine-isolated-on-white-background-vector-illustration-of-a-sketch-style-.jpg"
+                            alt=""
+                            />
                         </MDBCol>
                         <MDBCol md="6">
                             <img className="img-fluid" src="https://static3.bigstockphoto.com/2/3/2/large2/232383625.jpg" alt=""/>
@@ -77,7 +85,11 @@ class Story extends React.Component{
                             </p>
                         </MDBCol>
                         <MDBCol md="6">
-                            <img className="img-fluid" src="https://image.shutterstock.com/image-vector/vector-sketch-illustration-cup-coffee-260nw-169482620.jpg" alt=""/>
+                            <img 
+                            className="img-fluid"
+                            src="https://image.shutterstock.com/image-vector/vector-sketch-illustration-cup-coffee-260nw-169482620.jpg"
+                            alt=""
+                            />
                         </MDBCol>
                         
                     </MDBRow>
