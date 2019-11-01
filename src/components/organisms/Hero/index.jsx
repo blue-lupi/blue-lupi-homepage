@@ -68,32 +68,36 @@ class Hero extends React.Component{
                         </MDBAnimation>
                     </MDBCol>
                     <MDBCol md="6" className="p-0">
-                        <div className="hero-side">
-                            <Parallax className="parallax" y={[-40, 40]} tagOuter="figure">
-                                <div>
-                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="450ms">
-                                        <h2>More</h2>
-                                    </MDBAnimation>
-                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="400ms">
-                                        <h2>than</h2>
-                                    </MDBAnimation>
-                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="350ms">
-                                        <h2>Coffee</h2>
-                                    </MDBAnimation>
-                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="300ms">
-                                        <span className="pt-2">An intellectual drink,</span>
-                                    </MDBAnimation>
-                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="200ms">
-                                        <span>for the chosen ones.</span>
-                                    </MDBAnimation>
-                                    <MDBAnimation type="fadeInUp" duration="500ms" delay="100ms">
-                                        <MDBBtn color="lupi-blue" rounded> Take a sip
-                                            <MDBIcon icon="arrow-right" className="pl-3 fa-lg"/>
-                                        </MDBBtn>
-                                    </MDBAnimation>
+                        <MDBRow className="flex-center m-0 p-0">
+                            <MDBCol md="6">
+                                <div className="hero-side">
+                                    <Parallax className="parallax" y={[-40, 40]} tagOuter="figure">
+                                        <div>
+                                            <MDBAnimation type="fadeInUp" duration="500ms" delay="450ms">
+                                                <h2>More</h2>
+                                            </MDBAnimation>
+                                            <MDBAnimation type="fadeInUp" duration="500ms" delay="400ms">
+                                                <h2>than</h2>
+                                            </MDBAnimation>
+                                            <MDBAnimation type="fadeInUp" duration="500ms" delay="350ms">
+                                                <h2>Coffee</h2>
+                                            </MDBAnimation>
+                                            <MDBAnimation type="fadeInUp" duration="500ms" delay="300ms">
+                                                <span className="pt-2">An intellectual drink,</span>
+                                            </MDBAnimation>
+                                            <MDBAnimation type="fadeInUp" duration="500ms" delay="200ms">
+                                                <span>for the chosen ones.</span>
+                                            </MDBAnimation>
+                                            <MDBAnimation type="fadeInUp" duration="500ms" delay="100ms">
+                                                <MDBBtn color="lupi-blue" rounded> Take a sip
+                                                    <MDBIcon icon="arrow-right" className="pl-3 fa-lg"/>
+                                                </MDBBtn>
+                                            </MDBAnimation>
+                                        </div>
+                                    </Parallax>
                                 </div>
-                            </Parallax>
-                        </div>
+                            </MDBCol>
+                        </MDBRow>
                     </MDBCol>
                 </MDBRow>
             </div>
