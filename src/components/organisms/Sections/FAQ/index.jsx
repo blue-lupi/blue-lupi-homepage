@@ -15,7 +15,7 @@ import {
 import './faq.scss';
 
 // Dummy data
-const items = [
+const data = [
     {
         icon: "coffee",
         heading: "Woher bekomme ich den Lupinien Kaffee?",
@@ -49,7 +49,7 @@ class FAQ extends React.Component{
                 <MDBContainer>
                     <h2 className="text-center font-weight-bold">Häufig gestellte Fragen</h2>
                     <MDBRow className="text-center mt-5">
-                    {items.map((item, i) => {
+                    {data.map((item, i) => {
                         return (
                             <MDBCol key={i} md="6" className="my-3">
                                 {item.icon &&
