@@ -26,13 +26,20 @@ import coffee from '../../../assets/content/coffee_lupi.png';
 // Background
 import bg1 from '../../../assets/content/bg/bg1.jpg';
 
+//> Data
+const data = {
+    img: bg1,
+    mug: coffee,
+    logo: lupiLogoWhite
+}
+
 class Hero extends React.Component{
     render(){
         return(
             <div id="hero">
                 <div className="logo-icon">
                     <div className="view">
-                        <img src={lupiLogoWhite} alt="Logo"/>
+                        <img src={data.logo} alt="Logo"/>
                         <div className="mask"></div>
                     </div>
                 </div>
@@ -48,7 +55,7 @@ class Hero extends React.Component{
                             <div className="view">
                                 <MDBAnimation type="fadeIn" duration="500ms">
                                     <MDBAnimation type="rotateIn" duration="1000ms">
-                                        <img src={coffee} className="img-fluid" alt="Coffee"/>
+                                        <img src={data.mug} className="img-fluid" alt="Coffee"/>
                                     </MDBAnimation>
                                 </MDBAnimation>
                                 <div className="mask"></div>
@@ -59,7 +66,7 @@ class Hero extends React.Component{
                 <MDBRow className="w-100 m-0">
                     <MDBCol md="6" className="p-0">
                         <MDBAnimation type="fadeInLeft" duration="900ms">
-                            <MDBView src={bg1} >
+                            <MDBView src={data.img} >
                                 <MDBMask
                                 pattern={5}
                                 className="rgba-purple-slight d-flex justify-content-center align-items-center">
