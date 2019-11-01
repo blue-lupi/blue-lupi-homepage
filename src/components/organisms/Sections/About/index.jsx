@@ -54,11 +54,13 @@ class About extends React.Component{
     let rtn = cards.map((card, i) => {
       if(i % 2 !== 1){
         return(
-          <MDBCard className="p-4" key={i}>
+          <MDBCard className="p-4" key={"l_"+i}>
             <h3>{card.title}</h3>
             <p>{card.text}</p>
           </MDBCard>
         )
+      } else {
+        return undefined;
       }
     })
     return rtn;
@@ -69,11 +71,13 @@ class About extends React.Component{
     let rtn = cards.map((card, i) => {
       if(i % 2 === 1){
         return(
-          <MDBCard className="p-4" key={i}>
+          <MDBCard className="p-4" key={"r_"+i}>
             <h3>{card.title}</h3>
             <p>{card.text}</p>
           </MDBCard>
         )
+      } else {
+        return undefined;
       }
     })
     return rtn;
