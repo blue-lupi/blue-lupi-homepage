@@ -16,62 +16,75 @@ import {
 //> CSS
 import './features.scss';
 
+//> Data
+const data = {
+  title: "Wieso Bluelupi?",
+  reasons: [
+    {
+      title: "Bla bla bla",
+      img: "https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg",
+      lead: "Lead to catch attention",
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
+Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
+turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
+nulla dapibus, eget vestibulum velit faucibus.`
+    },
+    {
+      title: "Bla bla bla 2",
+      img: "https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg",
+      lead: "Lead to catch attention",
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
+Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
+turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
+nulla dapibus, eget vestibulum velit faucibus.`
+    },
+    {
+      title: "Bla bla bla 3",
+      img: "https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg",
+      lead: "Lead to catch attention",
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
+Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
+turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
+nulla dapibus, eget vestibulum velit faucibus.`
+    }
+  ]
+}
+
 class Features extends React.Component{
+
+  renderReasons = () => {
+
+    let width = (data.reasons.length === 4 || data.reasons.length === 8) ? "3" : "4";
+
+    let rtn = data.reasons.map((reason, i) => {
+      return(
+        <MDBCol md={width} key={i}>
+            <img 
+            className="img-fluid"
+            src={reason.img}
+            alt={reason.title}
+            />
+            <h2>{reason.title}</h2>
+            <p className="lead">{reason.lead}</p>
+            <p>{reason.text}</p>
+        </MDBCol>
+      );
+    });
+
+    return rtn;
+  }
+
   render(){
     return(
       <section id="features">
         <MDBContainer>
-          <h2 className="text-center font-weight-bold">Wieso Bluelupi?</h2>
+          <h2 className="text-center font-weight-bold">{data.title}</h2>
           <MDBRow className="m-0 mt-5 text-center">
-              <MDBCol md="4">
-                  <img 
-                  className="img-fluid"
-                  src="https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg"
-                  alt=""
-                  />
-                  <h2>Bla bla bla</h2>
-                  <p className="lead">Lead to catch attention</p>
-                  <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                  venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                  Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
-                  turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
-                  nulla dapibus, eget vestibulum velit faucibus.
-                  </p>
-              </MDBCol>
-              <MDBCol md="4">
-                  <img 
-                  className="img-fluid"
-                  src="https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg"
-                  alt=""
-                  />
-                  <h2>Bla bla bla</h2>
-                  <p className="lead">Lead to catch attention</p>
-                  <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                  venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                  Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
-                  turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
-                  nulla dapibus, eget vestibulum velit faucibus.
-                  </p>
-              </MDBCol>
-              <MDBCol md="4">
-                  <img 
-                  className="img-fluid"
-                  src="https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg"
-                  alt=""
-                  />
-                  <h2>Bla bla bla</h2>
-                  <p className="lead">Lead to catch attention</p>
-                  <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                  venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-                  Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
-                  turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
-                  nulla dapibus, eget vestibulum velit faucibus.
-                  </p>
-              </MDBCol>
-            </MDBRow>
+            {this.renderReasons()}
+          </MDBRow>
         </MDBContainer>
       </section>
     );
