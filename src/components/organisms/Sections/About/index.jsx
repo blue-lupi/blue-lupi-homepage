@@ -45,7 +45,7 @@ venenatis ante interdum sit amet. Sed sit amet tempor augue.`
 venenatis ante interdum sit amet. Sed sit amet tempor augue.`
     }
   ]
-}
+};
 
 class About extends React.Component{
 
@@ -58,11 +58,11 @@ class About extends React.Component{
             <h3>{card.title}</h3>
             <p>{card.text}</p>
           </MDBCard>
-        )
+        );
       } else {
         return undefined;
       }
-    })
+    });
     return rtn;
   }
 
@@ -75,11 +75,11 @@ class About extends React.Component{
             <h3>{card.title}</h3>
             <p>{card.text}</p>
           </MDBCard>
-        )
+        );
       } else {
         return undefined;
       }
-    })
+    });
     return rtn;
   }
 

@@ -19,7 +19,7 @@ import {
 const data = {
   email: "info@bluelupi.at",
   tel: "+43 111 123 123 12",
-}
+};
 
 class Footer extends React.Component{
   render(){

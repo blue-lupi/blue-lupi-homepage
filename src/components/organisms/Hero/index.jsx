@@ -31,7 +31,7 @@ const data = {
     img: bg1,
     mug: coffee,
     logo: lupiLogoWhite
-}
+};
 
 class Hero extends React.Component{
     render(){

@@ -26,7 +26,7 @@ const THUMBNAIL_WIDTH = 320;
 //> Data
 const data = {
     count: 9,
-}
+};
 
 class Gallery extends React.Component{
     render(){

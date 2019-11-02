@@ -51,7 +51,7 @@ turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nul
 nulla dapibus, eget vestibulum velit faucibus.`
     }
   ]
-}
+};
 
 class Features extends React.Component{
 
