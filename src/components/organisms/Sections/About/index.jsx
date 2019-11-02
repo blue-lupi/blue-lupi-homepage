@@ -84,7 +84,6 @@ class About extends React.Component{
   }
 
   render(){
-
     return(
       <section id="about">
         <h2 className="font-weight-bold text-center">{data.title}</h2>
