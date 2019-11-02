@@ -7,6 +7,7 @@ import Trust from './Trust';
 import Gallery from './Gallery';
 import About from './About';
 import FAQ from './FAQ';
+import Features from './Features';
 
 export {
     Shop,
@@ -16,6 +17,7 @@ export {
     Gallery,
     About,
     FAQ,
+    Features,
 };
 
 /** 

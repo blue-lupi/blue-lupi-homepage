@@ -9,8 +9,8 @@ import React from 'react';
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-    MDBRow,
-    MDBCol,
+  MDBRow,
+  MDBCol,
 } from 'mdbreact';
 
 //> Images
@@ -22,31 +22,32 @@ import lovelyIn from '../../../../assets/content/sections/trusted/lovely-in.png'
 import './trust.scss';
 
 // Data
-const companies = [
+const data = {
+  companies: [
     { name: "Trivida", url: "https://trividavegan.at/", logo: trivida },
     { name: "Creative Company", url: "https://www.creative-company.cc", logo: creativeCompany },
     { name: "Lovely In", url: "http://www.lovely-in.at", logo: lovelyIn }
-];
+  ]
+};
 
 class Trust extends React.Component{
-    render(){
-        return(
-            <section id="trust">
-                <MDBRow className="flex-center m-0">
-                    {companies.map((company, i) => {
-                        return(
-                            <MDBCol key={i} md="2" className="text-center">
-                            <a href={company.url} target="_blank" rel="noopener noreferrer">
-                                <img className="img-fluid" src={company.logo} alt={company.name}/>
-                            </a>
-                            </MDBCol>
-                        )
-                    })}
-                    
-                </MDBRow>
-            </section>
-        );
-    }
+  render(){
+    return(
+      <section id="trust">
+        <MDBRow className="flex-center m-0">
+          {data.companies.map((company, i) => {
+            return(
+              <MDBCol key={i} md="2" className="text-center">
+              <a href={company.url} target="_blank" rel="noopener noreferrer">
+                <img className="img-fluid" src={company.logo} alt={company.name}/>
+              </a>
+              </MDBCol>
+            );
+          })}
+        </MDBRow>
+      </section>
+    );
+  }
 }
 
 export default Trust;

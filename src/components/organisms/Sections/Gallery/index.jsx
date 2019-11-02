@@ -22,7 +22,11 @@ import './gallery.scss';
 // Instagram Gallery configuration
 const INSTAGRAM_ID = "8684517164";
 const THUMBNAIL_WIDTH = 320;
-const PHOTO_COUNT = 9;
+
+//> Data
+const data = {
+    count: 9,
+};
 
 class Gallery extends React.Component{
     render(){
@@ -32,7 +36,7 @@ class Gallery extends React.Component{
                     <InstagramGallery
                         userId={INSTAGRAM_ID}
                         thumbnailWidth={THUMBNAIL_WIDTH}
-                        photoCount={PHOTO_COUNT}
+                        photoCount={data.count}
                     />
                 </MDBContainer>
             </section>

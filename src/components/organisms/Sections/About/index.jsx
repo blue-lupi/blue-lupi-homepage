@@ -9,9 +9,9 @@ import React from 'react';
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-    MDBRow,
-    MDBCol,
-    MDBCard,
+  MDBRow,
+  MDBCol,
+  MDBCard,
 } from 'mdbreact';
 
 //> CSS
@@ -20,69 +20,91 @@ import './about.scss';
 //> Images
 import tempIcon from '../../../../assets/content/sections/about/temp.png';
 
-class About extends React.Component{
-    render(){
-        return(
-            <section id="about">
-                <h2 className="font-weight-bold text-center">Über mich</h2>
-                <MDBRow className="m-0 p-2 flex-center">
-                    <MDBCol md="5">
-                        <MDBCard className="p-4">
-                            <h3>Test</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
-                            </p>
-                        </MDBCard>
-                        <MDBCard className="p-4">
-                            <h3>Test</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
-                            </p>
-                        </MDBCard>
-                        <MDBCard className="p-4">
-                            <h3>Test</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
-                            </p>
-                        </MDBCard>
-                    </MDBCol>
-                    <MDBCol md="2" className="text-center">
-                        <div className="circle">
-                            <div className="icon">
-                                <img src={tempIcon} className="img-fluid" alt="Icon"/>
-                            </div>
-                        </div>
-                    </MDBCol>
-                    <MDBCol md="5" className="text-right">
-                        <MDBCard className="p-4">
-                            <h3>Test</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
-                            </p>
-                        </MDBCard>
-                        <MDBCard className="p-4">
-                            <h3>Test</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
-                            </p>
-                        </MDBCard>
-                        <MDBCard className="p-4">
-                            <h3>Test</h3>
-                            <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-                            venenatis ante interdum sit amet. Sed sit amet tempor augue.
-                            </p>
-                        </MDBCard>
-                    </MDBCol>
-                </MDBRow>
-            </section>
-        );
+//> Data
+const data = {
+  title: "Über mich",
+  cards: [
+    {
+      title: "Test1",
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+venenatis ante interdum sit amet. Sed sit amet tempor augue.`
+    },
+    {
+      title: "Test2",
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+venenatis ante interdum sit amet. Sed sit amet tempor augue.`
+    },
+    {
+      title: "Test3",
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+venenatis ante interdum sit amet. Sed sit amet tempor augue.`
+    },
+    {
+      title: "Test4",
+      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
+venenatis ante interdum sit amet. Sed sit amet tempor augue.`
     }
+  ]
+};
+
+class About extends React.Component{
+
+  renderCardsLeft = () => {
+    let cards = data.cards;
+    let rtn = cards.map((card, i) => {
+      if(i % 2 !== 1){
+        return(
+          <MDBCard className="p-4" key={"l_"+i}>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </MDBCard>
+        );
+      } else {
+        return undefined;
+      }
+    });
+    return rtn;
+  }
+
+  renderCardsRight = () => {
+    let cards = data.cards;
+    let rtn = cards.map((card, i) => {
+      if(i % 2 === 1){
+        return(
+          <MDBCard className="p-4" key={"r_"+i}>
+            <h3>{card.title}</h3>
+            <p>{card.text}</p>
+          </MDBCard>
+        );
+      } else {
+        return undefined;
+      }
+    });
+    return rtn;
+  }
+
+  render(){
+    return(
+      <section id="about">
+        <h2 className="font-weight-bold text-center">{data.title}</h2>
+        <MDBRow className="m-0 p-2 flex-center">
+          <MDBCol md="5">
+            {this.renderCardsLeft()}
+          </MDBCol>
+          <MDBCol md="2" className="text-center">
+            <div className="circle">
+              <div className="icon">
+                <img src={tempIcon} className="img-fluid" alt="Icon"/>
+              </div>
+            </div>
+          </MDBCol>
+          <MDBCol md="5" className="text-right">
+            {this.renderCardsRight()}
+          </MDBCol>
+        </MDBRow>
+      </section>
+    );
+  }
 }
 
 export default About;
