@@ -26,11 +26,6 @@ import {
     MDBBtn,
 } from 'mdbreact';
 
-//> Images
-import product1 from '../../../../assets/content/sections/shop/product1.png';
-import product2 from '../../../../assets/content/sections/shop/product2.png';
-import product3 from '../../../../assets/content/sections/shop/product3.png';
-
 //> CSS
 import './shop.scss';
 
@@ -44,11 +39,40 @@ class Shop extends React.Component{
     checkout: { lineItems: { edges: [] } }
   };
 
+  componentDidMount = () => {
+    let products = this.props.products;
+
+    let res = [];
+
+    products.map((product, i) => {
+      switch(product.node.title){
+        case 'Bluelupi Lupinenkaffee':
+          res[0] = products[i];
+          break;
+        case 'Bluelupi im Spar-Abo':
+          res[1] = products[i];
+          break;
+        case 'Bluelupi Lupinenkaffee Kapseln 60g':
+          res[2] = products[i];
+          break;
+        default:
+          res[i] = products[i];
+          break;
+      }
+      return true;
+    });
+
+    this.setState({
+      products: res
+    });
+  }
+
   render(){
 
-    const { products } = this.props;
+    const { products } = this.state;
+    
     // Debugging
-    console.log(products);
+    //console.log(products);
 
     return(
       <section id="shop">
