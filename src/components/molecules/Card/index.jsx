@@ -67,17 +67,14 @@ class Cart extends React.Component {
             <MDBCol size="6" className="text-right">
               € {this.props.checkout.subtotalPrice}
             </MDBCol>
-            <MDBCol size="6" className="text-left">
-              Steuern
-            </MDBCol>
-            <MDBCol size="6" className="text-right">
-              € {this.props.checkout.totalTax}
+            <MDBCol size="12" className="text-left">
+              <small className="text-muted">inkl. Steuer</small>
             </MDBCol>
             <MDBCol size="6" className="font-weight-bold text-left">
               Gesamt
             </MDBCol>
             <MDBCol size="6" className="font-weight-bold text-right">
-              {this.props.checkout.totalPrice}
+              € {this.props.checkout.totalPrice}
             </MDBCol>
           </MDBRow>
         </MDBModalBody>
