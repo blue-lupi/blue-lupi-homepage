@@ -143,7 +143,11 @@ class HomePage extends React.Component {
       <>
         <Hero />
         <Features />
-        <Shop />
+        <Shop 
+        products={this.props.data.shop.products.edges}
+        addVariantToCart={this.addVariantToCart} 
+        checkout={this.state.checkout}
+        />
         <About />
         <Gallery />
         <Trust />
@@ -182,6 +186,7 @@ const query = gql`
           node {
             id
             title
+            descriptionHtml
             options {
               id
               name
