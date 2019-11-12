@@ -123,36 +123,6 @@ class Shop extends React.Component{
             }
           })}
         </MDBRow>
-          <MDBRow className="text-center">
-          {productsTEMP && productsTEMP.map(({name, image, text, notice, btn}, i) => {
-            return(
-              <MDBCol key={i}>
-                <MDBCard>
-                  <MDBCardImage
-                  className="img-fluid m-auto pl-5 pr-5 pt-3"
-                  src={image}
-                  waves
-                  />
-                  <MDBCardBody>
-                  <MDBCardTitle>{name}</MDBCardTitle>
-                  <MDBCardText>{text}</MDBCardText>
-                  <MDBCardText><small>{notice}</small></MDBCardText>
-                  </MDBCardBody>
-                  <MDBCardFooter>
-                    {btn.urlPath &&
-                      <MDBBtn
-                      color="lupi-blue"
-                      href={btn.urlPath}
-                      >
-                      {btn.text}
-                      </MDBBtn>
-                    }
-                  </MDBCardFooter>
-                </MDBCard>
-              </MDBCol>
-            );
-          })}
-          </MDBRow>
         </MDBContainer>
       </section>
     );
