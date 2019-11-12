@@ -3,11 +3,13 @@
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Cart from './Card';
+import Product from './Product';
 
 export {
     Footer,
     Navbar,
     Cart,
+    Product,
 };
 
 /** 
