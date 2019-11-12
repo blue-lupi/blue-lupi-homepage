@@ -70,6 +70,14 @@ const productsTEMP = [
 
 class Shop extends React.Component{
 
+  state = {
+    isCartOpen: false,
+    isCustomerAuthOpen: false,
+    isNewCustomer: false,
+    products: [],
+    checkout: { lineItems: { edges: [] } }
+  };
+
   render(){
 
     const { products } = this.props;
@@ -82,10 +90,11 @@ class Shop extends React.Component{
         <MDBRow>
           {products && products.map((product, i) => {
             switch(product.node.title){
-              case 'Bluelupi Lupinenkaffee 250g':
+              case 'Bluelupi Lupinenkaffee':
                 return(
                   <Product 
                   key={i}
+                  id={product.node.id}
                   product={product}
                   addVariantToCart={this.props.addVariantToCart}
                   checkout={this.state.checkout}
@@ -95,6 +104,7 @@ class Shop extends React.Component{
                 return(
                   <Product 
                   key={i}
+                  id={product.node.id}
                   product={product}
                   addVariantToCart={this.props.addVariantToCart}
                   checkout={this.state.checkout}
@@ -104,6 +114,7 @@ class Shop extends React.Component{
                 return(
                   <Product 
                   key={i}
+                  id={product.node.id}
                   product={product}
                   addVariantToCart={this.props.addVariantToCart}
                   checkout={this.state.checkout}
