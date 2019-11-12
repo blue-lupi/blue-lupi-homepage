@@ -84,13 +84,6 @@ class Shop extends React.Component{
             className="text-center"
             dangerouslySetInnerHTML={{__html: product.node.descriptionHtml}}
             ></MDBCardText>
-            <MDBCardText 
-            className="text-center"
-            >
-            <small>
-            
-            </small>
-            </MDBCardText>
             <p className="text-center mb-0">Anzahl</p>
             <div className="def-number-input number-input mb-2 ml-auto mr-auto">
               <button onClick={this.decrease} className="minus"></button>
