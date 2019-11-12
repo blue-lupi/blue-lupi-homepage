@@ -34,40 +34,6 @@ import product3 from '../../../../assets/content/sections/shop/product3.png';
 //> CSS
 import './shop.scss';
 
-// Data
-const productsTEMP = [
-    {
-        name: "Blue Lupi 250g",
-        image: product1,
-        text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        notice: "250g, geröstet und gemahlen",
-        btn: {
-            urlPath: "/test",
-            text: "Jetzt genießen"
-        }
-    },
-    {
-        name: "Blue Lupi 500g",
-        image: product2,
-        text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        notice: "500g, geröstet und gemahlen",
-        btn: {
-            urlPath: "/test",
-            text: "Jetzt genießen"
-        }
-    },
-    {
-        name: "Blue Lupi Kapseln",
-        image: product3,
-        text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-        notice: "100g, bald verfügbar",
-        btn: {
-            urlPath: "/test",
-            text: "Jetzt genießen"
-        }
-    }
-];
-
 class Shop extends React.Component{
 
   state = {
