@@ -201,6 +201,7 @@ const query = gql`
                 node {
                   id
                   title
+                  availableForSale
                   selectedOptions {
                     name
                     value
