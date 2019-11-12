@@ -48,6 +48,7 @@ const middlewareLink = setContext(() => ({
   }
 }));
 
+// Apollo Client
 const client = new ApolloClient({
   link: middlewareLink.concat(httpLink),
   cache: new InMemoryCache()
@@ -55,9 +56,11 @@ const client = new ApolloClient({
 
 // Render the root component to <div id="root"></div>
 ReactDOM.render(
-  <ParallaxProvider>
-    <App />
-  </ParallaxProvider>,
+  <ApolloProvider client={client}>
+    <ParallaxProvider>
+      <App />
+    </ParallaxProvider>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
