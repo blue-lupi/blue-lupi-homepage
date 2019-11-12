@@ -52,7 +52,7 @@ class Shop extends React.Component{
         case 'Bluelupi im Spar-Abo':
           res[1] = products[i];
           break;
-        case 'Bluelupi Lupinenkaffee Kapseln 60g':
+        case 'Lupinenkaffee Kapseln':
           res[2] = products[i];
           break;
         default:
@@ -70,7 +70,7 @@ class Shop extends React.Component{
   render(){
 
     const { products } = this.state;
-    
+
     // Debugging
     //console.log(products);
 
@@ -100,7 +100,7 @@ class Shop extends React.Component{
                   checkout={this.state.checkout}
                   />
                 );
-              case 'Bluelupi Lupinenkaffee Kapseln 60g':
+              case 'Lupinenkaffee Kapseln':
                 return(
                   <Product 
                   key={i}
