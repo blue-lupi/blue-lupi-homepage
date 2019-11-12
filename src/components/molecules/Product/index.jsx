@@ -24,7 +24,17 @@ class Shop extends React.Component{
 
   // Init state
   state = {
-    value: 1
+    value: 1,
+    variant: undefined,
+  }
+
+  componentDidMount = () => {
+    let initialVariant = this.props.product.node.variants.edges[0].node.id;
+    this.setState({
+      variant: {
+        id: initialVariant
+      }
+    });
   }
 
   decrease = () => {
@@ -47,8 +57,18 @@ class Shop extends React.Component{
     }
   }
 
+  handleSelectChange = (e) => {
+    this.setState({
+      variant: {
+        id: e.target.value.toString()
+      }
+    });
+  }
+
   render(){
     const { product } = this.props;
+
+    console.log(this.state);
 
     return(
       <MDBCol key={this.props.id} className="product-item">
@@ -72,7 +92,7 @@ class Shop extends React.Component{
             </small>
             </MDBCardText>
             <p className="text-center mb-0">Anzahl</p>
-            <div className="def-number-input number-input mb-0 ml-auto mr-auto">
+            <div className="def-number-input number-input mb-2 ml-auto mr-auto">
               <button onClick={this.decrease} className="minus"></button>
               <input 
               className="quantity"
@@ -85,11 +105,27 @@ class Shop extends React.Component{
               />
               <button onClick={this.increase} className="plus"></button>
             </div>
+            {product.node.variants.edges.length > 1 &&
+              <div>
+                <select 
+                className="browser-default custom-select"
+                onChange={this.handleSelectChange}
+                >
+                {product.node.variants.edges.map((variant, key) => {
+                  return (
+                    <option value={variant.node.id} >
+                    {variant.node.title}
+                    </option>
+                  )
+                })}
+                </select>
+              </div>
+            }
           </MDBCardBody>
           <MDBCardFooter className="text-center">
             <MDBBtn
             color="lupi-blue"
-            onClick={() => this.props.addVariantToCart(1, this.state.value)}
+            onClick={() => this.props.addVariantToCart(this.state.variant.id, this.state.value)}
             >
             Add to card
             </MDBBtn>
