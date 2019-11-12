@@ -148,7 +148,11 @@ class HomePage extends React.Component {
         <Gallery />
         <Trust />
         <Steps />
-        <Shop />
+        <Shop 
+        products={this.props.data.shop.products.edges}
+        addVariantToCart={this.addVariantToCart} 
+        checkout={this.state.checkout}
+        />
         <Sub />
         <FAQ />
         <Cart
