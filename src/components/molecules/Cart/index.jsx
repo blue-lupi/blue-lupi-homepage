@@ -21,7 +21,7 @@ import {
 } from 'mdbreact';
 
 //> CSS
-import './card.scss';
+import './cart.scss';
 
 class Cart extends React.Component {
   constructor(props) {
