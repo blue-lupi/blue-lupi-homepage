@@ -7,6 +7,23 @@ import {
   LineItem
 } from '../../atoms';
 
+//> MDB
+// "Material Design for Bootstrap" is a great UI design framework
+import {
+  MDBContainer,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter,
+  MDBRow,
+  MDBCol,
+  MDBBtn,
+  MDBIcon,
+} from 'mdbreact';
+
+//> CSS
+import './card.scss';
+
 class Cart extends React.Component {
   constructor(props) {
   super(props);
@@ -31,6 +48,57 @@ class Cart extends React.Component {
     });
 
     return (
+      <MDBContainer>
+        <MDBBtn onClick={this.props.handleCartClose}>Launch MDBModal</MDBBtn>
+        <MDBModal 
+        fullHeight 
+        position="right"
+        backdrop={true}
+        className="modal-cart modal-white text-dark"
+        isOpen={this.props.isCartOpen}
+        toggle={this.props.handleCartClose}
+        >
+          <MDBModalHeader tag="p" toggle={this.props.handleCartClose}>
+            Was Sie genießen werden
+          </MDBModalHeader>
+          <MDBModalBody className="text-center">
+            {line_items}
+            <MDBRow className="totals">
+              <MDBCol size="6" className="text-left">
+                Zwischensumme
+              </MDBCol>
+              <MDBCol size="6" className="text-right">
+                € {this.props.checkout.subtotalPrice}
+              </MDBCol>
+              <MDBCol size="6" className="text-left">
+                Steuern
+              </MDBCol>
+              <MDBCol size="6" className="text-right">
+                € {this.props.checkout.totalTax}
+              </MDBCol>
+              <MDBCol size="6" className="font-weight-bold text-left">
+                Gesamt
+              </MDBCol>
+              <MDBCol size="6" className="font-weight-bold text-right">
+                {this.props.checkout.totalPrice}
+              </MDBCol>
+            </MDBRow>
+          </MDBModalBody>
+          <MDBModalFooter className="justify-content-center">
+            <MDBBtn color="primary" onClick={this.props.handleCartClose}>
+            <MDBIcon icon="angle-left" className="pr-2"/>
+            Weiter shoppen
+            </MDBBtn>
+            <MDBBtn color="green" onClick={this.openCheckout}>
+            <MDBIcon icon="check" className="pr-2"/>
+            Checkout
+            </MDBBtn>
+          </MDBModalFooter>
+        </MDBModal>
+      </MDBContainer>
+    );
+
+    /*return (
       <div className={`Cart ${this.props.isCartOpen ? 'Cart--open' : ''}`}>
         <header className="Cart__header">
           <h2>Cart</h2>
@@ -65,7 +133,7 @@ class Cart extends React.Component {
           <button className="Cart__checkout button" onClick={this.openCheckout}>Checkout</button>
         </footer>
       </div>
-    )
+    )*/
   }
 }
 
