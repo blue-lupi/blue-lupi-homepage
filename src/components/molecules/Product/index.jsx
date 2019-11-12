@@ -68,8 +68,6 @@ class Shop extends React.Component{
   render(){
     const { product } = this.props;
 
-    console.log(this.state);
-
     return(
       <MDBCol key={this.props.id} className="product-item">
         <MDBCard>
@@ -106,7 +104,7 @@ class Shop extends React.Component{
                 >
                 {product.node.variants.edges.map((variant, key) => {
                   return (
-                    <option value={variant.node.id} >
+                    <option value={variant.node.id} key={key}>
                     {variant.node.title}
                     </option>
                   )
