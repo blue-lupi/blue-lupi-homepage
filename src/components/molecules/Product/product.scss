@@ -1,4 +1,8 @@
 .product-item {
+  .def-number-input{
+    margin: auto;
+    width: 150px !important;
+  }
   .number-input input[type="number"] {
     -webkit-appearance: textfield;
     -moz-appearance: textfield;

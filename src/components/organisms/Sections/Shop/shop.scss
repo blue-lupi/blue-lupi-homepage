@@ -17,16 +17,18 @@
   }
 
   .col:nth-child(2) .card {
-    &::after {
-      content: "Sehr beliebt";
-      position: absolute;
-      top: 30%;
-      right: 10%;
-      background-color: #1976d2;
-      padding: 0.5em;
-      color: white;
-      transform: rotate(-20deg);
-      border-radius: 1em;
+    .view{
+      &::after {
+        content: "Sehr beliebt";
+        position: absolute;
+        right: 10%;
+        bottom: 10%;
+        background-color: #1976d2;
+        padding: 0.5em;
+        color: white;
+        transform: rotate(-20deg);
+        border-radius: 1em;
+      }
     }
   }
 }
