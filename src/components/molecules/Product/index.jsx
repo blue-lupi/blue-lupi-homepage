@@ -24,52 +24,76 @@ class Shop extends React.Component{
 
   // Init state
   state = {
-    value: 0
+    value: 1
   }
 
   decrease = () => {
-    this.setState({ value: this.state.value - 1 });
+    if(this.state.value > 1){
+      this.setState({ value: parseInt(this.state.value) - 1 });
+    }
   }
 
   increase = () => {
-    this.setState({ value: this.state.value + 1 });
+    if(this.state.value < 999){
+      this.setState({ value: parseInt(this.state.value) + 1 });
+    }
+  }
+
+  handleChange = (e) => {
+    if(e.target.value >= 1 && e.target.value <= 999){
+      this.setState({
+        value: parseInt(e.target.value)
+      });
+    }
   }
 
   render(){
     const { product } = this.props;
 
     return(
-      <MDBCol key={this.props.key} className="product-item">
+      <MDBCol key={this.props.id} className="product-item">
         <MDBCard>
           <MDBCardImage
           className="img-fluid m-auto pl-5 pr-5 pt-3"
           src={product.node.images.edges[0].node.src}
           waves
           />
-        <MDBCardBody>
-          <MDBCardTitle>{product.node.title}</MDBCardTitle>
-          <MDBCardText>Test</MDBCardText>
-          <MDBCardText><small>Test</small></MDBCardText>
-          <div className="def-number-input number-input">
-            <button onClick={this.decrease} className="minus"></button>
-            <input 
-            className="quantity"
-            name="quantity"
-            value={this.state.value}
-            onChange={(e)=> this.setState({value: e.target.value})}
-            type="number"
-            />
-            <button onClick={this.increase} className="plus"></button>
-          </div>
-        </MDBCardBody>
-        <MDBCardFooter>
-          <MDBBtn
-          color="lupi-blue"
-          onClick={() => this.props.addVariantToCart(1, this.state.value)}
-          >
-          Add to card
-          </MDBBtn>
-        </MDBCardFooter>
+          <MDBCardBody>
+            <MDBCardTitle className="text-center">{product.node.title}</MDBCardTitle>
+            <MDBCardText 
+            className="text-center"
+            dangerouslySetInnerHTML={{__html: product.node.descriptionHtml}}
+            ></MDBCardText>
+            <MDBCardText 
+            className="text-center"
+            >
+            <small>
+            
+            </small>
+            </MDBCardText>
+            <p className="text-center mb-0">Anzahl</p>
+            <div className="def-number-input number-input mb-0 ml-auto mr-auto">
+              <button onClick={this.decrease} className="minus"></button>
+              <input 
+              className="quantity"
+              name="quantity"
+              value={this.state.value}
+              onChange={this.handleChange}
+              type="number"
+              min="1"
+              max="999"
+              />
+              <button onClick={this.increase} className="plus"></button>
+            </div>
+          </MDBCardBody>
+          <MDBCardFooter className="text-center">
+            <MDBBtn
+            color="lupi-blue"
+            onClick={() => this.props.addVariantToCart(1, this.state.value)}
+            >
+            Add to card
+            </MDBBtn>
+          </MDBCardFooter>
         </MDBCard>
       </MDBCol>
     );
