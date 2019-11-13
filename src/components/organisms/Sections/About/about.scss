@@ -33,13 +33,14 @@
         .icon{
             height: 100%;
             width: 100%;
-            img{
+            svg{
                 transition: transform .2s ease-in-out;
+                transform: scale(1.1);
             }
             &:hover{
                 cursor: pointer;
-                img{
-                    transform: rotate(10deg) scale(1.1);
+                svg{
+                    transform: rotate(10deg) scale(1.2);
                 }
             }
         }

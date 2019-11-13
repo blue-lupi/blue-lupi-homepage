@@ -18,7 +18,7 @@ import {
 import './about.scss';
 
 //> Images
-import tempIcon from '../../../../assets/content/sections/about/temp.png';
+import { ReactComponent as Wolf } from '../../../../assets/content/sections/about/wolf.svg';
 
 //> Data
 const data = {
@@ -94,7 +94,7 @@ class About extends React.Component{
           <MDBCol md="2" className="text-center">
             <div className="circle">
               <div className="icon">
-                <img src={tempIcon} className="img-fluid" alt="Icon"/>
+                <Wolf/>
               </div>
             </div>
           </MDBCol>
