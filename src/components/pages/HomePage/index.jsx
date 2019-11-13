@@ -161,7 +161,11 @@ class HomePage extends React.Component {
         checkout={this.state.checkout}
         />
         <Sub />
-        <Blackwolf />
+        <Blackwolf 
+        products={this.props.data.shop.products.edges}
+        addVariantToCart={this.addVariantToCart} 
+        checkout={this.state.checkout}
+        />
         <FAQ />
         <Cart
           removeLineItemInCart={this.removeLineItemInCart}

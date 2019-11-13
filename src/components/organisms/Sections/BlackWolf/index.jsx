@@ -18,6 +18,11 @@ import './blackwolf.scss';
 //> Images
 import { ReactComponent as Wolf } from '../../../../assets/content/sections/sub/wolf.svg';
 
+//> Components
+import {
+  Product
+} from '../../../molecules';
+
 // Dummy data
 const data = {
     title: "Black Wolf Coffee",
@@ -26,7 +31,7 @@ const data = {
 
 class Blackwolf extends React.Component{
   state = {
-    radio: 2
+    step1: undefined
   };
 
   componentDidMount = () => {
@@ -48,44 +53,74 @@ class Blackwolf extends React.Component{
     }, 75);
   }
 
-  onClick = nr => () => {
+  onClick = (nr, value) => {
     this.setState({
-      radio: nr
+      ["step"+nr]: value
     });
   };
 
   render(){
+
+    const { products } = this.props;
+
     return(
       <section id="blackwolf">
         <MDBContainer className="text-center">
           <h1 className="text-center font-weight-bold">{data.title}</h1>
           <p className="lead mb-5">{data.lead}</p>
 
-          <h3>Welchen Geschmack bevorzugst du?</h3>
-          <MDBBtn
-          color="white"
-          rounded
-          >
-          Fruchtig mit mehr Säure
-          </MDBBtn>
-          <MDBBtn
-          color="white"
-          rounded
-          >
-          Schokolade
-          </MDBBtn>
-          <MDBBtn
-          color="white"
-          rounded
-          >
-          Nussig
-          </MDBBtn>
-          <MDBBtn
-          color="white"
-          rounded
-          >
-          mehr Bitterkeit
-          </MDBBtn>
+          {!this.state.step1 ? (
+            <div>
+              <h3>Welchen Geschmack bevorzugst du?</h3>
+              <MDBBtn
+              color="white"
+              rounded
+              onClick={() => this.onClick(1, "fruchtig")}
+              >
+              Fruchtig mit mehr Säure
+              </MDBBtn>
+              <MDBBtn
+              color="white"
+              rounded
+              onClick={() => this.onClick(1, "schoko")}
+              >
+              Schokolade
+              </MDBBtn>
+              <MDBBtn
+              color="white"
+              rounded
+              onClick={() => this.onClick(1, "nussig")}
+              >
+              Nussig
+              </MDBBtn>
+              <MDBBtn
+              color="white"
+              rounded
+              onClick={() => this.onClick(1, "bitter")}
+              >
+              mehr Bitterkeit
+              </MDBBtn>
+            </div>
+          ) : (
+            <>
+            <h3 className="green-text font-weight-bold">Ihr persönlicher Black Wolf</h3>
+            <p className="lead">Individuell für Sie geröstet</p>
+            <MDBRow className="mt-4 flex-center">
+              {products.map((product, i) => {
+                if(product.node.title === "Personal Black Wolf")
+                return(
+                  <Product 
+                  key={i}
+                  id={product.node.id}
+                  product={product}
+                  addVariantToCart={this.props.addVariantToCart}
+                  checkout={this.state.checkout}
+                  />
+                )
+              })}
+            </MDBRow>
+            </>
+          )}
           <div className="mt-5">
           <Wolf id="wolfsvg" />
           </div>
