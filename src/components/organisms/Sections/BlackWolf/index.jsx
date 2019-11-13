@@ -21,7 +21,7 @@ import { ReactComponent as Wolf } from '../../../../assets/content/sections/sub/
 // Dummy data
 const data = {
     title: "Black Wolf Coffee",
-    lead: "Ihre individuelle Röstung"
+    lead: "In wenigen Schritten zu Ihrer individuellen Röstung"
 };
 
 class Blackwolf extends React.Component{
@@ -59,7 +59,7 @@ class Blackwolf extends React.Component{
       <section id="blackwolf">
         <MDBContainer className="text-center">
           <h1 className="text-center font-weight-bold">{data.title}</h1>
-          <p className="lead font-weight-bold mb-5">{data.lead}</p>
+          <p className="lead mb-5">{data.lead}</p>
 
           <h3>Welchen Geschmack bevorzugst du?</h3>
           <MDBBtn
