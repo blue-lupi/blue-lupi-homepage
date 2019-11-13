@@ -64,7 +64,7 @@ class Blackwolf extends React.Component{
     const { products } = this.props;
 
     return(
-      <section id="blackwolf">
+      <section id="blackwolf" className="pb-0">
         <MDBContainer className="text-center">
           <h1 className="text-center font-weight-bold">{data.title}</h1>
           <p className="lead mb-5">{data.lead}</p>
