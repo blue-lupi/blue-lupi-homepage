@@ -15,15 +15,7 @@ import {
 // "Material Design for Bootstrap" is a great UI design framework
 import {
     MDBRow,
-    MDBCol,
-    MDBCard,
-    MDBCardTitle,
-    MDBCardImage,
-    MDBCardText,
-    MDBCardFooter,
-    MDBCardBody,
     MDBContainer,
-    MDBBtn,
 } from 'mdbreact';
 
 //> CSS
@@ -110,6 +102,8 @@ class Shop extends React.Component{
                   checkout={this.state.checkout}
                   />
                 );
+              default:
+                return null;
             }
           })}
         </MDBRow>

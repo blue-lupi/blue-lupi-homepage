@@ -43,7 +43,7 @@ class Hero extends React.Component{
                         <div className="mask"></div>
                     </div>
                 </div>
-                <a
+                <span
                 onClick={this.props.handleCartOpen}
                 >
                     <div className="menu-icon">
@@ -52,7 +52,7 @@ class Hero extends React.Component{
                             <div className="mask"></div>
                         </div>
                     </div>
-                </a>
+                </span>
                 <div className="overlay d-flex justify-content-center align-items-center">
                     <Parallax className="custom-class" y={[-10, 10]} tagOuter="figure">
                         <div className="circle">

@@ -5,7 +5,6 @@ import React from 'react';
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-    MDBRow,
     MDBCol,
     MDBCard,
     MDBCardTitle,
@@ -13,7 +12,6 @@ import {
     MDBCardText,
     MDBCardFooter,
     MDBCardBody,
-    MDBContainer,
     MDBBtn,
 } from 'mdbreact';
 
@@ -67,8 +65,6 @@ class Shop extends React.Component{
 
   render(){
     const { product } = this.props;
-
-    console.log(product);
 
     return(
       <MDBCol key={this.props.id} className="product-item">
