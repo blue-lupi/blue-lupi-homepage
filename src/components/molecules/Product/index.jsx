@@ -108,6 +108,7 @@ class Shop extends React.Component{
                     disabled={!variant.node.availableForSale}
                     >
                     {variant.node.title}
+                    {!variant.node.availableForSale && " (Ausverkauft)"}
                     </option>
                   )
                 })}
