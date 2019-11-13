@@ -1,14 +1,12 @@
 #subscription{
     background-color: #001f3d;
     color: #f9e093;
-
-    svg{
+    #wolfandmoon{
+        .cls-1{
+            fill: #f9e093;
+        }
         transform: scaleX(-1);
-        height: 150px;
-        width: auto;
-    }
-    #wolf{
-        fill: #fff;
+        max-height: 250px;
     }
 }
 
