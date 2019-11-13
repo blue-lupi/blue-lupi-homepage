@@ -141,7 +141,9 @@ class HomePage extends React.Component {
 
     return (
       <>
-        <Hero />
+        <Hero 
+        handleCartOpen={this.handleCartOpen}
+        />
         <Features />
         <Shop 
         products={this.props.data.shop.products.edges}
