@@ -39,6 +39,7 @@ import {
   About,
   FAQ,
   Features,
+  Blackwolf,
 } from '../../organisms/Sections';
 // Shop
 import {
@@ -160,6 +161,7 @@ class HomePage extends React.Component {
         checkout={this.state.checkout}
         />
         <Sub />
+        <Blackwolf />
         <FAQ />
         <Cart
           removeLineItemInCart={this.removeLineItemInCart}
