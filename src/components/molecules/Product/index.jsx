@@ -67,7 +67,7 @@ class Shop extends React.Component{
     const { product } = this.props;
 
     return(
-      <MDBCol key={this.props.id} className="product-item">
+      <MDBCol key={this.props.id} md="4" className="product-item text-dark">
         <MDBCard>
           <MDBCardImage
           className="img-fluid m-auto pl-5 pr-5 pt-3"

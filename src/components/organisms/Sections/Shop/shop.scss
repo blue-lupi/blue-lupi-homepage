@@ -8,15 +8,15 @@
     }
   }
 
-  .col:last-child .card,
-  .col:first-child .card {
+  .col-md-4:last-child .card,
+  .col-md-4:first-child .card {
     border: #d2a968 5px solid;
     .card-footer {
       background-color: #f6ede0;
     }
   }
 
-  .col:nth-child(2) .card {
+  .col-md-4:nth-child(2) .card {
     .view{
       &::after {
         content: "Sehr beliebt";
