@@ -31,17 +31,18 @@ class Cart extends React.Component {
   }
 
   openCheckout() {
-    window.open(this.props.checkout.webUrl);
+    let checkoutURL = this.props.checkout.webUrl;
+    window.open(checkoutURL);
   }
 
   render() {
-    let line_items = this.props.checkout.lineItems.edges.map((line_item) => {
+    let lineItems = this.props.checkout.lineItems.edges.map((lineItem) => {
       return (
         <LineItem
           removeLineItemInCart={this.props.removeLineItemInCart}
           updateLineItemInCart={this.props.updateLineItemInCart}
-          key={line_item.node.id.toString()}
-          line_item={line_item.node}
+          key={lineItem.node.id.toString()}
+          lineItem={lineItem.node}
         />
       );
     });
@@ -59,7 +60,7 @@ class Cart extends React.Component {
           Was Sie genießen werden
         </MDBModalHeader>
         <MDBModalBody className="text-center">
-          {line_items}
+          {lineItems}
           <MDBRow className="totals">
             <MDBCol size="6" className="text-left">
               Zwischensumme

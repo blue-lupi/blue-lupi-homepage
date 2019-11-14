@@ -9,7 +9,7 @@ import React from 'react';
 //> Components
 import {
   Product
-} from '../../../molecules'
+} from '../../../molecules';
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework

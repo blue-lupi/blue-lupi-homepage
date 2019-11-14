@@ -107,16 +107,17 @@ class Blackwolf extends React.Component{
             <p className="lead">Individuell für Sie geröstet</p>
             <MDBRow className="mt-4 flex-center">
               {products.map((product, i) => {
-                if(product.node.title === "Personal Black Wolf")
-                return(
-                  <Product 
-                  key={i}
-                  id={product.node.id}
-                  product={product}
-                  addVariantToCart={this.props.addVariantToCart}
-                  checkout={this.state.checkout}
-                  />
-                )
+                if(product.node.title === "Personal Black Wolf"){
+                  return(
+                    <Product 
+                    key={i}
+                    id={product.node.id}
+                    product={product}
+                    addVariantToCart={this.props.addVariantToCart}
+                    checkout={this.state.checkout}
+                    />
+                  );
+                }
               })}
             </MDBRow>
             </>

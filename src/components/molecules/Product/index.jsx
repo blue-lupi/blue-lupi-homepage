@@ -110,7 +110,7 @@ class Shop extends React.Component{
                     {variant.node.title}
                     {!variant.node.availableForSale && " (Ausverkauft)"}
                     </option>
-                  )
+                  );
                 })}
                 </select>
               </div>

@@ -122,7 +122,7 @@ class HomePage extends React.Component {
     setTimeout(() => {
       this.setState({
         accountVerificationMessage: false
-      })
+      });
     }, 5000);
   }
 

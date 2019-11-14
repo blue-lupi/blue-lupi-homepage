@@ -21,11 +21,11 @@ class LineItem extends React.Component {
   }
 
   decrementQuantity(lineItemId) {
-    this.props.updateLineItemInCart(lineItemId, this.props.line_item.quantity - 1)
+    this.props.updateLineItemInCart(lineItemId, this.props.lineItem.quantity - 1);
   }
 
   incrementQuantity(lineItemId) {
-    this.props.updateLineItemInCart(lineItemId, this.props.line_item.quantity + 1)
+    this.props.updateLineItemInCart(lineItemId, this.props.lineItem.quantity + 1);
   }
 
   render() {
@@ -33,11 +33,11 @@ class LineItem extends React.Component {
       <li className="line-item mt-2 pb-2">
         <div className="row">
           <div className="col-auto">
-            {this.props.line_item.variant.image && 
+            {this.props.lineItem.variant.image && 
             <img 
-            src={this.props.line_item.variant.image.src}
+            src={this.props.lineItem.variant.image.src}
             className="img-fluid"
-            alt={`${this.props.line_item.title} product shot`}
+            alt={`${this.props.lineItem.title} product shot`}
             />
             }
           </div>
@@ -45,17 +45,17 @@ class LineItem extends React.Component {
             <div className="row flex-center">
               <div className="col-auto text-left">
                 <p className="font-weight-bold mb-0">
-                {this.props.line_item.title}
+                {this.props.lineItem.title}
                 </p>
                 <small>
-                {this.props.line_item.variant.title}
+                {this.props.lineItem.variant.title}
                 </small>
               </div>
               <div className="col text-right">
                 <MDBBtn 
                 color="danger"
                 size="sm"
-                onClick={()=> this.props.removeLineItemInCart(this.props.line_item.id)}
+                onClick={() => this.props.removeLineItemInCart(this.props.lineItem.id)}
                 >
                 <MDBIcon icon="times" />
                 </MDBBtn>
@@ -67,22 +67,22 @@ class LineItem extends React.Component {
                   <MDBBtn
                   color="primary"
                   size="sm"
-                  onClick={() => this.decrementQuantity(this.props.line_item.id)}
+                  onClick={() => this.decrementQuantity(this.props.lineItem.id)}
                   >
                   -
                   </MDBBtn>
-                  <span className="ml-1 mr-1">{this.props.line_item.quantity}</span>
+                  <span className="ml-1 mr-1">{this.props.lineItem.quantity}</span>
                   <MDBBtn
                   color="primary"
                   size="sm"
-                  onClick={() => this.incrementQuantity(this.props.line_item.id)}
+                  onClick={() => this.incrementQuantity(this.props.lineItem.id)}
                   >
                   +
                   </MDBBtn>
                 </div>
               </div>
               <div className="col text-right">
-                € { (this.props.line_item.quantity * this.props.line_item.variant.price).toFixed(2) }
+                € { (this.props.lineItem.quantity * this.props.lineItem.variant.price).toFixed(2) }
               </div>
             </div>
           </div>
