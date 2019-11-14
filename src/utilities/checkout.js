@@ -103,8 +103,16 @@ export const checkoutCustomerAssociate = gql`
 `;
 
 export function addVariantToCart(variantId, quantity){
-  this.props.checkoutLineItemsAdd(
-    { variables: { checkoutId: this.state.checkout.id, lineItems:  [{variantId, quantity: parseInt(quantity, 10)}] }
+  this.props.checkoutLineItemsAdd({
+      variables: {
+        checkoutId: this.state.checkout.id,
+        lineItems:  [
+          {
+            variantId,
+            quantity: parseInt(quantity, 10)
+          }
+        ]
+      }
     }).then((res) => {
     this.setState({
       checkout: res.data.checkoutLineItemsAdd.checkout
@@ -115,8 +123,16 @@ export function addVariantToCart(variantId, quantity){
 }
 
 export function updateLineItemInCart(lineItemId, quantity){
-  this.props.checkoutLineItemsUpdate(
-    { variables: { checkoutId: this.state.checkout.id, lineItems: [{id: lineItemId, quantity: parseInt(quantity, 10)}] }
+  this.props.checkoutLineItemsUpdate({
+      variables: { 
+        checkoutId: this.state.checkout.id,
+        lineItems: [
+          {
+            id: lineItemId,
+            quantity: parseInt(quantity, 10)
+          }
+        ]
+      }
     }).then((res) => {
     this.setState({
       checkout: res.data.checkoutLineItemsUpdate.checkout
@@ -125,8 +141,13 @@ export function updateLineItemInCart(lineItemId, quantity){
 }
 
 export function removeLineItemInCart(lineItemId){
-  this.props.checkoutLineItemsRemove(
-    { variables: { checkoutId: this.state.checkout.id, lineItemIds: [lineItemId] }
+  this.props.checkoutLineItemsRemove({
+      variables: {
+        checkoutId: this.state.checkout.id,
+        lineItemIds: [
+          lineItemId
+        ]
+      }
     }).then((res) => {
     this.setState({
       checkout: res.data.checkoutLineItemsRemove.checkout
@@ -135,8 +156,11 @@ export function removeLineItemInCart(lineItemId){
 }
 
 export function associateCustomerCheckout(customerAccessToken){
-  this.props.checkoutCustomerAssociate(
-    { variables: { checkoutId: this.state.checkout.id, customerAccessToken: customerAccessToken }
+  this.props.checkoutCustomerAssociate({
+      variables: { 
+        checkoutId: this.state.checkout.id,
+        customerAccessToken: customerAccessToken
+      }
     }).then((res) => {
     this.setState({
       checkout: res.data.checkoutCustomerAssociate.checkout,
