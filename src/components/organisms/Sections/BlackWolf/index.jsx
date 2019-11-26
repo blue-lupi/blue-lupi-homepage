@@ -60,7 +60,6 @@ class Blackwolf extends React.Component{
   };
 
   render(){
-
     const { products } = this.props;
 
     return(

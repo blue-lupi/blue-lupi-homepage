@@ -60,7 +60,6 @@ class Shop extends React.Component{
   }
 
   render(){
-
     const { products } = this.state;
 
     // Debugging
