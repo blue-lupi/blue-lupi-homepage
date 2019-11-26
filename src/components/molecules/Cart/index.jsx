@@ -25,8 +25,7 @@ import './cart.scss';
 
 class Cart extends React.Component {
   constructor(props) {
-  super(props);
-
+    super(props);
     this.openCheckout = this.openCheckout.bind(this);
   }
 
