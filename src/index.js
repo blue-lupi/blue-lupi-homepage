@@ -23,18 +23,45 @@ import 'mdbreact/dist/css/mdb.css';
 // Root SCSS file
 import './index.scss';
 
+//> Apollo
+import { ApolloClient } from "apollo-client";
+import { createHttpLink } from "apollo-link-http";
+import { setContext } from "apollo-link-context";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloProvider } from "react-apollo";
+
 //> Components
 // Root component
 import App from './App';
 
 import registerServiceWorker from './registerServiceWorker';
 
+// API Link
+const httpLink = createHttpLink({
+  uri: "https://bluelupi.myshopify.com//api/graphql"
+});
+
+// Storefront access token
+const middlewareLink = setContext(() => ({
+  headers: {
+    "X-Shopify-Storefront-Access-Token": process.env.REACT_APP_STOREFRONT_TOKEN
+  }
+}));
+
+// Apollo Client
+const client = new ApolloClient({
+  link: middlewareLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
+
 // Render the root component to <div id="root"></div>
 ReactDOM.render(
+  <ApolloProvider client={client}>
     <ParallaxProvider>
-        <App />
-    </ParallaxProvider>,
-    document.getElementById('root')
+      <App />
+    </ParallaxProvider>
+  </ApolloProvider>,
+  document.getElementById('root')
 );
 
 registerServiceWorker();

@@ -43,12 +43,16 @@ class Hero extends React.Component{
                         <div className="mask"></div>
                     </div>
                 </div>
-                <div className="menu-icon">
-                    <div className="view">
-                        <MDBIcon icon="bars" className="fa-2x" />
-                        <div className="mask"></div>
+                <span
+                onClick={this.props.handleCartOpen}
+                >
+                    <div className="menu-icon">
+                        <div className="view">
+                            <MDBIcon icon="shopping-basket" className="fa-2x" />
+                            <div className="mask"></div>
+                        </div>
                     </div>
-                </div>
+                </span>
                 <div className="overlay d-flex justify-content-center align-items-center">
                     <Parallax className="custom-class" y={[-10, 10]} tagOuter="figure">
                         <div className="circle">

@@ -1,0 +1,39 @@
+#blackwolf {
+	background: black;
+	color: white;
+	position: relative;
+
+	.container {
+		position: relative;
+		z-index: 1;
+	}
+
+	#wolfsvg {
+		transform: scaleX(-1);
+		height: 150px;
+		width: auto;
+		margin-bottom: -2px;
+	}
+	#wolf {
+		fill: #fff;
+	}
+
+	.green-text{
+		color: limegreen !important;
+	}
+
+	&:after {
+		content: "";
+		height: 400px;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		z-index: 0;
+		background: linear-gradient(#001f3d, black);
+	}
+}
+
+/** 
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019 Werbeagentur Christian Aichner
+ */

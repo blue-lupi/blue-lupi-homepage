@@ -9,17 +9,8 @@ import { Link } from 'react-router-dom';
 // "Material Design for Bootstrap" is a great UI design framework
 import {
   MDBFooter,
-  MDBRow,
-  MDBCol,
   MDBContainer,
-  MDBIcon,
 } from 'mdbreact';
-
-//> Data
-const data = {
-  email: "info@bluelupi.at",
-  tel: "+43 111 123 123 12",
-};
 
 class Footer extends React.Component{
   render(){

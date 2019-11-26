@@ -11,7 +11,9 @@ import {
 } from 'mdbreact';
 
 //> Images
-// To be added
+import { ReactComponent as Lupi1 } from '../../../../assets/content/sections/why/Lupinie_1.svg';
+import { ReactComponent as Lupi2 } from '../../../../assets/content/sections/why/Lupinie_2.svg';
+import { ReactComponent as Lupi3 } from '../../../../assets/content/sections/why/Lupinie_3.svg';
 
 //> CSS
 import './features.scss';
@@ -22,7 +24,7 @@ const data = {
   reasons: [
     {
       title: "Bla bla bla",
-      img: "https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg",
+      img: <Lupi1/>,
       lead: "Lead to catch attention",
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
 venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
@@ -32,7 +34,7 @@ nulla dapibus, eget vestibulum velit faucibus.`
     },
     {
       title: "Bla bla bla 2",
-      img: "https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg",
+      img: <Lupi2/>,
       lead: "Lead to catch attention",
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
 venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
@@ -42,7 +44,7 @@ nulla dapibus, eget vestibulum velit faucibus.`
     },
     {
       title: "Bla bla bla 3",
-      img: "https://i.pinimg.com/originals/d1/9e/ca/d19eca9e90b458c3af755f6cd35f04d9.jpg",
+      img: <Lupi3/>,
       lead: "Lead to catch attention",
       text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
 venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
@@ -62,11 +64,7 @@ class Features extends React.Component{
     let rtn = data.reasons.map((reason, i) => {
       return(
         <MDBCol md={width} key={i}>
-            <img 
-            className="img-fluid"
-            src={reason.img}
-            alt={reason.title}
-            />
+            {reason.img}
             <h2>{reason.title}</h2>
             <p className="lead">{reason.lead}</p>
             <p>{reason.text}</p>

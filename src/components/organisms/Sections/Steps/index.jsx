@@ -70,7 +70,7 @@ class Story extends React.Component{
       if(i % 2 !== 1){
         // img L
         return(
-          <>
+          <React.Fragment key={i}>
             <MDBCol md="6">
                 <img 
                 className="img-fluid"
@@ -83,12 +83,12 @@ class Story extends React.Component{
                 <p className="lead">{step.lead}</p>
                 <p>{step.text}</p>
             </MDBCol>
-          </>
+          </React.Fragment>
         );
       } else {
         // img R
         return(
-          <>
+          <React.Fragment key={i}>
             <MDBCol md="6" className="pr-5 pl-5">
                 <h2>{step.title}</h2>
                 <p className="lead">{step.lead}</p>
@@ -101,7 +101,7 @@ class Story extends React.Component{
                 alt={step.title}
                 />
             </MDBCol>
-          </>
+          </React.Fragment>
         );
       }
     });

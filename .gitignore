@@ -2,12 +2,16 @@
 
 # Dependencies
 /node_modules
+package-lock.json
 
 # Testing
 /coverage
 
 # Production
 /build
+
+# Environment variables
+.env
 
 # All editor configs but vscode
 .editorconfig

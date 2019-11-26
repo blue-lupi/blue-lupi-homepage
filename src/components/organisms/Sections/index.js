@@ -8,6 +8,7 @@ import Gallery from './Gallery';
 import About from './About';
 import FAQ from './FAQ';
 import Features from './Features';
+import Blackwolf from './BlackWolf';
 
 export {
     Shop,
@@ -18,6 +19,7 @@ export {
     About,
     FAQ,
     Features,
+    Blackwolf,
 };
 
 /** 
