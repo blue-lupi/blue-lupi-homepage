@@ -159,7 +159,7 @@ export function associateCustomerCheckout(customerAccessToken){
   this.props.checkoutCustomerAssociate({
       variables: { 
         checkoutId: this.state.checkout.id,
-        customerAccessToken: customerAccessToken
+        customerAccessToken
       }
     }).then((res) => {
     this.setState({
