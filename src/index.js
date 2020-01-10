@@ -25,9 +25,9 @@ import './index.scss';
 
 //> Apollo
 import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
+import { createHttpLink, HttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { InMemoryCache, IntrospectionFragmentMatcher } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
 
 //> Components
@@ -36,29 +36,45 @@ import App from './App';
 
 import registerServiceWorker from './registerServiceWorker';
 
+//> Shopify API
 // API Link
-const httpLink = createHttpLink({
+const httpLinkShopify = createHttpLink({
   uri: "https://bluelupi.myshopify.com//api/graphql"
 });
-
 // Storefront access token
-const middlewareLink = setContext(() => ({
+const middlewareLinkShopify = setContext(() => ({
   headers: {
     "X-Shopify-Storefront-Access-Token": process.env.REACT_APP_STOREFRONT_TOKEN
   }
 }));
-
 // Apollo Client
-const client = new ApolloClient({
-  link: middlewareLink.concat(httpLink),
+const clientShopify = new ApolloClient({
+  link: middlewareLinkShopify.concat(httpLinkShopify),
   cache: new InMemoryCache()
+});
+
+//> CMS API
+// Client
+const clientCMS = new ApolloClient({
+    link: new HttpLink({
+        uri: 'https://lupi.snek.at/api/graphiql'
+    }),
+    cache: new InMemoryCache({
+      fragmentMatcher: new IntrospectionFragmentMatcher({
+        introspectionQueryResultData: {
+          __schema: {
+            types: [],
+          },
+        },
+      }),
+    })
 });
 
 // Render the root component to <div id="root"></div>
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider client={clientShopify}>
     <ParallaxProvider>
-      <App />
+      <App client={clientCMS}/>
     </ParallaxProvider>
   </ApolloProvider>,
   document.getElementById('root')

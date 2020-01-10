@@ -50,57 +50,133 @@ const LOGIN_USER = gql`
     }
   }
 `;
-
-//> CMS API
-// Cache setup
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-introspectionQueryResultData: {
-    __schema: {
-    types: [], // no types provided - works like a charm.ing
-    },
-},
-});
-const cache = new InMemoryCache({ fragmentMatcher });
-// Create api url from base url
-const APILink = "http://lupi.snek.at/api/graphiql";
-const LINK:HttpLink = new HttpLink({
-  uri: APILink,
-  headers: {
-    authorization: localStorage.getItem('fprint')
+// Get homepage CMS data
+const GET_DATA = gql`
+  query getPage($token: String!) {
+    page(token: $token, url: "/") {
+      id
+      title
+      ... on HomeHomePage {
+        id
+        headers {
+          __typename
+          ... on Home_H_HeroBlock {
+            slideHead
+            slideImage {
+              urlLink
+            }
+            slideSubhead
+            slideButton {
+              buttonLink
+              buttonTitle
+              buttonPage{
+                urlPath
+              }
+              buttonEmbed
+              id
+            }
+          }
+        }
+        sections {
+          ... on Home_S_WhyBlock {
+            whyHead
+            whyDisplayhead
+            whyCollum1 {
+              collumImage {
+                urlLink
+              }
+              collumHead
+              collumSubhead
+              collumParagraph
+            }
+            whyCollum2 {
+              collumImage {
+                urlLink
+              }
+              collumHead
+              collumSubhead
+              collumParagraph
+            }
+            whyCollum3 {
+              collumImage {
+                urlLink
+              }
+              collumHead
+              collumSubhead
+              collumParagraph
+            }
+          }
+          ... on Home_S_InstagramBlock {
+            instagramUrls
+          }
+          ... on Home_S_ShopBlock {
+            shopHead
+            shopDisplayhead
+          }
+          ... on Home_S_StepsBlock {
+            stepsHead
+            stepsDisplayhead
+            stepsSteps
+          }
+          ... on Home_S_AboutBlock {
+            aboutHead
+            aboutDisplayhead
+            aboutCard1 {
+              cardImage {
+                urlLink
+              }
+              cardHead
+              cardParagraph
+            }
+            aboutCard2 {
+              cardImage {
+                urlLink
+              }
+              cardHead
+              cardParagraph
+            }
+            aboutCard3 {
+              cardImage {
+                urlLink
+              }
+              cardHead
+              cardParagraph
+            }
+            aboutCard4 {
+              cardImage {
+                urlLink
+              }
+              cardHead
+              cardParagraph
+            }
+          }
+        }
+      }
+    }
   }
-});
-// Apollo Client setup
-const clientCMS = new ApolloClient({
-  cache,
-  link: LINK,
-});
+`;
 
 class App extends React.Component {
 
   componentDidMount = () => {
-
-    if(clientCMS){
-      if(localStorage.getItem('fprint') !== null){
-        try {
-          // Verify Token on first load
+    if(localStorage.getItem('fprint') !== null){
+      try {
+        // Verify Token on first load
+        this._verifyToken();
+        // Refresh token every 4 minutes
+        setInterval(async () => {
           this._verifyToken();
-          // Refresh token every 4 minutes
-          setInterval(async () => {
-            this._verifyToken();
-          }, 240000);
-        } catch(e) {
-          console.log(e);
-        }
-      } else {
-        this._loginUser();
+        }, 240000);
+      } catch(e) {
+        console.log(e);
       }
     } else {
-      console.log("No client");
+      this._loginUser();
     }
   }
 
   _verifyToken = () => {
-    clientCMS.mutate({
+    this.props.client.mutate({
       mutation: VERIFY_TOKEN,
       variables: { "token": localStorage.getItem('fprint') }
     }).then(({data}) => {
@@ -125,10 +201,10 @@ class App extends React.Component {
 
   _loginUser = () => {
     console.log("Called anonymous user login");
-    console.log(clientCMS);
-    clientCMS.mutate({
+    this.props.client.mutate({
       mutation: LOGIN_USER
-    }).then(({data}) => {
+      })
+    .then(({data}) => {
       console.log(data);
       if(data !== undefined){
         this._setLogged(data.tokenAuth.token);
@@ -144,7 +220,10 @@ class App extends React.Component {
     this.setState({
       token: token,
       loaded: true,
-    }, () => localStorage.setItem('fprint', token));
+    }, () => {
+      this._fetchPageData(token);
+      localStorage.setItem('fprint', token);
+    });
   }
 
   _isLogged = (exp, orig, token) => {
@@ -164,13 +243,14 @@ class App extends React.Component {
   }
 
   _refeshToken = (token) => {
-    clientCMS.mutate({
+    this.props.client.mutate({
       mutation: REFRESH_TOKEN,
       variables: { "token": token }
     })
     .then(({data}) => {
+      console.log("Token refresh");
       if(data !== undefined){
-        localStorage.setItem('fprint', data.refreshToken.token);
+        this._setLogged(data.refreshToken.token);
       }
     })
     .catch(error => {
@@ -178,12 +258,30 @@ class App extends React.Component {
     })
   }
 
+  _fetchPageData = (token) => {
+    this.props.client.query({
+      query: GET_DATA,
+      variables: { "token": token }
+    }).then(({data}) => {
+      console.log(data.page);
+      if(data.page){
+        this.setState({
+          page: data.page,
+        });
+      }
+    })
+    .catch(error => {
+      console.log("Error",error);
+    })
+  }
+
   render() {
+    console.log(this.state);
     return (
       <Router>
         <div className="flyout">
           <main>
-            <Routes globalState={this.state} />
+            <Routes globalState={this.state} client={this.props.client} />
           </main>
           <Footer />
         </div>
@@ -192,11 +290,7 @@ class App extends React.Component {
   }
 }
 
-export default compose(
-  graphql(VERIFY_TOKEN, { name: 'verify' }),
-  graphql(REFRESH_TOKEN, { name: 'refresh' }),
-  graphql(LOGIN_USER, { name: 'login' }),
-)(withApollo(App));
+export default App;
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
