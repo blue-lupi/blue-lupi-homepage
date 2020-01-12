@@ -20,43 +20,16 @@ import './about.scss';
 //> Images
 import { ReactComponent as Wolf } from '../../../../assets/content/sections/about/wolf.svg';
 
-//> Data
-const data = {
-  title: "Über mich",
-  cards: [
-    {
-      title: "Test1",
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-venenatis ante interdum sit amet. Sed sit amet tempor augue.`
-    },
-    {
-      title: "Test2",
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-venenatis ante interdum sit amet. Sed sit amet tempor augue.`
-    },
-    {
-      title: "Test3",
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-venenatis ante interdum sit amet. Sed sit amet tempor augue.`
-    },
-    {
-      title: "Test4",
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-venenatis ante interdum sit amet. Sed sit amet tempor augue.`
-    }
-  ]
-};
-
 class About extends React.Component{
 
-  renderCardsLeft = () => {
-    let cards = data.cards;
+  renderCardsLeft = (data) => {
+    let cards = data.aboutCards;
     let rtn = cards.map((card, i) => {
       if(i % 2 !== 1){
         return(
           <MDBCard className="p-4" key={"l_"+i}>
-            <h3>{card.title}</h3>
-            <p>{card.text}</p>
+            <h3>{card.value.card_head}</h3>
+            <p dangerouslySetInnerHTML={{__html: card.value.card_paragraph}}></p>
           </MDBCard>
         );
       } else {
@@ -66,14 +39,14 @@ class About extends React.Component{
     return rtn;
   }
 
-  renderCardsRight = () => {
-    let cards = data.cards;
+  renderCardsRight = (data) => {
+    let cards = data.aboutCards;
     let rtn = cards.map((card, i) => {
       if(i % 2 === 1){
         return(
           <MDBCard className="p-4" key={"r_"+i}>
-            <h3>{card.title}</h3>
-            <p>{card.text}</p>
+            <h3>{card.value.card_head}</h3>
+            <p dangerouslySetInnerHTML={{__html: card.value.card_paragraph}}></p>
           </MDBCard>
         );
       } else {
@@ -84,12 +57,14 @@ class About extends React.Component{
   }
 
   render(){
+    const { data } = this.props;
+
     return(
       <section id="about">
-        <h2 className="font-weight-bold text-center">{data.title}</h2>
+        <h2 className="font-weight-bold text-center">{data.aboutHead}</h2>
         <MDBRow className="m-0 p-2 flex-center">
           <MDBCol md="5">
-            {this.renderCardsLeft()}
+            {this.renderCardsLeft(data)}
           </MDBCol>
           <MDBCol md="2" className="text-center">
             <div className="circle">
@@ -99,7 +74,7 @@ class About extends React.Component{
             </div>
           </MDBCol>
           <MDBCol md="5" className="text-right">
-            {this.renderCardsRight()}
+            {this.renderCardsRight(data)}
           </MDBCol>
         </MDBRow>
       </section>

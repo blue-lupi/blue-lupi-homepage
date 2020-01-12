@@ -10,78 +10,64 @@ import {
     MDBCol,
 } from 'mdbreact';
 
-//> Images
-import { ReactComponent as Lupi1 } from '../../../../assets/content/sections/why/Lupinie_1.svg';
-import { ReactComponent as Lupi2 } from '../../../../assets/content/sections/why/Lupinie_2.svg';
-import { ReactComponent as Lupi3 } from '../../../../assets/content/sections/why/Lupinie_3.svg';
-
 //> CSS
 import './features.scss';
 
-//> Data
-const data = {
-  title: "Wieso Bluelupi?",
-  reasons: [
-    {
-      title: "Bla bla bla",
-      img: <Lupi1/>,
-      lead: "Lead to catch attention",
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
-turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
-nulla dapibus, eget vestibulum velit faucibus.`
-    },
-    {
-      title: "Bla bla bla 2",
-      img: <Lupi2/>,
-      lead: "Lead to catch attention",
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
-turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
-nulla dapibus, eget vestibulum velit faucibus.`
-    },
-    {
-      title: "Bla bla bla 3",
-      img: <Lupi3/>,
-      lead: "Lead to catch attention",
-      text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus nisl ipsum, at 
-venenatis ante interdum sit amet. Sed sit amet tempor augue. Fusce at convallis massa. 
-Aliquam erat volutpat. Ut a portarisus, eu porttitor nisi. Pellentesque
-turpis turpis, mattis lobortis justo sagittis, tempus ornare dui. Sed ornare nulla ac
-nulla dapibus, eget vestibulum velit faucibus.`
+//> Apollo
+import { gql } from "apollo-boost";
+import { Query } from "react-apollo";
+
+//> Queries
+// Get image by ID
+const GET_IMAGE = gql`
+  query getImage($token: String!, $id: Int!){
+    image(token: $token, id: $id){
+      urlLink
     }
-  ]
-};
+  }
+`;
 
 class Features extends React.Component{
 
-  renderReasons = () => {
+  renderReasons = (data) => {
 
-    let width = (data.reasons.length === 4 || data.reasons.length === 8) ? "3" : "4";
+    let width = (data.whyColumns.length === 4 || data.whyColumns.length === 8) ? "3" : "4";
 
-    let rtn = data.reasons.map((reason, i) => {
+    let rtn = data.whyColumns.map((reason, i) => {
+      console.log(reason.value.Column_image);
       return(
         <MDBCol md={width} key={i}>
-            {reason.img}
-            <h2>{reason.title}</h2>
-            <p className="lead">{reason.lead}</p>
-            <p>{reason.text}</p>
+          <Query 
+          query={GET_IMAGE}
+          variables={{"token": localStorage.getItem('fprint'), "id": reason.value.Column_image}}
+          client={this.props.client}
+          >
+            {({ loading, error, data }) => {
+              if (loading) return null;
+              if (error) return null;
+              return (
+                <img src={"https://lupi.snek.at"+data.image.urlLink} className="img-fluid" alt={reason.value.Column_head}/>
+              );
+            }}
+          </Query>
+          <h2>{reason.value.Column_head}</h2>
+          <p className="lead" dangerouslySetInnerHTML={{__html: reason.value.Column_subhead}}></p>
+          <p dangerouslySetInnerHTML={{__html: reason.value.Column_paragraph}}></p>
         </MDBCol>
       );
     });
-
     return rtn;
   }
 
   render(){
+    const { data } = this.props;
+
     return(
       <section id="features">
         <MDBContainer>
-          <h2 className="text-center font-weight-bold">{data.title}</h2>
+          <h2 className="text-center font-weight-bold">{data.whyHead}</h2>
           <MDBRow className="m-0 mt-5 text-center">
-            {this.renderReasons()}
+            {this.renderReasons(data)}
           </MDBRow>
         </MDBContainer>
       </section>

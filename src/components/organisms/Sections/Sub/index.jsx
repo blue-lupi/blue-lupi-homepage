@@ -19,15 +19,17 @@ import { ReactComponent as MoonAndWolf } from '../../../../assets/content/sectio
 
 class Sub extends React.Component{
     render(){
+        const { data } = this.props;
+
         return(
             <section id="subscription">
                 <MDBContainer>
                     <MDBRow className="m-0 flex-center">
                         <MDBCol md="8">
                             <h2 className="h2-responsive font-weight-bold">
-                            Wer mit dem Wolf geht lernt zu heulen.
+                            {data.wolfHead}
                             </h2>
-                            <p className="lead">Für den täglichen Genuss.</p>
+                            <p className="lead" dangerouslySetInnerHTML={{__html: data.wolfSubhead}}></p>
                         </MDBCol>
                         <MDBCol md="4">
                             <MoonAndWolf id="wolfandmoon" />
