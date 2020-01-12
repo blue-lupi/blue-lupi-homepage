@@ -9,7 +9,9 @@ import { Route, Switch } from 'react-router-dom';
  * HomePage: A basic template page
  */
 import {
-  HomePage
+  HomePage,
+  About,
+  Privacy,
 } from './components/pages';
 
 class Routes extends React.Component {
@@ -19,8 +21,24 @@ class Routes extends React.Component {
         <Route
         exact
         path='/'
-        component={(props) => <HomePage 
+        component={(props) => <HomePage
         client={this.props.client}
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/about'
+        component={(props) => <About
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/privacy'
+        component={(props) => <Privacy
         {...this.props}
         />
         }
