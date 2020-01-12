@@ -5,6 +5,8 @@ import React from 'react';
 //> Additional
 // Prop types
 import PropTypes from 'prop-types';
+// Detect if visible
+import VisibilitySensor from 'react-visibility-sensor';
 
 //> Apollo and GraphQL
 import { graphql } from 'react-apollo';
@@ -69,17 +71,6 @@ class HomePage extends React.Component {
     this.associateCustomerCheckout = associateCustomerCheckout.bind(this);
   }
 
-  componentDidMount() {
-    this.props.createCheckout({
-      variables: {
-        input: {}
-      }}).then((res) => {
-      this.setState({
-        checkout: res.data.checkoutCreate.checkout
-      });
-    });
-  }
-
   static propTypes = {
     data: PropTypes.shape({
       loading: PropTypes.bool,
@@ -89,6 +80,19 @@ class HomePage extends React.Component {
     createCheckout: PropTypes.func.isRequired,
     checkoutLineItemsAdd: PropTypes.func.isRequired,
     checkoutLineItemsUpdate: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
+    document.title = "Urban Coffee - Blue Lupi";
+
+    this.props.createCheckout({
+      variables: {
+        input: {}
+      }}).then((res) => {
+      this.setState({
+        checkout: res.data.checkoutCreate.checkout
+      });
+    });
   }
 
   handleCartOpen() {
@@ -132,51 +136,142 @@ class HomePage extends React.Component {
     });
   }
 
+  changeVisibility = (isVisible) => {
+    console.log(isVisible);
+  }
+
   render() {
-    if (this.props.data.loading) {
+    if (this.props.data.loading || !this.props.globalState) {
       return <p>Loading ...</p>;
     }
     if (this.props.data.error) {
       return <p>{this.props.data.error.message}</p>;
     }
 
-    return (
-      <>
-        <Hero 
-        handleCartOpen={this.handleCartOpen}
-        />
-        <Features />
-        <Shop 
-        products={this.props.data.shop.products.edges}
-        addVariantToCart={this.addVariantToCart} 
-        checkout={this.state.checkout}
-        />
-        <About />
-        <Gallery />
-        <Trust />
-        <Steps />
-        <Shop 
-        products={this.props.data.shop.products.edges}
-        addVariantToCart={this.addVariantToCart} 
-        checkout={this.state.checkout}
-        />
-        <Sub />
-        <Blackwolf 
-        products={this.props.data.shop.products.edges}
-        addVariantToCart={this.addVariantToCart} 
-        checkout={this.state.checkout}
-        />
-        <FAQ />
-        <Cart
-          removeLineItemInCart={this.removeLineItemInCart}
-          updateLineItemInCart={this.updateLineItemInCart}
-          checkout={this.state.checkout}
-          isCartOpen={this.state.isCartOpen}
-          handleCartClose={this.handleCartClose}
-          customerAccessToken={this.state.customerAccessToken}
-        />
-      </>
-    );
+    if(this.props.globalState){
+      const page = this.props.globalState.page;
+      const form = this.props.globalState.form;
+
+      console.log(page, form);
+
+      if(page && form){
+        const pageHeaders = page.headers;
+        const pageSections = page.sections;
+
+        let headers = pageHeaders.map((header, i) => {
+          switch(header.__typename){
+            case "Home_H_HeroBlock":
+              return(
+                <Hero
+                  handleCartOpen={this.handleCartOpen}
+                  data={header}
+                  key={"head"+i}
+                />
+              );
+            default:
+              return null;
+          }
+        });
+
+        let sections = pageSections.map((section, i) => {
+          console.log(section);
+          switch(section.__typename){
+            case "Home_S_WhyBlock":
+              return(
+                <Features 
+                  data={section}
+                  key={i}
+                  client={this.props.client}
+                />
+              );
+            case "Home_S_ShopBlock":
+              return(
+                <>
+                <Shop 
+                products={this.props.data.shop.products.edges}
+                addVariantToCart={this.addVariantToCart} 
+                checkout={this.state.checkout}
+                data={section}
+                />
+                <Cart
+                removeLineItemInCart={this.removeLineItemInCart}
+                updateLineItemInCart={this.updateLineItemInCart}
+                checkout={this.state.checkout}
+                isCartOpen={this.state.isCartOpen}
+                handleCartClose={this.handleCartClose}
+                customerAccessToken={this.state.customerAccessToken}
+                />
+                </>
+              );
+            case "Home_S_AboutBlock":
+              return(
+                <About
+                data={section}
+                key={i}
+                client={this.props.client}
+                />
+              );
+            case "Home_S_StepsBlock":
+              return(
+                <Steps
+                data={section}
+                key={i}
+                client={this.props.client}
+                />
+              );
+            case "Home_S_InstagramBlock":
+              return(
+                <Gallery
+                data={section}
+                key={i}
+                />
+              );
+            case "Home_S_TrustedBlock":
+              return(
+                <Trust
+                data={section}
+                key={i}
+                client={this.props.client}
+                />
+              );
+            case "Home_S_WolfBlock":
+              return(
+                <>
+                <VisibilitySensor onChange={this.changeVisibility}>
+                <Sub
+                data={section}
+                key={i}
+                />
+                </VisibilitySensor>
+                <VisibilitySensor onChange={this.changeVisibility}>
+                <Blackwolf 
+                products={this.props.data.shop.products.edges}
+                addVariantToCart={this.addVariantToCart} 
+                checkout={this.state.checkout}
+                form={form}
+                client={this.props.client}
+                />
+                </VisibilitySensor>
+                </>
+              );
+            case "Home_S_FAQBlock":
+              return(
+                <FAQ
+                data={section}
+                key={i}
+                />
+              );
+            default:
+              return null;
+          }
+        });
+        return headers.concat(sections);
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
   }
 }
 
