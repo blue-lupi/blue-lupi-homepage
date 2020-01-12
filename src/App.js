@@ -54,22 +54,36 @@ const LOGIN_USER = gql`
 const GET_DATA = gql`
   query getPage($token: String!) {
     page(token: $token, url: "/") {
-      id
-      title
       ... on HomeHomePage {
         id
+        title
+        city
+        zipCode
+        address
+        telephone
+        telefax
+        vatNumber
+        whatsappTelephone
+        whatsappContactline
+        taxId
+        courtOfRegistry
+        placeOfRegistry
+        tradeRegisterNumber
+        ownership
+        email
+        copyrightholder
+        about
+        privacy
         headers {
           __typename
           ... on Home_H_HeroBlock {
-            slideHead
             slideImage {
               urlLink
             }
-            slideSubhead
             slideButton {
               buttonLink
               buttonTitle
-              buttonPage{
+              buttonPage {
                 urlPath
               }
               buttonEmbed
@@ -81,33 +95,11 @@ const GET_DATA = gql`
           ... on Home_S_WhyBlock {
             whyHead
             whyDisplayhead
-            whyCollum1 {
-              collumImage {
-                urlLink
-              }
-              collumHead
-              collumSubhead
-              collumParagraph
-            }
-            whyCollum2 {
-              collumImage {
-                urlLink
-              }
-              collumHead
-              collumSubhead
-              collumParagraph
-            }
-            whyCollum3 {
-              collumImage {
-                urlLink
-              }
-              collumHead
-              collumSubhead
-              collumParagraph
-            }
+            whyColumns
           }
           ... on Home_S_InstagramBlock {
-            instagramUrls
+            instagramId
+            instagramPc
           }
           ... on Home_S_ShopBlock {
             shopHead
@@ -121,35 +113,40 @@ const GET_DATA = gql`
           ... on Home_S_AboutBlock {
             aboutHead
             aboutDisplayhead
-            aboutCard1 {
-              cardImage {
-                urlLink
-              }
-              cardHead
-              cardParagraph
-            }
-            aboutCard2 {
-              cardImage {
-                urlLink
-              }
-              cardHead
-              cardParagraph
-            }
-            aboutCard3 {
-              cardImage {
-                urlLink
-              }
-              cardHead
-              cardParagraph
-            }
-            aboutCard4 {
-              cardImage {
-                urlLink
-              }
-              cardHead
-              cardParagraph
-            }
+            aboutCards
           }
+          ... on Home_S_TrustedBlock {
+            trustedPartner
+          }
+          ... on Home_S_WolfBlock {
+            wolfHead
+            wolfSubhead
+          }
+          ... on Home_S_FAQBlock {
+            questions
+          }
+        }
+      }
+    }
+  }
+`;
+// Individual coffee
+const GET_FORM = gql`
+  query getFormfield($token: String!) {
+    page(token: $token, url: "/survey") {
+      id
+      contentType
+      ... on SurveySurveyFormPage{
+        id
+        slug
+        surveyHead
+        surveySubhead
+        thankYouText
+        formFields{
+          name
+          helpText
+          choices
+          fieldType
         }
       }
     }
@@ -267,6 +264,25 @@ class App extends React.Component {
       if(data.page){
         this.setState({
           page: data.page,
+        }, () => this._fetchFormData(token));
+      }
+    })
+    .catch(error => {
+      console.log("Error",error);
+      // Temp!
+      this._fetchFormData(token);
+    })
+  }
+
+  _fetchFormData = (token) => {
+    this.props.client.query({
+      query: GET_FORM,
+      variables: { "token": token }
+    }).then(({data}) => {
+      console.log(data.page);
+      if(data.page){
+        this.setState({
+          form: data.page,
         });
       }
     })
