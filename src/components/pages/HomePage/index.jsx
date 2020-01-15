@@ -5,8 +5,6 @@ import React from 'react';
 //> Additional
 // Prop types
 import PropTypes from 'prop-types';
-// Detect if visible
-import VisibilitySensor from 'react-visibility-sensor';
 
 //> Apollo and GraphQL
 import { graphql } from 'react-apollo';
@@ -237,13 +235,10 @@ class HomePage extends React.Component {
             case "Home_S_WolfBlock":
               return(
                 <>
-                <VisibilitySensor onChange={this.changeVisibility}>
                 <Sub
                 data={section}
                 key={i}
                 />
-                </VisibilitySensor>
-                <VisibilitySensor onChange={this.changeVisibility}>
                 <Blackwolf 
                 products={this.props.data.shop.products.edges}
                 addVariantToCart={this.addVariantToCart} 
@@ -251,7 +246,6 @@ class HomePage extends React.Component {
                 form={form}
                 client={this.props.client}
                 />
-                </VisibilitySensor>
                 </>
               );
             case "Home_S_FAQBlock":
