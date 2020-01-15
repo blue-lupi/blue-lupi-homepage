@@ -1,39 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a79ca4cb7e366b8880fef5b5fc536b6d",
+    "revision": "176ccd9bfa8a0f3c5259434c211ab403",
     "url": "/index.html"
   },
   {
-    "revision": "870f547831d6c40f392d",
-    "url": "/static/css/2.bb0d661b.chunk.css"
+    "revision": "b47da4b9005461ec5b42",
+    "url": "/static/css/2.ca87909b.chunk.css"
   },
   {
-    "revision": "7a1b9a88a9eb41cbed70",
-    "url": "/static/css/main.a7e9befe.chunk.css"
+    "revision": "5155ebc5f454d4435383",
+    "url": "/static/css/main.75cf97c6.chunk.css"
   },
   {
-    "revision": "870f547831d6c40f392d",
-    "url": "/static/js/2.dfa0deb4.chunk.js"
+    "revision": "b47da4b9005461ec5b42",
+    "url": "/static/js/2.16f53c10.chunk.js"
   },
   {
-    "revision": "7a1b9a88a9eb41cbed70",
-    "url": "/static/js/main.b3420e82.chunk.js"
+    "revision": "4046c04d20ddf5a8b9098f10c3eeb1fd",
+    "url": "/static/js/2.16f53c10.chunk.js.LICENSE"
   },
   {
-    "revision": "42ac5946195a7306e2a5",
-    "url": "/static/js/runtime~main.a8a9905a.js"
+    "revision": "5155ebc5f454d4435383",
+    "url": "/static/js/main.975bc1c2.chunk.js"
   },
   {
-    "revision": "62633eea5399580f4a92145ce3030337",
-    "url": "/static/media/Lupinie_1.62633eea.svg"
-  },
-  {
-    "revision": "7f6fb0bad212dbada25ed989a511ba56",
-    "url": "/static/media/Lupinie_2.7f6fb0ba.svg"
-  },
-  {
-    "revision": "b5d1179bf4e16658ec581d78025a4f15",
-    "url": "/static/media/Lupinie_3.b5d1179b.svg"
+    "revision": "12bb39d999993e0b0d69",
+    "url": "/static/js/runtime-main.992f6b44.js"
   },
   {
     "revision": "39b2c3031be6b4ea96e2e3e95d307814",
@@ -124,16 +116,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/arrow_right.8ef6a08c.svg"
   },
   {
-    "revision": "04a18e7fc0735ae2b47d4c7e201aa819",
-    "url": "/static/media/bg1.04a18e7f.jpg"
-  },
-  {
     "revision": "d062d53c853080cbf9934240b2b7c1c6",
     "url": "/static/media/coffee_lupi.d062d53c.png"
-  },
-  {
-    "revision": "b257fa9c5ac8c515ac4d77a667ce2943",
-    "url": "/static/media/default-skin.b257fa9c.svg"
   },
   {
     "revision": "088a34f78f530102fd9661173b4a4f26",
@@ -196,24 +180,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/fa-solid-900.f6121be5.woff2"
   },
   {
-    "revision": "6ac11b323e26512d2a7fb6f7e6b55d08",
-    "url": "/static/media/heavitas-webfont.6ac11b32.woff2"
-  },
-  {
-    "revision": "e7f93ee018ffc04dc6ab1a35ae45de66",
-    "url": "/static/media/heavitas-webfont.e7f93ee0.woff"
-  },
-  {
     "revision": "4f94995124818ccb934617036431de0b",
     "url": "/static/media/logo_white_text.4f949951.png"
   },
   {
     "revision": "7a637196b45c4c3319eae5371472fda1",
     "url": "/static/media/moonandwolf.7a637196.svg"
-  },
-  {
-    "revision": "9b2f0f0c0b81ada8d81f988e2dfdf3a2",
-    "url": "/static/media/trivida.9b2f0f0c.png"
   },
   {
     "revision": "e96931023f4110b12539c6c8a4b4ba48",
