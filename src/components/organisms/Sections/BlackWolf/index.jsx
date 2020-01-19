@@ -134,13 +134,14 @@ class Blackwolf extends React.Component{
                   {(form.formFields && this.state.selected) && form.formFields.map((field, i) => {
                     if(i <= this.state.fieldsDone){
                       return(
-                        <div className="text-center">
+                        <div className="text-center" key={i}>
                           <h3 className="mt-2">{field.helpText}</h3>
                           {field.choices ? (
                             <>
                             {field.choices.split(",").map((choice, c) => {
                               return(
                                 <MDBBtn
+                                key={c}
                                 color={this.state.selected[field.name] === choice.trim() ? "success" : "white"}
                                 rounded
                                 onClick={() => this.onClick(field.name, choice.trim(), i)}

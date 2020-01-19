@@ -65,6 +65,7 @@ class Shop extends React.Component{
 
   render(){
     const { product } = this.props;
+    console.log(this.state);
 
     return(
       <MDBCol key={this.props.id} md="4" className="product-item text-dark">
@@ -115,15 +116,23 @@ class Shop extends React.Component{
                 </select>
               </div>
             }
+            <div className="text-center mt-3">
+              <MDBBtn
+              color="lupi-blue"
+              onClick={() => this.props.addVariantToCart(this.state.variant.id, this.state.value)}
+              >
+              Add to card
+              </MDBBtn>
+            </div>
           </MDBCardBody>
-          <MDBCardFooter className="text-center">
+          {/*<MDBCardFooter className="text-center">
             <MDBBtn
             color="lupi-blue"
             onClick={() => this.props.addVariantToCart(this.state.variant.id, this.state.value)}
             >
             Add to card
             </MDBBtn>
-          </MDBCardFooter>
+          </MDBCardFooter>*/}
         </MDBCard>
       </MDBCol>
     );

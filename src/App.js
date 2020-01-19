@@ -65,6 +65,9 @@ const GET_DATA = gql`
         vatNumber
         whatsappTelephone
         whatsappContactline
+        shipping
+        gtc
+        cancellationPolicy
         taxId
         courtOfRegistry
         placeOfRegistry

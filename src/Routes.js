@@ -2,7 +2,7 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 // DOM bindings for React Router
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 //> Components
 /**
@@ -12,6 +12,9 @@ import {
   HomePage,
   About,
   Privacy,
+  Cancellation,
+  Shipping,
+  Terms,
 } from './components/pages';
 
 class Routes extends React.Component {
@@ -43,10 +46,34 @@ class Routes extends React.Component {
         />
         }
         />
+        <Route
+        exact
+        path='/terms'
+        component={(props) => <Terms
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/shipping'
+        component={(props) => <Shipping
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/cancellation'
+        component={(props) => <Cancellation
+        {...this.props}
+        />
+        }
+        />
           
         <Route
           render={function () {
-            return <h1>Not Found</h1>;
+            return <Redirect to='/' />;
           }}
         />
       </Switch>
