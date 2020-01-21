@@ -63,7 +63,7 @@ class Hero extends React.Component{
                 <MDBRow className="w-100 m-0">
                     <MDBCol md="6" className="p-0">
                         <MDBAnimation type="fadeInLeft" duration="900ms">
-                            <MDBView src={"https://lupi.snek.at"+data.slideImage.urlLink} >
+                            <MDBView src={"https://lupi.aichner.cloud"+data.slideImage.urlLink} >
                                 <MDBMask
                                 pattern={5}
                                 className="rgba-purple-slight d-flex justify-content-center align-items-center">

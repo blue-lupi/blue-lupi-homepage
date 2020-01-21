@@ -46,7 +46,7 @@ class Features extends React.Component{
               if (loading) return null;
               if (error) return null;
               return (
-                <img src={"https://lupi.snek.at"+data.image.urlLink} className="img-fluid" alt={reason.value.Column_head}/>
+                <img src={"https://lupi.aichner.cloud"+data.image.urlLink} className="img-fluid" alt={reason.value.Column_head}/>
               );
             }}
           </Query>

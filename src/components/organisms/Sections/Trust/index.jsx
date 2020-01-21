@@ -50,7 +50,7 @@ class Trust extends React.Component{
                     if (loading) return null;
                     if (error) return null;
                     return (
-                      <img src={"https://lupi.snek.at"+data.image.urlLink} className="img-fluid"/>
+                      <img src={"https://lupi.aichner.cloud"+data.image.urlLink} className="img-fluid"/>
                     );
                   }}
                 </Query>
