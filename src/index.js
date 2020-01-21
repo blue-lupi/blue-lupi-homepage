@@ -57,7 +57,7 @@ const clientShopify = new ApolloClient({
 // Client
 const clientCMS = new ApolloClient({
     link: new HttpLink({
-        uri: 'https://lupi.aichner.cloud/api/graphiql'
+        uri: process.env.REACT_APP_BASEURL+"/api/graphiql"
     }),
     cache: new InMemoryCache({
       fragmentMatcher: new IntrospectionFragmentMatcher({
