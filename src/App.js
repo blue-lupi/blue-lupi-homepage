@@ -53,7 +53,7 @@ const LOGIN_USER = gql`
 // Get homepage CMS data
 const GET_DATA = gql`
   query getPage($token: String!) {
-    page(token: $token, url: "/") {
+    page(token: $token, url: "/home") {
       ... on HomeHomePage {
         id
         title
@@ -136,7 +136,7 @@ const GET_DATA = gql`
 // Individual coffee
 const GET_FORM = gql`
   query getFormfield($token: String!) {
-    page(token: $token, url: "/survey") {
+    page(token: $token, url: "/home/survey") {
       id
       contentType
       ... on SurveySurveyFormPage{

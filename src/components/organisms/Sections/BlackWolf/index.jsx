@@ -30,7 +30,7 @@ import { gql } from "apollo-boost";
 // Create survey
 const CREATE_SURVEY = gql`
   mutation setSurvey($token: String!, $values: GenericScalar!) {
-    surveySurveyFormPage(token: $token, url: "/survey", values: $values) {
+    surveySurveyFormPage(token: $token, url: "/home/survey", values: $values) {
       result
       errors {
         name

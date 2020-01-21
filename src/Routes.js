@@ -23,15 +23,6 @@ class Routes extends React.Component {
       <Switch>
         <Route
         exact
-        path='/'
-        component={(props) => <HomePage
-        client={this.props.client}
-        {...this.props}
-        />
-        }
-        />
-        <Route
-        exact
         path='/about'
         component={(props) => <About
         {...this.props}
@@ -70,11 +61,13 @@ class Routes extends React.Component {
         />
         }
         />
-          
         <Route
-          render={function () {
-            return <Redirect to='/' />;
-          }}
+        path='/'
+        component={(props) => <HomePage
+        client={this.props.client}
+        {...this.props}
+        />
+        }
         />
       </Switch>
     );
