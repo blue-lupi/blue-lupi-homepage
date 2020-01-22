@@ -46,7 +46,10 @@ class Features extends React.Component{
               if (loading) return null;
               if (error) return null;
               return (
-                <img src={process.env.REACT_APP_BASEURL+data.image.urlLink} className="img-fluid" alt={reason.value.Column_head}/>
+                <img 
+                src={process.env.REACT_APP_BASEURL+data.image.urlLink}
+                className="img-fluid" alt={reason.value.Column_head}
+                />
               );
             }}
           </Query>
