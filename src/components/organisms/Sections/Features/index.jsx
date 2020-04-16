@@ -39,7 +39,7 @@ class Features extends React.Component{
         <MDBCol md={width} key={i}>
           <Query 
           query={GET_IMAGE}
-          variables={{"token": localStorage.getItem('fprint'), "id": reason.value.Column_image}}
+          variables={{"token": localStorage.getItem('jwt'), "id": reason.value.Column_image}}
           client={this.props.client}
           >
             {({ loading, error, data }) => {

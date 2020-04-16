@@ -43,7 +43,7 @@ class Trust extends React.Component{
               <a href={company.value.partner_link} target="_blank" rel="noopener noreferrer">
                 <Query 
                 query={GET_IMAGE}
-                variables={{"token": localStorage.getItem('fprint'), "id": company.value.partner_logo}}
+                variables={{"token": localStorage.getItem('jwt'), "id": company.value.partner_logo}}
                 client={this.props.client}
                 >
                   {({ loading, error, data }) => {

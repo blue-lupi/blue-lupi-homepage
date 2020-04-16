@@ -38,7 +38,7 @@ class Story extends React.Component{
             <MDBCol md="6">
                 <Query 
                 query={GET_IMAGE}
-                variables={{"token": localStorage.getItem('fprint'), "id": step.value.step_image}}
+                variables={{"token": localStorage.getItem('jwt'), "id": step.value.step_image}}
                 client={this.props.client}
                 >
                   {({ loading, error, data }) => {
@@ -72,7 +72,7 @@ class Story extends React.Component{
             <MDBCol md="6">
                 <Query 
                 query={GET_IMAGE}
-                variables={{"token": localStorage.getItem('fprint'), "id": step.value.step_image}}
+                variables={{"token": localStorage.getItem('jwt'), "id": step.value.step_image}}
                 client={this.props.client}
                 >
                   {({ loading, error, data }) => {
