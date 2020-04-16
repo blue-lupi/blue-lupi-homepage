@@ -1,11 +1,11 @@
 //> React
 // Contains all the functionality necessary to define React components
-import React from 'react';
+import React from "react";
+// Router
+import { Link } from "react-router-dom";
 
 //> Components
-import {
-  LineItem
-} from '../../atoms';
+import { LineItem } from "../../atoms";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
@@ -13,20 +13,22 @@ import {
   MDBModal,
   MDBModalBody,
   MDBModalHeader,
-  MDBModalFooter,
   MDBRow,
   MDBCol,
   MDBBtn,
   MDBIcon,
-} from 'mdbreact';
+} from "mdbreact";
 
 //> CSS
-import './cart.scss';
+import "./cart.scss";
 
 class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.openCheckout = this.openCheckout.bind(this);
+    this.state = {
+      agb: false,
+    };
   }
 
   openCheckout() {
@@ -47,19 +49,36 @@ class Cart extends React.Component {
     });
 
     return (
-      <MDBModal 
-      fullHeight 
-      position="right"
-      backdrop={true}
-      className="modal-cart modal-white text-dark"
-      isOpen={this.props.isCartOpen}
-      toggle={this.props.handleCartClose}
+      <MDBModal
+        fullHeight
+        position="right"
+        backdrop={true}
+        className="modal-cart modal-white text-dark"
+        isOpen={this.props.isCartOpen}
+        toggle={this.props.handleCartClose}
       >
         <MDBModalHeader tag="p" toggle={this.props.handleCartClose}>
           Was Sie genießen werden
         </MDBModalHeader>
         <MDBModalBody className="text-center">
-          {lineItems}
+          {lineItems && lineItems.length > 0 && lineItems}
+          {lineItems && lineItems.length < 1 && (
+            <>
+              <p className="font-weight-bold mb-1">
+                Noch keine Spezialitäten im Warenkorb.
+              </p>
+              <div className="mb-3">
+                <MDBBtn
+                  color="elegant"
+                  outline
+                  onClick={this.props.handleCartClose}
+                >
+                  <MDBIcon icon="angle-left" className="pr-2" />
+                  Weitere kaufen
+                </MDBBtn>
+              </div>
+            </>
+          )}
           <MDBRow className="totals">
             <MDBCol size="6" className="text-left">
               Zwischensumme
@@ -77,17 +96,49 @@ class Cart extends React.Component {
               € {this.props.checkout.totalPrice}
             </MDBCol>
           </MDBRow>
+
+          <div className="px-3">
+            <hr />
+            <div className="text-left pl-4 custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="defaultUnchecked"
+                checked={this.state.agb}
+                onClick={(e) => {
+                  this.setState({
+                    agb: e.target.checked,
+                  });
+                }}
+              />
+              <label className="custom-control-label" for="defaultUnchecked">
+                <small>
+                  Ich bestätige die{" "}
+                  <Link to="/agb" target="_blank">
+                    AGB
+                  </Link>{" "}
+                  gelesen und akzeptiert zu haben.
+                </small>
+              </label>
+            </div>
+            <small className="d-block text-muted mb-2">
+              Ich akzeptiere die{" "}
+              <Link to="/privacy" target="_blank">
+                Datenschutzerklärung
+              </Link>
+              .
+            </small>
+            <MDBBtn
+              color="success"
+              size="lg"
+              onClick={this.openCheckout}
+              disabled={lineItems.length < 1 || !this.state.agb}
+            >
+              <MDBIcon icon="check" className="pr-2" size="lg" />
+              Weiter
+            </MDBBtn>
+          </div>
         </MDBModalBody>
-        <MDBModalFooter className="justify-content-center">
-          <MDBBtn color="primary" onClick={this.props.handleCartClose}>
-          <MDBIcon icon="angle-left" className="pr-2"/>
-          Weiter shoppen
-          </MDBBtn>
-          <MDBBtn color="green" onClick={this.openCheckout}>
-          <MDBIcon icon="check" className="pr-2"/>
-          Checkout
-          </MDBBtn>
-        </MDBModalFooter>
       </MDBModal>
     );
   }
@@ -95,7 +146,7 @@ class Cart extends React.Component {
 
 export default Cart;
 
-/** 
+/**
  * SPDX-License-Identifier: (EUPL-1.2)
  * Copyright © 2019 Werbeagentur Christian Aichner
  */
