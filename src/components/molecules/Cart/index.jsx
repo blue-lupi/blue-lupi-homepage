@@ -17,6 +17,7 @@ import {
   MDBCol,
   MDBBtn,
   MDBIcon,
+  MDBProgress,
 } from "mdbreact";
 
 //> CSS
@@ -79,6 +80,38 @@ class Cart extends React.Component {
               </div>
             </>
           )}
+          <p className="lead mt-3 mb-0">Jetzt gratis Versand sichern!</p>
+
+          {this.props.checkout.totalPrice >= 21 ? (
+            <p className="my-1 green-text font-weight-bold">
+              Gratis Versand gesichert!
+            </p>
+          ) : (
+            <p className="my-1">
+              Nur noch{" "}
+              {21 -
+                (this.props.checkout.totalPrice
+                  ? this.props.checkout.totalPrice >= 21
+                    ? 21
+                    : this.props.checkout.totalPrice
+                  : 0)}{" "}
+              €
+            </p>
+          )}
+
+          <MDBProgress
+            value={
+              this.props.checkout.totalPrice
+                ? this.props.checkout.totalPrice >= 21
+                  ? 21
+                  : this.props.checkout.totalPrice
+                : 0
+            }
+            max={21}
+            className="my-1"
+          />
+          <small>(Kostenloser Versand: 21€)</small>
+          <hr />
           <MDBRow className="totals">
             <MDBCol size="6" className="text-left">
               Zwischensumme
