@@ -22,7 +22,7 @@ class Sub extends React.Component{
         const { data } = this.props;
 
         return(
-            <section id="subscription">
+            <section id="subscription" className="balckwolfsection">
                 <MDBContainer>
                     <MDBRow className="m-0 flex-center">
                         <MDBCol md="8">
