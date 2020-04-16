@@ -1,15 +1,15 @@
 //> React
 // Contains all the functionality necessary to define React components
-import React from 'react';
+import React from "react";
 
 //> Additional
 // Prop types
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 //> Apollo and GraphQL
-import { graphql } from 'react-apollo';
-import * as compose from 'lodash.flowright';
-import gql from 'graphql-tag';
+import { graphql } from "react-apollo";
+import * as compose from "lodash.flowright";
+import gql from "graphql-tag";
 
 //> Queries
 import {
@@ -21,14 +21,12 @@ import {
   addVariantToCart,
   updateLineItemInCart,
   removeLineItemInCart,
-  associateCustomerCheckout
-} from '../../../utilities/checkout';
+  associateCustomerCheckout,
+} from "../../../utilities/checkout";
 
 //> Components
 // Hero
-import {
-  Hero,
-} from '../../organisms';
+import { Hero } from "../../organisms";
 // Sections
 import {
   Gallery,
@@ -40,11 +38,9 @@ import {
   FAQ,
   Features,
   Blackwolf,
-} from '../../organisms/Sections';
+} from "../../organisms/Sections";
 // Shop
-import {
-  Cart
-} from '../../molecules';
+import { Cart } from "../../molecules";
 
 class HomePage extends React.Component {
   constructor() {
@@ -55,7 +51,7 @@ class HomePage extends React.Component {
       isCustomerAuthOpen: false,
       isNewCustomer: false,
       products: [],
-      checkout: { lineItems: { edges: [] } }
+      checkout: { lineItems: { edges: [] } },
     };
 
     this.handleCartClose = this.handleCartClose.bind(this);
@@ -65,7 +61,9 @@ class HomePage extends React.Component {
     this.addVariantToCart = addVariantToCart.bind(this);
     this.updateLineItemInCart = updateLineItemInCart.bind(this);
     this.removeLineItemInCart = removeLineItemInCart.bind(this);
-    this.showAccountVerificationMessage = this.showAccountVerificationMessage.bind(this);
+    this.showAccountVerificationMessage = this.showAccountVerificationMessage.bind(
+      this
+    );
     this.associateCustomerCheckout = associateCustomerCheckout.bind(this);
   }
 
@@ -77,20 +75,23 @@ class HomePage extends React.Component {
     }).isRequired,
     createCheckout: PropTypes.func.isRequired,
     checkoutLineItemsAdd: PropTypes.func.isRequired,
-    checkoutLineItemsUpdate: PropTypes.func.isRequired
-  }
+    checkoutLineItemsUpdate: PropTypes.func.isRequired,
+  };
 
   componentDidMount() {
     document.title = "Urban Coffee - Blue Lupi";
 
-    this.props.createCheckout({
-      variables: {
-        input: {}
-      }}).then((res) => {
-      this.setState({
-        checkout: res.data.checkoutCreate.checkout
+    this.props
+      .createCheckout({
+        variables: {
+          input: {},
+        },
+      })
+      .then((res) => {
+        this.setState({
+          checkout: res.data.checkoutCreate.checkout,
+        });
       });
-    });
   }
 
   handleCartOpen() {
@@ -106,24 +107,24 @@ class HomePage extends React.Component {
   }
 
   openCustomerAuth(event) {
-    if (event.target.getAttribute('data-customer-type') === "new-customer") {
+    if (event.target.getAttribute("data-customer-type") === "new-customer") {
       this.setState({
         isNewCustomer: true,
-        isCustomerAuthOpen: true
+        isCustomerAuthOpen: true,
       });
     } else {
       this.setState({
         isNewCustomer: false,
-        isCustomerAuthOpen: true
+        isCustomerAuthOpen: true,
       });
     }
   }
 
-  showAccountVerificationMessage(){
+  showAccountVerificationMessage() {
     this.setState({ accountVerificationMessage: true });
     setTimeout(() => {
       this.setState({
-        accountVerificationMessage: false
+        accountVerificationMessage: false,
       });
     }, 5000);
   }
@@ -136,7 +137,7 @@ class HomePage extends React.Component {
 
   changeVisibility = (isVisible) => {
     console.log(isVisible);
-  }
+  };
 
   render() {
     if (this.props.data.loading || !this.props.globalState) {
@@ -146,24 +147,24 @@ class HomePage extends React.Component {
       return <p>{this.props.data.error.message}</p>;
     }
 
-    if(this.props.globalState){
+    if (this.props.globalState) {
       const page = this.props.globalState.page;
       const form = this.props.globalState.form;
 
       console.log(page, form);
 
-      if(page && form){
+      if (page && form) {
         const pageHeaders = page.headers;
         const pageSections = page.sections;
 
         let headers = pageHeaders.map((header, i) => {
-          switch(header.__typename){
+          switch (header.__typename) {
             case "Home_H_HeroBlock":
-              return(
+              return (
                 <Hero
                   handleCartOpen={this.handleCartOpen}
                   data={header}
-                  key={"head"+i}
+                  key={"head" + i}
                 />
               );
             default:
@@ -173,92 +174,68 @@ class HomePage extends React.Component {
 
         let sections = pageSections.map((section, i) => {
           console.log(section);
-          switch(section.__typename){
+          switch (section.__typename) {
             case "Home_S_WhyBlock":
-              return(
-                <Features 
-                  data={section}
-                  key={i}
-                  client={this.props.client}
-                />
+              return (
+                <Features data={section} key={i} client={this.props.client} />
               );
             case "Home_S_ShopBlock":
-              return(
-                <>
-                <Shop 
-                products={this.props.data.shop.products.edges}
-                addVariantToCart={this.addVariantToCart} 
-                checkout={this.state.checkout}
-                data={section}
-                />
-                <Cart
-                removeLineItemInCart={this.removeLineItemInCart}
-                updateLineItemInCart={this.updateLineItemInCart}
-                checkout={this.state.checkout}
-                isCartOpen={this.state.isCartOpen}
-                handleCartClose={this.handleCartClose}
-                customerAccessToken={this.state.customerAccessToken}
-                />
-                </>
+              return (
+                <React.Fragment key={i}>
+                  <Shop
+                    products={this.props.data.shop.products.edges}
+                    addVariantToCart={this.addVariantToCart}
+                    checkout={this.state.checkout}
+                    data={section}
+                    collection={section.shopHead}
+                    showCollection={section.shopDisplayhead}
+                  />
+                </React.Fragment>
               );
             case "Home_S_AboutBlock":
-              return(
-                <About
-                data={section}
-                key={i}
-                client={this.props.client}
-                />
+              return (
+                <About data={section} key={i} client={this.props.client} />
               );
             case "Home_S_StepsBlock":
-              return(
-                <Steps
-                data={section}
-                key={i}
-                client={this.props.client}
-                />
+              return (
+                <Steps data={section} key={i} client={this.props.client} />
               );
             case "Home_S_InstagramBlock":
-              return(
-                <Gallery
-                data={section}
-                key={i}
-                />
-              );
+              return <Gallery data={section} key={i} />;
             case "Home_S_TrustedBlock":
-              return(
-                <Trust
-                data={section}
-                key={i}
-                client={this.props.client}
-                />
+              return (
+                <Trust data={section} key={i} client={this.props.client} />
               );
             case "Home_S_WolfBlock":
-              return(
-                <>
-                <Sub
-                data={section}
-                key={i}
-                />
-                <Blackwolf 
-                products={this.props.data.shop.products.edges}
-                addVariantToCart={this.addVariantToCart} 
-                checkout={this.state.checkout}
-                form={form}
-                client={this.props.client}
-                />
-                </>
+              return (
+                <React.Fragment key={i}>
+                  <Sub data={section} key={i} />
+                  <Blackwolf
+                    products={this.props.data.shop.products.edges}
+                    addVariantToCart={this.addVariantToCart}
+                    checkout={this.state.checkout}
+                    form={form}
+                    client={this.props.client}
+                  />
+                </React.Fragment>
               );
             case "Home_S_FAQBlock":
-              return(
-                <FAQ
-                data={section}
-                key={i}
-                />
-              );
+              return <FAQ data={section} key={i} />;
             default:
               return null;
           }
         });
+        const cart = (
+          <Cart
+            removeLineItemInCart={this.removeLineItemInCart}
+            updateLineItemInCart={this.updateLineItemInCart}
+            checkout={this.state.checkout}
+            isCartOpen={this.state.isCartOpen}
+            handleCartClose={this.handleCartClose}
+            customerAccessToken={this.state.customerAccessToken}
+          />
+        );
+        sections.push(cart);
         return headers.concat(sections);
       } else {
         return null;
@@ -274,7 +251,7 @@ const query = gql`
     shop {
       name
       description
-      products(first:20) {
+      products(first: 20) {
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -284,6 +261,13 @@ const query = gql`
             id
             title
             descriptionHtml
+            collections(first: 1) {
+              edges {
+                node {
+                  title
+                }
+              }
+            }
             options {
               id
               name
@@ -330,16 +314,16 @@ const query = gql`
 
 const HomePageWithDataAndMutation = compose(
   graphql(query),
-  graphql(createCheckout, {name: "createCheckout"}),
-  graphql(checkoutLineItemsAdd, {name: "checkoutLineItemsAdd"}),
-  graphql(checkoutLineItemsUpdate, {name: "checkoutLineItemsUpdate"}),
-  graphql(checkoutLineItemsRemove, {name: "checkoutLineItemsRemove"}),
-  graphql(checkoutCustomerAssociate, {name: "checkoutCustomerAssociate"})
+  graphql(createCheckout, { name: "createCheckout" }),
+  graphql(checkoutLineItemsAdd, { name: "checkoutLineItemsAdd" }),
+  graphql(checkoutLineItemsUpdate, { name: "checkoutLineItemsUpdate" }),
+  graphql(checkoutLineItemsRemove, { name: "checkoutLineItemsRemove" }),
+  graphql(checkoutCustomerAssociate, { name: "checkoutCustomerAssociate" })
 )(HomePage);
 
 export default HomePageWithDataAndMutation;
 
-/** 
+/**
  * SPDX-License-Identifier: (EUPL-1.2)
  * Copyright © 2019 Werbeagentur Christian Aichner
  */
