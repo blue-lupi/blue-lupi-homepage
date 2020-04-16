@@ -17,11 +17,8 @@ import {
 } from "apollo-cache-inmemory";
 
 //> Components
-/**
- * Footer: Global Footer
- * Navbar: Global navigation bar
- */
 import { Footer } from "./components/molecules";
+import { ScrollToTop } from "./components/atoms";
 // Routes
 import Routes from "./Routes";
 
@@ -312,13 +309,15 @@ class App extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <Router>
-        <div className="flyout">
-          <main>
-            <Routes globalState={this.state} client={this.props.client} />
-          </main>
-          <Footer />
-        </div>
+      <Router basename={process.env.PUBLIC_URL}>
+        <ScrollToTop>
+          <div className="flyout">
+            <main>
+              <Routes globalState={this.state} client={this.props.client} />
+            </main>
+            <Footer />
+          </div>
+        </ScrollToTop>
       </Router>
     );
   }
