@@ -13,33 +13,47 @@ import {
   MDBCol,
 } from 'mdbreact';
 
-//> Images
-import trivida from '../../../../assets/content/sections/trusted/trivida.png';
-import creativeCompany from '../../../../assets/content/sections/trusted/creative-company.png';
-import lovelyIn from '../../../../assets/content/sections/trusted/lovely-in.png';
-
 //> CSS
 import './trust.scss';
 
-// Data
-const data = {
-  companies: [
-    { name: "Trivida", url: "https://trividavegan.at/", logo: trivida },
-    { name: "Creative Company", url: "https://www.creative-company.cc", logo: creativeCompany },
-    { name: "Lovely In", url: "http://www.lovely-in.at", logo: lovelyIn }
-  ]
-};
+//> Apollo
+import { gql } from "apollo-boost";
+import { Query } from "react-apollo";
+
+//> Queries
+// Get image by ID
+const GET_IMAGE = gql`
+  query getImage($token: String!, $id: Int!){
+    image(token: $token, id: $id){
+      urlLink
+    }
+  }
+`;
 
 class Trust extends React.Component{
   render(){
+    const { data } = this.props;
+
     return(
       <section id="trust">
         <MDBRow className="flex-center m-0">
-          {data.companies.map((company, i) => {
+          {data.trustedPartner.map((company, i) => {
             return(
               <MDBCol key={i} md="2" className="text-center">
-              <a href={company.url} target="_blank" rel="noopener noreferrer">
-                <img className="img-fluid" src={company.logo} alt={company.name}/>
+              <a href={company.value.partner_link} target="_blank" rel="noopener noreferrer">
+                <Query 
+                query={GET_IMAGE}
+                variables={{"token": localStorage.getItem('fprint'), "id": company.value.partner_logo}}
+                client={this.props.client}
+                >
+                  {({ loading, error, data }) => {
+                    if (loading) return null;
+                    if (error) return null;
+                    return (
+                      <img src={process.env.REACT_APP_BASEURL+data.image.urlLink} className="img-fluid"/>
+                    );
+                  }}
+                </Query>
               </a>
               </MDBCol>
             );

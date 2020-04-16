@@ -22,24 +22,17 @@ import {
 // Logo of Blue Lupi (white)
 import lupiLogoWhite from '../../../assets/logo_white_text.png';
 // Coffee center image
-import coffee from '../../../assets/content/coffee_lupi.png';
-// Background
-import bg1 from '../../../assets/content/bg/bg1.jpg';
-
-//> Data
-const data = {
-    img: bg1,
-    mug: coffee,
-    logo: lupiLogoWhite
-};
+import coffeeMug from '../../../assets/content/coffee_lupi.png';
 
 class Hero extends React.Component{
     render(){
+        const { data } = this.props;
+
         return(
             <div id="hero">
                 <div className="logo-icon">
                     <div className="view">
-                        <img src={data.logo} alt="Logo"/>
+                        <img src={lupiLogoWhite} alt="Logo"/>
                         <div className="mask"></div>
                     </div>
                 </div>
@@ -59,7 +52,7 @@ class Hero extends React.Component{
                             <div className="view">
                                 <MDBAnimation type="fadeIn" duration="500ms">
                                     <MDBAnimation type="rotateIn" duration="1000ms">
-                                        <img src={data.mug} className="img-fluid" alt="Coffee"/>
+                                        <img src={coffeeMug} className="img-fluid" alt="Coffee"/>
                                     </MDBAnimation>
                                 </MDBAnimation>
                                 <div className="mask"></div>
@@ -70,7 +63,7 @@ class Hero extends React.Component{
                 <MDBRow className="w-100 m-0">
                     <MDBCol md="6" className="p-0">
                         <MDBAnimation type="fadeInLeft" duration="900ms">
-                            <MDBView src={data.img} >
+                            <MDBView src={process.env.REACT_APP_BASEURL+data.slideImage.urlLink} >
                                 <MDBMask
                                 pattern={5}
                                 className="rgba-purple-slight d-flex justify-content-center align-items-center">
@@ -99,11 +92,14 @@ class Hero extends React.Component{
                                             <MDBAnimation type="fadeInUp" duration="500ms" delay="200ms">
                                                 <span>for the chosen ones.</span>
                                             </MDBAnimation>
+                                            {data.slideButton.buttonTitle &&
                                             <MDBAnimation type="fadeInUp" duration="500ms" delay="100ms">
-                                                <MDBBtn color="lupi-blue" rounded> Take a sip
+                                                <MDBBtn color="white" rounded outline>
+                                                {data.slideButton.buttonTitle}
                                                     <MDBIcon icon="arrow-right" className="pl-3 fa-lg"/>
                                                 </MDBBtn>
                                             </MDBAnimation>
+                                            }
                                         </div>
                                     </Parallax>
                                 </div>

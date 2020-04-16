@@ -2,26 +2,72 @@
 // Contains all the functionality necessary to define React components
 import React from 'react';
 // DOM bindings for React Router
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 //> Components
 /**
  * HomePage: A basic template page
  */
 import {
-  HomePage
+  HomePage,
+  About,
+  Privacy,
+  Cancellation,
+  Shipping,
+  Terms,
 } from './components/pages';
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' component={HomePage} />
-          
         <Route
-          render={function () {
-            return <h1>Not Found</h1>;
-          }}
+        exact
+        path='/about'
+        component={(props) => <About
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/privacy'
+        component={(props) => <Privacy
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/terms'
+        component={(props) => <Terms
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/shipping'
+        component={(props) => <Shipping
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        exact
+        path='/cancellation'
+        component={(props) => <Cancellation
+        {...this.props}
+        />
+        }
+        />
+        <Route
+        path='/'
+        component={(props) => <HomePage
+        client={this.props.client}
+        {...this.props}
+        />
+        }
         />
       </Switch>
     );

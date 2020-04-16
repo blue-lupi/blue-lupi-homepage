@@ -18,25 +18,22 @@ import './gallery.scss';
 /*
  * This can be retrieved with a 
  * GET https://www.instagram.com/web/search/topsearch/?context=blended&query=INSTAGRAM_USERNAME
+ * GET https://www.instagram.com/web/search/topsearch/?context=blended&query=blue_lupi
  */
 // Instagram Gallery configuration
-const INSTAGRAM_ID = "8684517164";
 const THUMBNAIL_WIDTH = 320;
-
-//> Data
-const data = {
-    count: 9,
-};
 
 class Gallery extends React.Component{
     render(){
+        const { data } = this.props;
+
         return(
             <section id="gallery">
                 <MDBContainer>
                     <InstagramGallery
-                        userId={INSTAGRAM_ID}
+                        userId={data.instagramId}
                         thumbnailWidth={THUMBNAIL_WIDTH}
-                        photoCount={data.count}
+                        photoCount={data.instagramPc}
                     />
                 </MDBContainer>
             </section>
