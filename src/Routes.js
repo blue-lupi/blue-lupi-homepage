@@ -24,17 +24,27 @@ class Routes extends React.Component {
         <Route
           exact
           path="/about"
-          render={(props) => <MessagePage {...props} />}
+          render={(props) => <MessagePage {...this.props} />}
         />
         <Route
           exact
           path="/agb"
-          render={(props) => <MessagePage {...props} />}
+          render={(props) => <MessagePage {...this.props} />}
+        />
+        <Route
+          exact
+          path="/shipping"
+          render={(props) => <MessagePage {...this.props} />}
+        />
+        <Route
+          exact
+          path="/widerruf"
+          render={(props) => <MessagePage {...this.props} />}
         />
         <Route
           exact
           path="/privacy"
-          render={(props) => <MessagePage {...props} />}
+          render={(props) => <MessagePage {...this.props} />}
         />
         />
         <Route component={HomePage} />

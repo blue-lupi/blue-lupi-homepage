@@ -14,16 +14,24 @@ class Footer extends React.Component {
     return (
       <MDBFooter color="elegant-color">
         <MDBContainer className="text-center py-3 text-muted">
-          <Link to="/about" target="_blank">
+          <Link to="/about">
             Impressum
           </Link>
           <span className="pl-2 pr-2">·</span>
-          <Link to="/privacy" target="_blank">
+          <Link to="/privacy">
             Datenschutz
           </Link>
           <span className="pl-2 pr-2">·</span>
-          <Link to="/agb" target="_blank">
+          <Link to="/agb">
             AGB
+          </Link>
+          <span className="pl-2 pr-2">·</span>
+          <Link to="/widerruf">
+            Widerruf
+          </Link>
+          <span className="pl-2 pr-2">·</span>
+          <Link to="/shipping">
+            Shipping
           </Link>
         </MDBContainer>
         <div className="footer-copyright text-center py-3">
