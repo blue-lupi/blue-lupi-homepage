@@ -1,127 +1,145 @@
 //> React
 // Contains all the functionality necessary to define React components
-import React from 'react';
+import React from "react";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-    MDBCol,
-    MDBCard,
-    MDBCardTitle,
-    MDBCardImage,
-    MDBCardText,
-    MDBCardFooter,
-    MDBCardBody,
-    MDBBtn,
-} from 'mdbreact';
+  MDBCol,
+  MDBCard,
+  MDBCardTitle,
+  MDBCardImage,
+  MDBCardText,
+  MDBCardFooter,
+  MDBCardBody,
+  MDBBtn,
+} from "mdbreact";
 
 //> CSS
-import './product.scss';
+import "./product.scss";
 
-class Shop extends React.Component{
-
+class Shop extends React.Component {
   // Init state
   state = {
     value: 1,
     variant: undefined,
-  }
+  };
 
   componentDidMount = () => {
     let initialVariant = this.props.product.node.variants.edges[0].node.id;
     this.setState({
       variant: {
-        id: initialVariant
-      }
+        id: initialVariant,
+      },
     });
-  }
+  };
 
   decrease = () => {
-    if(this.state.value > 1){
+    if (this.state.value > 1) {
       this.setState({ value: parseInt(this.state.value) - 1 });
     }
-  }
+  };
 
   increase = () => {
-    if(this.state.value < 999){
+    if (this.state.value < 999) {
       this.setState({ value: parseInt(this.state.value) + 1 });
     }
-  }
+  };
 
   handleChange = (e) => {
-    if(e.target.value >= 1 && e.target.value <= 999){
+    if (e.target.value >= 1 && e.target.value <= 999) {
       this.setState({
-        value: parseInt(e.target.value)
+        value: parseInt(e.target.value),
       });
     }
-  }
+  };
 
   handleSelectChange = (e) => {
     this.setState({
       variant: {
-        id: e.target.value.toString()
-      }
+        id: e.target.value.toString(),
+      },
     });
-  }
+  };
 
-  render(){
+  render() {
     const { product } = this.props;
     console.log(this.state);
 
-    return(
+    return (
       <MDBCol key={this.props.id} md="4" className="product-item text-dark">
         <MDBCard>
           <MDBCardImage
-          className="img-fluid m-auto pl-5 pr-5 pt-3"
-          src={product.node.images.edges[0].node.src}
-          waves
+            className="img-fluid m-auto pl-5 pr-5 pt-3"
+            src={product.node.images.edges[0].node.src}
+            waves
           />
           <MDBCardBody>
-            <MDBCardTitle className="text-center">{product.node.title}</MDBCardTitle>
-            <MDBCardText 
-            className="text-center"
-            dangerouslySetInnerHTML={{__html: product.node.descriptionHtml}}
+            <MDBCardTitle className="text-center">
+              {product.node.title}
+            </MDBCardTitle>
+            <MDBCardText
+              className="text-center"
+              dangerouslySetInnerHTML={{ __html: product.node.descriptionHtml }}
             ></MDBCardText>
-            <p className="text-center mb-0">Anzahl</p>
-            <div className="def-number-input number-input mb-2 ml-auto mr-auto">
-              <button onClick={this.decrease} className="minus"></button>
-              <input 
-              className="quantity"
-              name="quantity"
-              value={this.state.value}
-              onChange={this.handleChange}
-              type="number"
-              min="1"
-              max="999"
-              />
-              <button onClick={this.increase} className="plus"></button>
-            </div>
-            {product.node.variants.edges.length > 1 &&
-              <div>
-                <select 
-                className="browser-default custom-select"
-                onChange={this.handleSelectChange}
-                >
-                {product.node.variants.edges.map((variant, key) => {
-                  return (
-                    <option 
-                    value={variant.node.id}
-                    key={key}
-                    disabled={!variant.node.availableForSale}
+            {product.node.variants.edges.length < 2 &&
+            !product.node.variants.edges[0].node.availableForSale ? (
+              <p className="text-center mt-4">Der Artikel ist derzeit leider nicht verfügbar.</p>
+            ) : (
+              <>
+                <p className="text-center mb-0">Anzahl</p>{" "}
+                <div className="def-number-input number-input mb-2 ml-auto mr-auto">
+                  <button onClick={this.decrease} className="minus"></button>
+                  <input
+                    className="quantity"
+                    name="quantity"
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                    type="number"
+                    min="1"
+                    max="999"
+                  />
+                  <button onClick={this.increase} className="plus"></button>
+                </div>
+                {product.node.variants.edges.length > 1 && (
+                  <div>
+                    <select
+                      className="browser-default custom-select"
+                      onChange={this.handleSelectChange}
                     >
-                    {variant.node.title}
-                    {!variant.node.availableForSale && " (Ausverkauft)"}
-                    </option>
-                  );
-                })}
-                </select>
-              </div>
-            }
+                      {product.node.variants.edges.map((variant, key) => {
+                        return (
+                          <option
+                            value={variant.node.id}
+                            key={key}
+                            disabled={!variant.node.availableForSale}
+                          >
+                            {variant.node.title}
+                            {!variant.node.availableForSale && " (Ausverkauft)"}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                )}
+              </>
+            )}
+
             <div className="text-center mt-3">
               <MDBBtn
-              color="lupi-blue"
-              onClick={() => this.props.addVariantToCart(this.state.variant.id, this.state.value)}
+                color="lupi-blue"
+                disabled={
+                  product.node.variants.edges.length < 2 &&
+                  !product.node.variants.edges[0].node.availableForSale
+                }
+                onClick={() =>
+                  this.props.addVariantToCart(
+                    this.state.variant.id,
+                    this.state.value
+                  )
+                }
               >
-              Add to card
+                In den Einkaufswagen
               </MDBBtn>
             </div>
           </MDBCardBody>
