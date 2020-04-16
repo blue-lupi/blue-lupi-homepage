@@ -76,7 +76,11 @@ class Shop extends React.Component {
         }
       >
         <MDBContainer>
-          {this.props.showCollection && <h2 className="text-center font-weight-bold mb-3">{this.props.collection}</h2>}
+          {this.props.showCollection && (
+            <h2 className="text-center font-weight-bold mb-3">
+              {this.props.collection}
+            </h2>
+          )}
           <MDBRow>
             {products &&
               products.map((product, i) => {

@@ -1,18 +1,18 @@
 //> Utilities
 // Variables
-@import 'utilities/variables';
+@import "utilities/variables";
 // Global CSS
-@import 'utilities/base';
+@import "utilities/base";
 
 //> Components
 // Homepage
-@import 'components/pages/HomePage/HomePage.scss';
+@import "components/pages/HomePage/HomePage.scss";
 // Hero
-@import 'components/organisms/Hero/hero.scss';
+@import "components/organisms/Hero/hero.scss";
 // Footer
-@import 'components/molecules/Footer/footer.scss';
+@import "components/molecules/Footer/footer.scss";
 // Sub
-@import 'components/organisms/Sections/Sub/sub.scss';
+@import "components/organisms/Sections/Sub/sub.scss";
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)

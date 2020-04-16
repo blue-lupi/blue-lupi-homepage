@@ -84,7 +84,9 @@ class Shop extends React.Component {
             ></MDBCardText>
             {product.node.variants.edges.length < 2 &&
             !product.node.variants.edges[0].node.availableForSale ? (
-              <p className="text-center mt-4">Der Artikel ist derzeit leider nicht verfügbar.</p>
+              <p className="text-center mt-4">
+                Der Artikel ist derzeit leider nicht verfügbar.
+              </p>
             ) : (
               <>
                 <p className="text-center mb-0">Anzahl</p>{" "}

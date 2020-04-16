@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 const CheckoutFragment = gql`
   fragment CheckoutFragment on Checkout {
@@ -7,7 +7,7 @@ const CheckoutFragment = gql`
     totalTax
     subtotalPrice
     totalPrice
-    lineItems (first: 250) {
+    lineItems(first: 250) {
       edges {
         node {
           id
@@ -28,7 +28,7 @@ const CheckoutFragment = gql`
 `;
 
 export const createCheckout = gql`
-  mutation checkoutCreate ($input: CheckoutCreateInput!){
+  mutation checkoutCreate($input: CheckoutCreateInput!) {
     checkoutCreate(input: $input) {
       userErrors {
         message
@@ -43,7 +43,10 @@ export const createCheckout = gql`
 `;
 
 export const checkoutLineItemsAdd = gql`
-  mutation checkoutLineItemsAdd ($checkoutId: ID!, $lineItems: [CheckoutLineItemInput!]!) {
+  mutation checkoutLineItemsAdd(
+    $checkoutId: ID!
+    $lineItems: [CheckoutLineItemInput!]!
+  ) {
     checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
       userErrors {
         message
@@ -58,7 +61,10 @@ export const checkoutLineItemsAdd = gql`
 `;
 
 export const checkoutLineItemsUpdate = gql`
-  mutation checkoutLineItemsUpdate ($checkoutId: ID!, $lineItems: [CheckoutLineItemUpdateInput!]!) {
+  mutation checkoutLineItemsUpdate(
+    $checkoutId: ID!
+    $lineItems: [CheckoutLineItemUpdateInput!]!
+  ) {
     checkoutLineItemsUpdate(checkoutId: $checkoutId, lineItems: $lineItems) {
       userErrors {
         message
@@ -73,8 +79,11 @@ export const checkoutLineItemsUpdate = gql`
 `;
 
 export const checkoutLineItemsRemove = gql`
-  mutation checkoutLineItemsRemove ($checkoutId: ID!, $lineItemIds: [ID!]!) {
-    checkoutLineItemsRemove(checkoutId: $checkoutId, lineItemIds: $lineItemIds) {
+  mutation checkoutLineItemsRemove($checkoutId: ID!, $lineItemIds: [ID!]!) {
+    checkoutLineItemsRemove(
+      checkoutId: $checkoutId
+      lineItemIds: $lineItemIds
+    ) {
       userErrors {
         message
         field
@@ -88,8 +97,14 @@ export const checkoutLineItemsRemove = gql`
 `;
 
 export const checkoutCustomerAssociate = gql`
-  mutation checkoutCustomerAssociate($checkoutId: ID!, $customerAccessToken: String!) {
-    checkoutCustomerAssociate(checkoutId: $checkoutId, customerAccessToken: $customerAccessToken) {
+  mutation checkoutCustomerAssociate(
+    $checkoutId: ID!
+    $customerAccessToken: String!
+  ) {
+    checkoutCustomerAssociate(
+      checkoutId: $checkoutId
+      customerAccessToken: $customerAccessToken
+    ) {
       userErrors {
         field
         message
@@ -102,74 +117,80 @@ export const checkoutCustomerAssociate = gql`
   ${CheckoutFragment}
 `;
 
-export function addVariantToCart(variantId, quantity){
-  this.props.checkoutLineItemsAdd({
+export function addVariantToCart(variantId, quantity) {
+  this.props
+    .checkoutLineItemsAdd({
       variables: {
         checkoutId: this.state.checkout.id,
-        lineItems:  [
+        lineItems: [
           {
             variantId,
-            quantity: parseInt(quantity, 10)
-          }
-        ]
-      }
-    }).then((res) => {
-    this.setState({
-      checkout: res.data.checkoutLineItemsAdd.checkout
+            quantity: parseInt(quantity, 10),
+          },
+        ],
+      },
+    })
+    .then((res) => {
+      this.setState({
+        checkout: res.data.checkoutLineItemsAdd.checkout,
+      });
     });
-  });
 
   this.handleCartOpen();
 }
 
-export function updateLineItemInCart(lineItemId, quantity){
-  this.props.checkoutLineItemsUpdate({
-      variables: { 
+export function updateLineItemInCart(lineItemId, quantity) {
+  this.props
+    .checkoutLineItemsUpdate({
+      variables: {
         checkoutId: this.state.checkout.id,
         lineItems: [
           {
             id: lineItemId,
-            quantity: parseInt(quantity, 10)
-          }
-        ]
-      }
-    }).then((res) => {
-    this.setState({
-      checkout: res.data.checkoutLineItemsUpdate.checkout
+            quantity: parseInt(quantity, 10),
+          },
+        ],
+      },
+    })
+    .then((res) => {
+      this.setState({
+        checkout: res.data.checkoutLineItemsUpdate.checkout,
+      });
     });
-  });
 }
 
-export function removeLineItemInCart(lineItemId){
-  this.props.checkoutLineItemsRemove({
+export function removeLineItemInCart(lineItemId) {
+  this.props
+    .checkoutLineItemsRemove({
       variables: {
         checkoutId: this.state.checkout.id,
-        lineItemIds: [
-          lineItemId
-        ]
-      }
-    }).then((res) => {
-    this.setState({
-      checkout: res.data.checkoutLineItemsRemove.checkout
+        lineItemIds: [lineItemId],
+      },
+    })
+    .then((res) => {
+      this.setState({
+        checkout: res.data.checkoutLineItemsRemove.checkout,
+      });
     });
-  });
 }
 
-export function associateCustomerCheckout(customerAccessToken){
-  this.props.checkoutCustomerAssociate({
-      variables: { 
+export function associateCustomerCheckout(customerAccessToken) {
+  this.props
+    .checkoutCustomerAssociate({
+      variables: {
         checkoutId: this.state.checkout.id,
-        customerAccessToken
-      }
-    }).then((res) => {
-    this.setState({
-      checkout: res.data.checkoutCustomerAssociate.checkout,
-      isCustomerAuthOpen: false
+        customerAccessToken,
+      },
+    })
+    .then((res) => {
+      this.setState({
+        checkout: res.data.checkoutCustomerAssociate.checkout,
+        isCustomerAuthOpen: false,
+      });
     });
-  });
 }
 
-/** 
+/**
  * SPDX-License-Identifier: (EUPL-1.2)
  * Copyright © 2019 Werbeagentur Christian Aichner
  */

@@ -1,31 +1,32 @@
 // Footer
 footer {
-    // Custom pulsating heart
-    .pulse {
-        -webkit-animation: pulse 1s infinite;
-        animation: pulse 1s infinite;
-    }
+  // Custom pulsating heart
+  .pulse {
+    -webkit-animation: pulse 1s infinite;
+    animation: pulse 1s infinite;
+  }
 
-    // Footer link icons
-    ul li i{
-        width: 30px;
-        text-align: center;
-        padding-right: .5rem;
-    }
+  // Footer link icons
+  ul li i {
+    width: 30px;
+    text-align: center;
+    padding-right: 0.5rem;
+  }
 
-    // Footer column headers
-    .title{
-        text-transform: uppercase;
-        font-weight: bold;
-    }
+  // Footer column headers
+  .title {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 
-    // Column header separator
-    .col-md-3, .col-md-4{
-        hr{
-            width: 60px;
-            height: 1px;
-        }
+  // Column header separator
+  .col-md-3,
+  .col-md-4 {
+    hr {
+      width: 60px;
+      height: 1px;
     }
+  }
 }
 
 /** 

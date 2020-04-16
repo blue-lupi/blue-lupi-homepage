@@ -196,7 +196,9 @@ class Blackwolf extends React.Component {
               ></p>
               <MDBRow className="mt-4 flex-center">
                 {products.map((product, i) => {
-                  if (product.node.collections.edges[0].node.title === "Personal") {
+                  if (
+                    product.node.collections.edges[0].node.title === "Personal"
+                  ) {
                     return (
                       <Product
                         key={i}
