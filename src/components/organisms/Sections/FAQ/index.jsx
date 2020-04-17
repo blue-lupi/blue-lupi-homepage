@@ -2,6 +2,10 @@
 // Contains all the functionality necessary to define React components
 import React from "react";
 
+//> Additional modules
+// Fade in
+import FadeIn from "react-fade-in";
+
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import { MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
@@ -10,6 +14,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact";
 import "./faq.scss";
 
 class FAQ extends React.Component {
+  state = {};
   render() {
     const { data } = this.props;
 
@@ -29,20 +34,20 @@ class FAQ extends React.Component {
                       className="fa-lg"
                     />
                   )}
-                  <h4>{item.value.question_head}</h4>
                   <p
-                    dangerouslySetInnerHTML={{
-                      __html: item.value.question_paragraph,
-                    }}
-                  ></p>
-                  {item.value.question_link && (
-                    <a
-                      href={item.value.question_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Mehr dazu
-                    </a>
+                    className="lead clickable blue-text"
+                    onClick={() => this.setState({ ["faq" + i]: true })}
+                  >
+                    {item.value.question_head}
+                  </p>
+                  {this.state["faq" + i] && (
+                    <FadeIn>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: item.value.question_paragraph,
+                        }}
+                      ></p>
+                    </FadeIn>
                   )}
                 </MDBCol>
               );
