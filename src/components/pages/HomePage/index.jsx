@@ -80,7 +80,6 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     document.title = "Urban Coffee - Blue Lupi";
-
     this.props
       .createCheckout({
         variables: {

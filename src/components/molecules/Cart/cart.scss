@@ -1,15 +1,16 @@
 modal-cart {
-  .totals {
-    margin-top: 2rem;
-    position: relative;
-    width: 100%;
-  }
-  .form-check-input[type="checkbox"].filled-in:checked + label:after,
-  label.btn input[type="checkbox"].filled-in:checked + label:after {
-    background-color: #00c851;
-    border: 2px solid #00c851;
-  }
+	.totals {
+		margin-top: 2rem;
+		position: relative;
+		width: 100%;
+	}
+	.form-check-input[type="checkbox"].filled-in:checked + label:after,
+	label.btn input[type="checkbox"].filled-in:checked + label:after {
+		background-color: #00c851;
+		border: 2px solid #00c851;
+	}
 }
+
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
  * Copyright © 2019 Werbeagentur Christian Aichner

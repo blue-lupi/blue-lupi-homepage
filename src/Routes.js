@@ -38,7 +38,7 @@ class Routes extends React.Component {
         />
         <Route
           exact
-          path="/widerruf"
+          path="/cancellation"
           render={(props) => <MessagePage {...this.props} />}
         />
         <Route

@@ -224,6 +224,7 @@ class App extends React.Component {
      * Ref: https://flaviocopes.com/how-to-get-timestamp-javascript/
      */
     let currentTS = ~~(Date.now() / 1000);
+    
     // Check if the token is still valid
     if (currentTS > exp) {
       // Token has expired

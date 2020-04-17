@@ -26,7 +26,7 @@ class Footer extends React.Component {
             AGB
           </Link>
           <span className="pl-2 pr-2">·</span>
-          <Link to="/widerruf">
+          <Link to="/cancellation">
             Widerruf
           </Link>
           <span className="pl-2 pr-2">·</span>
