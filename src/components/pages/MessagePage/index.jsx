@@ -6,22 +6,10 @@ import { withRouter } from "react-router-dom";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
-import { MDBContainer, MDBBtn, MDBAlert, MDBIcon } from "mdbreact";
-
-//> Information
-// About
-const about = {
-  company: "Company",
-  phone: "Company phone",
-  address: "Company address",
-  zip: "ZIP",
-  city: "City",
-  mail: "mail@mail.com",
-};
+import { MDBContainer } from "mdbreact";
 
 class MessagePage extends React.Component {
   render() {
-    console.log("Message page", this.props);
     const { globalState } = this.props;
     const data = globalState ? globalState.page : null;
     if (!data || !this.props.location) {
@@ -62,7 +50,9 @@ class MessagePage extends React.Component {
           {this.props.location.pathname === "/widerruf" && (
             <div className="text-left">
               <h2>Widerruf</h2>
-              <p dangerouslySetInnerHTML={{ __html: data.cancellationPolicy }}></p>
+              <p
+                dangerouslySetInnerHTML={{ __html: data.cancellationPolicy }}
+              ></p>
             </div>
           )}
         </MDBContainer>

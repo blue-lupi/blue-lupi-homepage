@@ -2,10 +2,6 @@
 // Contains all the functionality necessary to define React components
 import React from "react";
 
-//> Additional libraies
-// Parallax
-//import { Parallax } from 'react-scroll-parallax';
-
 //> Components
 import { Product } from "../../../molecules";
 
@@ -28,7 +24,6 @@ class Shop extends React.Component {
   componentDidMount = () => {
     let products = this.props.products;
     const collection = this.props.collection;
-    console.log(products);
 
     let res = [];
     products.map((product, i) => {
@@ -36,7 +31,6 @@ class Shop extends React.Component {
         product.node.collections.edges[0] &&
         product.node.collections.edges[0].node.title === collection
       ) {
-        console.log(collection);
         switch (product.node.title) {
           case "Bluelupi Lupinenkaffee":
             res[0] = products[i];
@@ -51,9 +45,8 @@ class Shop extends React.Component {
             res[i] = products[i];
         }
       }
+      return true;
     });
-
-    console.log(res);
 
     this.setState({
       products: res,
@@ -62,9 +55,6 @@ class Shop extends React.Component {
 
   render() {
     const { products } = this.state;
-
-    // Debugging
-    //console.log(products);
 
     return (
       <section

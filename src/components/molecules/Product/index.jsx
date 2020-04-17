@@ -10,7 +10,6 @@ import {
   MDBCardTitle,
   MDBCardImage,
   MDBCardText,
-  MDBCardFooter,
   MDBCardBody,
   MDBBtn,
 } from "mdbreact";
@@ -64,7 +63,6 @@ class Shop extends React.Component {
 
   render() {
     const { product } = this.props;
-    console.log(this.state);
 
     return (
       <MDBCol key={this.props.id} md="4" className="product-item text-dark">

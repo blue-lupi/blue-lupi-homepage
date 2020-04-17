@@ -104,7 +104,7 @@ class Cart extends React.Component {
               this.props.checkout.totalPrice
                 ? this.props.checkout.totalPrice >= 21
                   ? 21
-                  : this.props.checkout.totalPrice
+                  : parseInt(this.props.checkout.totalPrice)
                 : 0
             }
             max={21}

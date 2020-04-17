@@ -6,15 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 //> Backend Connection
 // Apollo
-import { graphql, withApollo } from "react-apollo";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink, HttpLink } from "apollo-link-http";
 import { gql } from "apollo-boost";
-import * as compose from "lodash.flowright";
-import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-} from "apollo-cache-inmemory";
 
 //> Components
 import { Footer } from "./components/molecules";
@@ -199,19 +191,16 @@ class App extends React.Component {
   };
 
   loginUser = () => {
-    console.log("Called anonymous user login");
     this.props.client
       .mutate({
         mutation: LOGIN_USER,
       })
       .then(({ data }) => {
-        console.log(data);
         if (data !== undefined) {
           this.setLogged(data.tokenAuth.token);
         }
       })
       .catch((error) => {
-        console.log("Login user error");
         console.error("Mutation error:", error);
       });
   };
@@ -252,7 +241,6 @@ class App extends React.Component {
         variables: { token: token },
       })
       .then(({ data }) => {
-        console.log("Token refresh");
         if (data !== undefined) {
           this.setLogged(data.refreshToken.token);
         }
@@ -270,7 +258,6 @@ class App extends React.Component {
         variables: { token: token },
       })
       .then(({ data }) => {
-        console.log(data.page);
         if (data.page) {
           this.setState(
             {
@@ -281,7 +268,6 @@ class App extends React.Component {
         }
       })
       .catch((error) => {
-        console.log("Error", error);
         // Temp!
         this.fetchFormData(token);
       });
@@ -294,7 +280,6 @@ class App extends React.Component {
         variables: { token: token },
       })
       .then(({ data }) => {
-        console.log(data.page);
         if (data.page) {
           this.setState({
             form: data.page,
@@ -302,12 +287,11 @@ class App extends React.Component {
         }
       })
       .catch((error) => {
-        console.log("Error", error);
+        console.error("Error", error);
       });
   };
 
   render() {
-    console.log(this.state);
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <ScrollToTop>

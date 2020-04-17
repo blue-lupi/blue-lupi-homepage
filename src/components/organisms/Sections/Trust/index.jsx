@@ -2,10 +2,6 @@
 // Contains all the functionality necessary to define React components
 import React from "react";
 
-//> Additional libraies
-// Parallax
-//import { Parallax } from 'react-scroll-parallax';
-
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import { MDBRow, MDBCol } from "mdbreact";
@@ -58,6 +54,7 @@ class Trust extends React.Component {
                           src={
                             process.env.REACT_APP_BASEURL + data.image.urlLink
                           }
+                          alt="Partner logo"
                           className="img-fluid"
                         />
                       );
