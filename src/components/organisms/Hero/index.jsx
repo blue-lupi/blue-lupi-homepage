@@ -2,11 +2,11 @@
 // Contains all the functionality necessary to define React components
 import React from "react";
 
-//> Additional libraies
+//> Additional modules
 // Parallax
 import { Parallax } from "react-scroll-parallax";
 // Scroll
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
@@ -29,6 +29,11 @@ import coffeeMug from "../../../assets/content/coffee_lupi.png";
 class Hero extends React.Component {
   render() {
     const { data } = this.props;
+    let loaded = false;
+
+    if(data.slideImage){
+      loaded = true;
+    }
 
     return (
       <div id="hero">
@@ -64,7 +69,7 @@ class Hero extends React.Component {
           <MDBCol md="6" className="p-0">
             <MDBAnimation type="fadeInLeft" duration="900ms">
               <MDBView
-                src={process.env.REACT_APP_BASEURL + data.slideImage.urlLink}
+                src={loaded ? process.env.REACT_APP_BASEURL + data.slideImage.urlLink : "https://cdn.coffeecircle.com/29dd57ff-51b3-446c-a789-28bc3e463fe8/"}
               >
                 <MDBMask
                   pattern={5}
@@ -118,7 +123,7 @@ class Hero extends React.Component {
                       >
                         <span>for the chosen ones.</span>
                       </MDBAnimation>
-                      {data.slideButton.buttonTitle && (
+                      {loaded && data.slideButton.buttonTitle && (
                         <MDBAnimation
                           type="fadeInUp"
                           duration="500ms"

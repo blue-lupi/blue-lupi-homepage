@@ -135,45 +135,37 @@ class HomePage extends React.Component {
     });
   }
 
-  changeVisibility = (isVisible) => {
-    console.log(isVisible);
-  };
-
   render() {
-    if (this.props.data.loading || !this.props.globalState) {
-      return <p>Loading ...</p>;
-    }
     if (this.props.data.error) {
-      return <p>{this.props.data.error.message}</p>;
+      // Display error message
     }
 
+    const page = this.props.globalState
+      ? this.props.globalState.page
+      : undefined;
+    const pageHeaders = page
+      ? page.headers
+      : [{ __typename: "Home_H_HeroBlock" }];
+
+    let headers = pageHeaders.map((header, i) => {
+      switch (header.__typename) {
+        case "Home_H_HeroBlock":
+          return (
+            <Hero
+              handleCartOpen={this.handleCartOpen}
+              data={header}
+              key={"head" + i}
+            />
+          );
+        default:
+          return null;
+      }
+    });
     if (this.props.globalState) {
-      const page = this.props.globalState.page;
       const form = this.props.globalState.form;
-
-      console.log(page, form);
-
-      if (page && form) {
-        const pageHeaders = page.headers;
+      if (page && form && !this.props.loading && this.props.data.shop) {
         const pageSections = page.sections;
-
-        let headers = pageHeaders.map((header, i) => {
-          switch (header.__typename) {
-            case "Home_H_HeroBlock":
-              return (
-                <Hero
-                  handleCartOpen={this.handleCartOpen}
-                  data={header}
-                  key={"head" + i}
-                />
-              );
-            default:
-              return null;
-          }
-        });
-
         let sections = pageSections.map((section, i) => {
-          console.log(section);
           switch (section.__typename) {
             case "Home_S_WhyBlock":
               return (
@@ -233,15 +225,16 @@ class HomePage extends React.Component {
             isCartOpen={this.state.isCartOpen}
             handleCartClose={this.handleCartClose}
             customerAccessToken={this.state.customerAccessToken}
+            key={"cart"}
           />
         );
         sections.push(cart);
         return headers.concat(sections);
       } else {
-        return null;
+        return headers;
       }
     } else {
-      return null;
+      return headers;
     }
   }
 }
