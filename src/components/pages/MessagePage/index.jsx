@@ -47,7 +47,7 @@ class MessagePage extends React.Component {
               <p dangerouslySetInnerHTML={{ __html: data.shipping }}></p>
             </div>
           )}
-          {this.props.location.pathname === "/widerruf" && (
+          {this.props.location.pathname === "/cancellation" && (
             <div className="text-left">
               <h2>Widerruf</h2>
               <p
