@@ -208,7 +208,7 @@ class App extends React.Component {
   setLogged = (token) => {
     this.setState(
       {
-        token: token,
+        token,
         loaded: true,
       },
       () => {
