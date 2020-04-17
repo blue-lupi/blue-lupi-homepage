@@ -238,7 +238,7 @@ class App extends React.Component {
     this.props.client
       .mutate({
         mutation: REFRESH_TOKEN,
-        variables: { token: token },
+        variables: { token },
       })
       .then(({ data }) => {
         if (data !== undefined) {
@@ -255,7 +255,7 @@ class App extends React.Component {
     this.props.client
       .query({
         query: GET_DATA,
-        variables: { token: token },
+        variables: { token },
       })
       .then(({ data }) => {
         if (data.page) {
@@ -277,7 +277,7 @@ class App extends React.Component {
     this.props.client
       .query({
         query: GET_FORM,
-        variables: { token: token },
+        variables: { token },
       })
       .then(({ data }) => {
         if (data.page) {
