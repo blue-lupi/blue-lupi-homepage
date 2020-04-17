@@ -4,7 +4,7 @@ import React from "react";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from "mdbreact";
+import { MDBContainer, MDBRow, MDBBtn } from "mdbreact";
 
 //> CSS
 import "./blackwolf.scss";
@@ -38,6 +38,7 @@ class Blackwolf extends React.Component {
   };
 
   componentDidMount = () => {
+    // Wolf animation
     let frames = document.querySelectorAll(".frame");
     let currentFrame = 0;
     let previousFrame = 7;
@@ -55,7 +56,7 @@ class Blackwolf extends React.Component {
       }
     }, 75);
 
-    // Visibility of the questions
+    // Preset states
     if (this.props.form.formFields) {
       let res = {};
       this.props.form.formFields.map((field, i) => {
@@ -64,9 +65,14 @@ class Blackwolf extends React.Component {
             ...res,
             [field.name]: undefined,
           };
+        } else {
+          res = {
+            ...res,
+            [field.name]: "",
+          };
         }
+        return true;
       });
-      console.log(res);
       this.setState({
         selected: res,
       });
@@ -83,15 +89,18 @@ class Blackwolf extends React.Component {
         },
       })
       .then(({ data }) => {
-        console.log(data);
+        this.setState({
+          surveySent: true,
+        });
       })
       .catch((error) => {
-        console.log("Error", error);
+        this.setState({
+          surveySent: false,
+        });
       });
   };
 
   onClick = (name, value, i) => {
-    console.log(i, i + 1);
     this.setState({
       selected: {
         ...this.state.selected,
@@ -102,7 +111,6 @@ class Blackwolf extends React.Component {
   };
 
   onChange = (name, value, i) => {
-    console.log(i, i + 1);
     this.setState({
       selected: {
         ...this.state.selected,
@@ -114,8 +122,6 @@ class Blackwolf extends React.Component {
 
   render() {
     const { products, form } = this.props;
-
-    console.log(this.state);
 
     return (
       <section id="blackwolf" className="pb-0 balckwolfsection">
@@ -181,7 +187,7 @@ class Blackwolf extends React.Component {
                     this.createSurvey();
                   }}
                 >
-                  Jetzt individuelle Röstung finden
+                  Zu deiner persönlichen Röstung
                 </MDBBtn>
               )}
             </>
@@ -208,6 +214,8 @@ class Blackwolf extends React.Component {
                         checkout={this.state.checkout}
                       />
                     );
+                  } else {
+                    return null;
                   }
                 })}
               </MDBRow>
