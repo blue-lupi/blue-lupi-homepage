@@ -139,7 +139,8 @@ class Blackwolf extends React.Component {
                   if (i <= this.state.fieldsDone) {
                     return (
                       <div className="text-center" key={i}>
-                        <h3 className="mt-2">{field.helpText}</h3>
+                        <h3 className="mt-2">Test</h3>
+                        <p className="lead">{field.helpText}</p>
                         {field.choices ? (
                           <>
                             {field.choices.split(",").map((choice, c) => {

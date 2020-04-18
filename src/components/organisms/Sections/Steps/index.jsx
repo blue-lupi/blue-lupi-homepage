@@ -91,6 +91,7 @@ class Story extends React.Component {
 								{({ loading, error, data }) => {
 									if (loading) return null;
 									if (error) return null;
+
 									return (
 										<img
 											src={process.env.REACT_APP_BASEURL + data.image.urlLink}
