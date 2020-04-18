@@ -131,7 +131,6 @@ class Cart extends React.Component {
 							€ {this.props.checkout.totalPrice}
 						</MDBCol>
 					</MDBRow>
-
 					<div className="px-3">
 						<hr />
 						<div className="text-left pl-4 custom-control custom-checkbox">

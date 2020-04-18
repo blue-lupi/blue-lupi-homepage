@@ -47,13 +47,12 @@
   // Right side
   .hero-side {
     height: 100%;
-
     color: $lightgold;
     display: flex;
     align-items: center;
-    .parallax {
+    .parallax-inner {
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     h2 {
       font-size: 5em;
@@ -87,8 +86,6 @@
       height: 650px;
       width: 650px;
       margin: auto;
-      /*background-color: white;
-            border-radius: 45em;*/
       img {
         width: 100%;
       }

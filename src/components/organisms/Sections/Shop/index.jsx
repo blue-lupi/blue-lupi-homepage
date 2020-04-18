@@ -24,8 +24,8 @@ class Shop extends React.Component {
   componentDidMount = () => {
     let products = this.props.products;
     const collection = this.props.collection;
-
     let res = [];
+
     products.map((product, i) => {
       if (
         product.node.collections.edges[0] &&
@@ -45,6 +45,7 @@ class Shop extends React.Component {
             res[i] = products[i];
         }
       }
+
       return true;
     });
 
