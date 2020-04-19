@@ -19,7 +19,6 @@ import { ReactComponent as Wolf } from "../../../../assets/content/sections/abou
 class About extends React.Component {
 	renderCardsLeft = (data) => {
 		let cards = data.aboutCards;
-
 		let rtn = cards.map((card, i) => {
 			if (i % 2 !== 1) {
 				return (
@@ -40,7 +39,6 @@ class About extends React.Component {
 
 	renderCardsRight = (data) => {
 		let cards = data.aboutCards;
-
 		let rtn = cards.map((card, i) => {
 			if (i % 2 === 1) {
 				return (
