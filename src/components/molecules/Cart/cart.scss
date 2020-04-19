@@ -1,9 +1,14 @@
-.modal-cart{
-  .totals{
-    position: absolute;
-    bottom: 1rem;
-    width: 100%;
-  }
+modal-cart {
+	.totals {
+		margin-top: 2rem;
+		position: relative;
+		width: 100%;
+	}
+	.form-check-input[type="checkbox"].filled-in:checked + label:after,
+	label.btn input[type="checkbox"].filled-in:checked + label:after {
+		background-color: #00c851;
+		border: 2px solid #00c851;
+	}
 }
 
 /** 

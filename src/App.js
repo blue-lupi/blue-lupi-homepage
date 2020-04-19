@@ -1,28 +1,18 @@
 //> React
 // Contains all the functionality necessary to define React components
-import React from 'react';
+import React from "react";
 // DOM bindings for React Router
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 
 //> Backend Connection
 // Apollo
-import { graphql, withApollo } from "react-apollo";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink, HttpLink } from "apollo-link-http";
 import { gql } from "apollo-boost";
-import * as compose from 'lodash.flowright';
-import { InMemoryCache, IntrospectionFragmentMatcher } from "apollo-cache-inmemory";
 
 //> Components
-/**
- * Footer: Global Footer
- * Navbar: Global navigation bar
- */
-import {
-  Footer,
-} from './components/molecules';
+import { Footer } from "./components/molecules";
+import { ScrollToTop } from "./components/atoms";
 // Routes
-import Routes from './Routes';
+import Routes from "./Routes";
 
 //> Queries / Mutations
 // Verify the token
@@ -44,8 +34,8 @@ const REFRESH_TOKEN = gql`
 `;
 // Login anonymous user
 const LOGIN_USER = gql`
-  mutation tokenAuth{
-    tokenAuth(username:"cisco",password:"ciscocisco"){
+  mutation tokenAuth {
+    tokenAuth(username: "cisco", password: "ciscocisco") {
       token
     }
   }
@@ -139,13 +129,13 @@ const GET_FORM = gql`
     page(token: $token, url: "/home/survey") {
       id
       contentType
-      ... on SurveySurveyFormPage{
+      ... on SurveySurveyFormPage {
         id
         slug
         surveyHead
         surveySubhead
         thankYouText
-        formFields{
+        formFields {
           name
           helpText
           choices
@@ -157,153 +147,162 @@ const GET_FORM = gql`
 `;
 
 class App extends React.Component {
-
   componentDidMount = () => {
-    if(localStorage.getItem('fprint') !== null){
+    // Check if there is a JSON Web Token existent
+    if (localStorage.getItem("jwt") !== null) {
       try {
-        // Verify Token on first load
-        this._verifyToken();
-        // Refresh token every 4 minutes
-        setInterval(async () => {
-          this._verifyToken();
-        }, 240000);
-      } catch(e) {
-        console.log(e);
+        // Verify Token
+        this.verifyToken();
+      } catch (e) {
+        // Try to refresh token
+        this.refreshToken();
       }
     } else {
-      this._loginUser();
+      // If there is no JSON Web Token, just login as anonymous user
+      this.loginUser();
     }
-  }
+  };
 
-  _verifyToken = () => {
-    this.props.client.mutate({
-      mutation: VERIFY_TOKEN,
-      variables: { "token": localStorage.getItem('fprint') }
-    }).then(({data}) => {
-      if(data !== undefined){
-        if(data.verifyToken !== null){
-          this._isLogged(
-            data.verifyToken.payload.exp,
-            data.verifyToken.payload.origIat,
-            localStorage.getItem('fprint')
-          );
-        } else {
-          console.warn("No token in payload.");
-        }
-      } else {
-        console.warn("No token in payload.");
-      }
-    })
-    .catch((error) => {
-      console.error("Mutation error:",error);
-    })
-  }
-
-  _loginUser = () => {
-    console.log("Called anonymous user login");
-    this.props.client.mutate({
-      mutation: LOGIN_USER
+  verifyToken = () => {
+    this.props.client
+      .mutate({
+        mutation: VERIFY_TOKEN,
+        variables: { token: localStorage.getItem("jwt") },
       })
-    .then(({data}) => {
-      console.log(data);
-      if(data !== undefined){
-        this._setLogged(data.tokenAuth.token);
+      .then(({ data }) => {
+        if (data !== undefined) {
+          if (data.verifyToken !== null) {
+            this.isLogged(
+              data.verifyToken.payload.exp,
+              data.verifyToken.payload.origIat,
+              localStorage.getItem("jwt")
+            );
+          } else {
+            this.refreshToken();
+          }
+        } else {
+          this.refreshToken();
+        }
+      })
+      .catch((error) => {
+        console.error("Mutation error:", error);
+        this.refreshToken();
+      });
+  };
+
+  loginUser = () => {
+    this.props.client
+      .mutate({
+        mutation: LOGIN_USER,
+      })
+      .then(({ data }) => {
+        if (data !== undefined) {
+          this.setLogged(data.tokenAuth.token);
+        }
+      })
+      .catch((error) => {
+        console.error("Mutation error:", error);
+      });
+  };
+
+  setLogged = (token) => {
+    this.setState(
+      {
+        token,
+        loaded: true,
+      },
+      () => {
+        this.fetchPageData(token);
+        localStorage.setItem("jwt", token);
       }
-    })
-    .catch((error) => {
-      console.log("Login user error");
-      console.error("Mutation error:",error);
-    })
-  }
+    );
+  };
 
-  _setLogged = (token) => {
-    this.setState({
-      token: token,
-      loaded: true,
-    }, () => {
-      this._fetchPageData(token);
-      localStorage.setItem('fprint', token);
-    });
-  }
-
-  _isLogged = (exp, orig, token) => {
+  isLogged = (exp, orig, token) => {
     /**
      * Generate current timestamp
      * Ref: https://flaviocopes.com/how-to-get-timestamp-javascript/
      */
     let currentTS = ~~(Date.now() / 1000);
+    
     // Check if the token is still valid
-    if(currentTS > exp){
+    if (currentTS > exp) {
       // Token has expired
-      this._refeshToken(token);
+      this.refreshToken(token);
     } else {
       // Only if anything has changed, update the data
-      this._setLogged(token);
+      this.setLogged(token);
     }
-  }
+  };
 
-  _refeshToken = (token) => {
-    this.props.client.mutate({
-      mutation: REFRESH_TOKEN,
-      variables: { "token": token }
-    })
-    .then(({data}) => {
-      console.log("Token refresh");
-      if(data !== undefined){
-        this._setLogged(data.refreshToken.token);
-      }
-    })
-    .catch(error => {
-      console.error("Mutation error:",error);
-    })
-  }
+  refreshToken = (token) => {
+    this.props.client
+      .mutate({
+        mutation: REFRESH_TOKEN,
+        variables: { token },
+      })
+      .then(({ data }) => {
+        if (data !== undefined) {
+          this.setLogged(data.refreshToken.token);
+        }
+      })
+      .catch((error) => {
+        // If refresh token fails, log in as anonymous user
+        this.loginUser();
+      });
+  };
 
-  _fetchPageData = (token) => {
-    this.props.client.query({
-      query: GET_DATA,
-      variables: { "token": token }
-    }).then(({data}) => {
-      console.log(data.page);
-      if(data.page){
-        this.setState({
-          page: data.page,
-        }, () => this._fetchFormData(token));
-      }
-    })
-    .catch(error => {
-      console.log("Error",error);
-      // Temp!
-      this._fetchFormData(token);
-    })
-  }
+  fetchPageData = (token) => {
+    this.props.client
+      .query({
+        query: GET_DATA,
+        variables: { token },
+      })
+      .then(({ data }) => {
+        if (data.page) {
+          this.setState(
+            {
+              page: data.page,
+            },
+            () => this.fetchFormData(token)
+          );
+        }
+      })
+      .catch((error) => {
+        // Temp!
+        this.fetchFormData(token);
+      });
+  };
 
-  _fetchFormData = (token) => {
-    this.props.client.query({
-      query: GET_FORM,
-      variables: { "token": token }
-    }).then(({data}) => {
-      console.log(data.page);
-      if(data.page){
-        this.setState({
-          form: data.page,
-        });
-      }
-    })
-    .catch(error => {
-      console.log("Error",error);
-    })
-  }
+  fetchFormData = (token) => {
+    this.props.client
+      .query({
+        query: GET_FORM,
+        variables: { token },
+      })
+      .then(({ data }) => {
+        if (data.page) {
+          this.setState({
+            form: data.page,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error", error);
+      });
+  };
 
   render() {
-    console.log(this.state);
     return (
-      <Router>
-        <div className="flyout">
-          <main>
-            <Routes globalState={this.state} client={this.props.client} />
-          </main>
-          <Footer />
-        </div>
+      <Router basename={process.env.PUBLIC_URL}>
+        <ScrollToTop>
+          <div className="flyout">
+            <main>
+              <Routes globalState={this.state} client={this.props.client} />
+            </main>
+            <Footer />
+          </div>
+        </ScrollToTop>
       </Router>
     );
   }
@@ -311,7 +310,7 @@ class App extends React.Component {
 
 export default App;
 
-/** 
+/**
  * SPDX-License-Identifier: (EUPL-1.2)
  * Copyright © 2019 Werbeagentur Christian Aichner
  */

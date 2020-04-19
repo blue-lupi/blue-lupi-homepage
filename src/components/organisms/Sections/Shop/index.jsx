@@ -1,111 +1,124 @@
 //> React
 // Contains all the functionality necessary to define React components
-import React from 'react';
-
-//> Additional libraies
-// Parallax
-//import { Parallax } from 'react-scroll-parallax';
+import React from "react";
 
 //> Components
-import {
-  Product
-} from '../../../molecules';
+import { Product } from "../../../molecules";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
-import {
-    MDBRow,
-    MDBContainer,
-} from 'mdbreact';
+import { MDBRow, MDBContainer } from "mdbreact";
 
 //> CSS
-import './shop.scss';
+import "./shop.scss";
 
-class Shop extends React.Component{
-
+class Shop extends React.Component {
   state = {
     isCartOpen: false,
     isCustomerAuthOpen: false,
     isNewCustomer: false,
     products: [],
-    checkout: { lineItems: { edges: [] } }
+    checkout: { lineItems: { edges: [] } },
   };
 
   componentDidMount = () => {
     let products = this.props.products;
-
+    const collection = this.props.collection;
     let res = [];
 
     products.map((product, i) => {
-      switch(product.node.title){
-        case 'Bluelupi Lupinenkaffee':
-          res[0] = products[i];
-          break;
-        case 'Bluelupi im Spar-Abo':
-          res[1] = products[i];
-          break;
-        case 'Lupinenkaffee Kapseln':
-          res[2] = products[i];
-          break;
-        default:
-          res[i] = products[i];
-          break;
+      if (
+        product.node.collections.edges[0] &&
+        product.node.collections.edges[0].node.title === collection
+      ) {
+        switch (product.node.title) {
+          case "Bluelupi Lupinenkaffee":
+            res[0] = products[i];
+            break;
+          case "Bluelupi im Spar-Abo":
+            res[1] = products[i];
+            break;
+          case "Lupinenkaffee Kapseln":
+            res[2] = products[i];
+            break;
+          default:
+            res[i] = products[i];
+        }
       }
+
       return true;
     });
 
     this.setState({
-      products: res
+      products: res,
     });
-  }
+  };
 
-  render(){
+  render() {
     const { products } = this.state;
 
-    // Debugging
-    //console.log(products);
-
-    return(
-      <section id="shop">
+    return (
+      <section
+        id="shop"
+        className={
+          this.props.collection === "Black Wolf Coffee - Spezialitätenkaffee"
+            ? "blackwolf balckwolfsection"
+            : "bluelupi"
+        }
+      >
         <MDBContainer>
-        <MDBRow>
-          {products && products.map((product, i) => {
-            switch(product.node.title){
-              case 'Bluelupi Lupinenkaffee':
-                return(
-                  <Product 
-                  key={i}
-                  id={product.node.id}
-                  product={product}
-                  addVariantToCart={this.props.addVariantToCart}
-                  checkout={this.state.checkout}
-                  />
-                );
-              case 'Bluelupi im Spar-Abo':
-                return(
-                  <Product 
-                  key={i}
-                  id={product.node.id}
-                  product={product}
-                  addVariantToCart={this.props.addVariantToCart}
-                  checkout={this.state.checkout}
-                  />
-                );
-              case 'Lupinenkaffee Kapseln':
-                return(
-                  <Product 
-                  key={i}
-                  id={product.node.id}
-                  product={product}
-                  addVariantToCart={this.props.addVariantToCart}
-                  checkout={this.state.checkout}
-                  />
-                );
-              default:
-                return null;
-            }
-          })}
-        </MDBRow>
+          {this.props.showCollection && (
+            <h2 className="text-center font-weight-bold mb-3">
+              {this.props.collection}
+            </h2>
+          )}
+          <MDBRow>
+            {products &&
+              products.map((product, i) => {
+                switch (product.node.title) {
+                  case "Bluelupi Lupinenkaffee":
+                    return (
+                      <Product
+                        key={i}
+                        id={product.node.id}
+                        product={product}
+                        addVariantToCart={this.props.addVariantToCart}
+                        checkout={this.state.checkout}
+                      />
+                    );
+                  case "Bluelupi im Spar-Abo":
+                    return (
+                      <Product
+                        key={i}
+                        id={product.node.id}
+                        product={product}
+                        addVariantToCart={this.props.addVariantToCart}
+                        checkout={this.state.checkout}
+                      />
+                    );
+                  case "Lupinenkaffee Kapseln":
+                    return (
+                      <Product
+                        key={i}
+                        id={product.node.id}
+                        product={product}
+                        addVariantToCart={this.props.addVariantToCart}
+                        checkout={this.state.checkout}
+                      />
+                    );
+                  default:
+                    return (
+                      <Product
+                        key={i}
+                        id={product.node.id}
+                        product={product}
+                        addVariantToCart={this.props.addVariantToCart}
+                        checkout={this.state.checkout}
+                      />
+                    );
+                }
+              })}
+          </MDBRow>
         </MDBContainer>
       </section>
     );

@@ -1,34 +1,55 @@
 #shop {
-  background-color: #ead7b8;
-  .card {
-    box-shadow: none;
-    z-index: 2;
-    border: #1976d2 7px solid;
-    .card-footer {
-      background-color: #edf5fd;
+  // Black wolf coffee
+  &.blackwolf {
+    background: black !important;
+    border-top: 50px white solid;
+    .card {
+      box-shadow: none;
+      z-index: 2;
+      border: darken(grey, 30%) 7px solid;
+      .card-footer {
+        background-color: #edf5fd;
+      }
+      .btn {
+        background: black;
+      }
+    }
+    h2 {
+      color: white;
     }
   }
-
-  .col-md-4:last-child .card,
-  .col-md-4:first-child .card {
-    border: #d2a968 5px solid;
-    .card-footer {
-      background-color: #f6ede0;
+  &.bluelupi {
+    background-color: #ead7b8;
+    .card {
+      box-shadow: none;
+      z-index: 2;
+      border: #1976d2 7px solid;
+      .card-footer {
+        background-color: #edf5fd;
+      }
     }
-  }
 
-  .col-md-4:nth-child(2) .card {
-    .view{
-      &::after {
-        content: "Sehr beliebt";
-        position: absolute;
-        right: 10%;
-        bottom: 10%;
-        background-color: #1976d2;
-        padding: 0.5em;
-        color: white;
-        transform: rotate(-20deg);
-        border-radius: 1em;
+    .col-md-4:last-child .card,
+    .col-md-4:first-child .card {
+      border: #d2a968 5px solid;
+      .card-footer {
+        background-color: #f6ede0;
+      }
+    }
+
+    .col-md-4:nth-child(2) .card {
+      .view {
+        &::after {
+          content: "Sehr beliebt";
+          position: absolute;
+          right: 10%;
+          bottom: 10%;
+          background-color: #1976d2;
+          padding: 0.5em;
+          color: white;
+          transform: rotate(-20deg);
+          border-radius: 1em;
+        }
       }
     }
   }
