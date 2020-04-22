@@ -86,7 +86,6 @@ class Cart extends React.Component {
 						</>
 					)}
 					<p className="lead mt-3 mb-0">Jetzt gratis Versand sichern!</p>
-
 					{this.props.checkout.totalPrice >= freeShipping ? (
 						<p className="my-1 green-text font-weight-bold">
 							Gratis Versand gesichert!
@@ -103,7 +102,6 @@ class Cart extends React.Component {
 							€
 						</p>
 					)}
-
 					<MDBProgress
 						value={
 							this.props.checkout.totalPrice
@@ -139,16 +137,16 @@ class Cart extends React.Component {
 						<div className="text-left pl-4 custom-control custom-checkbox">
 							<input
 								type="checkbox"
-								class="custom-control-input"
+								className="custom-control-input"
 								id="defaultUnchecked"
 								checked={this.state.agb}
-								onClick={(e) => {
+								onChange={(e) => {
 									this.setState({
 										agb: e.target.checked,
 									});
 								}}
 							/>
-							<label className="custom-control-label" for="defaultUnchecked">
+							<label className="custom-control-label" htmlFor="defaultUnchecked">
 								<small>
 									Ich bestätige die{" "}
 									<Link to="/agb" target="_blank">
