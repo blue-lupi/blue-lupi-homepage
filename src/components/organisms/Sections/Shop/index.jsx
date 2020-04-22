@@ -59,9 +59,13 @@ class Shop extends React.Component {
 
     return (
       <section
-        id="shop"
+        id={
+          this.props.collection === "Das Kaffeerudel - Spezialitätenkaffee"
+            ? "rudelshop"
+            : "shop"
+        }
         className={
-          this.props.collection === "Black Wolf Coffee - Spezialitätenkaffee"
+          this.props.collection === "Das Kaffeerudel - Spezialitätenkaffee"
             ? "blackwolf balckwolfsection"
             : "bluelupi"
         }

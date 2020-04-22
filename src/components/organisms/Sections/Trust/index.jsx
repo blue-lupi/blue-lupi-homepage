@@ -56,7 +56,7 @@ class Trust extends React.Component {
 														process.env.REACT_APP_BASEURL + data.image.urlLink
 													}
 													alt="Partner logo"
-													className="img-fluid"
+													className="img-fluid my-3"
 												/>
 											);
 										}}

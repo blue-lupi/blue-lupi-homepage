@@ -23,6 +23,9 @@ import {
 //> CSS
 import "./cart.scss";
 
+//> Data
+const freeShipping = 60;
+
 class Cart extends React.Component {
 	constructor(props) {
 		super(props);
@@ -84,17 +87,17 @@ class Cart extends React.Component {
 					)}
 					<p className="lead mt-3 mb-0">Jetzt gratis Versand sichern!</p>
 
-					{this.props.checkout.totalPrice >= 21 ? (
+					{this.props.checkout.totalPrice >= freeShipping ? (
 						<p className="my-1 green-text font-weight-bold">
 							Gratis Versand gesichert!
 						</p>
 					) : (
 						<p className="my-1">
 							Nur noch{" "}
-							{21 -
+							{freeShipping -
 								(this.props.checkout.totalPrice
-									? this.props.checkout.totalPrice >= 21
-										? 21
+									? this.props.checkout.totalPrice >=freeShipping
+										? freeShipping
 										: this.props.checkout.totalPrice
 									: 0)}{" "}
 							€
@@ -104,15 +107,15 @@ class Cart extends React.Component {
 					<MDBProgress
 						value={
 							this.props.checkout.totalPrice
-								? this.props.checkout.totalPrice >= 21
-									? 21
+								? this.props.checkout.totalPrice >= freeShipping
+									? freeShipping
 									: parseInt(this.props.checkout.totalPrice)
 								: 0
 						}
-						max={21}
+						max={freeShipping}
 						className="my-1"
 					/>
-					<small>(Kostenloser Versand: 21€)</small>
+					<small>(Kostenloser Versand: {freeShipping}€)</small>
 					<hr />
 					<MDBRow className="totals">
 						<MDBCol size="6" className="text-left">

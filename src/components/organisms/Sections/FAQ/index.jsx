@@ -20,7 +20,7 @@ class FAQ extends React.Component {
 		const { data } = this.props;
 
 		return (
-			<section id="faq">
+			<section id="faq" className="balckwolfsection">
 				<MDBContainer>
 					<h2 className="text-center font-weight-bold">
 						Häufig gestellte Fragen

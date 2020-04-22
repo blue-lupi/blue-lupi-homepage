@@ -45,7 +45,7 @@ class Features extends React.Component {
 							return (
 								<img
 									src={process.env.REACT_APP_BASEURL + data.image.urlLink}
-									className="img-fluid"
+									className="img-fluid mb-3"
 									alt={reason.value.Column_head}
 								/>
 							);

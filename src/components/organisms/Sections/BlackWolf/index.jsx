@@ -127,7 +127,7 @@ class Blackwolf extends React.Component {
 		return (
 			<section id="blackwolf" className="pb-0 balckwolfsection">
 				<MDBContainer className="text-center">
-					<h1 className="text-center font-weight-bold">{form.surveyHead}</h1>
+					<h2 className="text-center font-weight-bold">{form.surveyHead}</h2>
 					<p
 						className="lead mb-5"
 						dangerouslySetInnerHTML={{ __html: form.surveySubhead }}
