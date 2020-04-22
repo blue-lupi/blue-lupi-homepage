@@ -97,7 +97,7 @@ class Cart extends React.Component {
 								(this.props.checkout.totalPrice
 									? this.props.checkout.totalPrice >=freeShipping
 										? freeShipping
-										: this.props.checkout.totalPrice
+										: parseInt(this.props.checkout.totalPrice).toFixed(2)
 									: 0)}{" "}
 							€
 						</p>
@@ -183,5 +183,5 @@ export default Cart;
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */
