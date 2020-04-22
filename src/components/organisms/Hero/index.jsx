@@ -53,7 +53,7 @@ class Hero extends React.Component {
             </div>
           </div>
         </span>
-        <div className="overlay justify-content-center align-items-center d-flex d-sm-none">
+        <div className="overlay justify-content-center align-items-center d-flex d-lg-none">
           <div className="circle mobile">
             <div className="view text-center">
               <MDBAnimation type="fadeIn" duration="500ms">
@@ -88,7 +88,7 @@ class Hero extends React.Component {
             </div>
           </div>
         </div>
-        <div className="overlay justify-content-center align-items-center d-none d-sm-flex">
+        <div className="overlay justify-content-center align-items-center d-none d-lg-flex">
           <Parallax className="custom-class" y={[-10, 10]} tagOuter="figure">
             <div className="circle">
               <div className="view">
@@ -103,7 +103,7 @@ class Hero extends React.Component {
           </Parallax>
         </div>
         <MDBRow className="w-100 m-0">
-          <MDBCol md="6" className="p-0">
+          <MDBCol lg="6" className="p-0">
             <MDBAnimation type="fadeInLeft" duration="900ms">
               <MDBView
                 src={
@@ -120,9 +120,9 @@ class Hero extends React.Component {
               </MDBView>
             </MDBAnimation>
           </MDBCol>
-          <MDBCol md="6" className="p-0">
+          <MDBCol lg="6" className="p-0">
             <MDBRow className="flex-center m-0 p-0">
-              <MDBCol md="6" className="d-sm-block d-none">
+              <MDBCol md="6" className="d-lg-block d-none">
                 <div className="hero-side customfont">
                   <Parallax
                     className="parallax"

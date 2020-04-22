@@ -15,11 +15,13 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
     box-shadow: none;
+    border: lighten(#d2a968, 20%) 5px solid;
   }
 
   .circle {
     $size: 11rem;
     background-color: white;
+    border: lighten(#4e5660, 40%) 5px solid;
     height: $size;
     width: $size;
     border-radius: 50%;
@@ -29,19 +31,21 @@
     text-align: center;
     justify-content: center;
     padding: 2rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    svg {
+      transition: transform 0.2s ease-in-out;
+      transform: scale(1.1);
+    }
+    &:hover {
+      border: lighten(#4e5660, 30%) 5px solid;
+      svg {
+        transform: rotate(10deg) scale(1.2);
+      }
+    }
     .icon {
       height: 100%;
       width: 100%;
-      svg {
-        transition: transform 0.2s ease-in-out;
-        transform: scale(1.1);
-      }
-      &:hover {
-        cursor: pointer;
-        svg {
-          transform: rotate(10deg) scale(1.2);
-        }
-      }
     }
   }
 }
