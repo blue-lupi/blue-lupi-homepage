@@ -42,7 +42,6 @@ class MessagePage extends React.Component {
                   Zurück
                 </MDBBtn>
               </Link>
-              <h2>Datenschutzerklärung</h2>
               <p dangerouslySetInnerHTML={{ __html: data.privacy }}></p>
             </div>
           )}
@@ -53,7 +52,6 @@ class MessagePage extends React.Component {
                   Zurück
                 </MDBBtn>
               </Link>
-              <h2>Allgemeine Geschäfts- und Nutzungsbedingungen</h2>
               <p dangerouslySetInnerHTML={{ __html: data.gtc }}></p>
             </div>
           )}
@@ -64,7 +62,6 @@ class MessagePage extends React.Component {
                   Zurück
                 </MDBBtn>
               </Link>
-              <h2>Versand- und Zahlungsinformationen</h2>
               <p dangerouslySetInnerHTML={{ __html: data.shipping }}></p>
             </div>
           )}
@@ -75,7 +72,6 @@ class MessagePage extends React.Component {
                   Zurück
                 </MDBBtn>
               </Link>
-              <h2>Widerruf</h2>
               <p
                 dangerouslySetInnerHTML={{ __html: data.cancellationPolicy }}
               ></p>
