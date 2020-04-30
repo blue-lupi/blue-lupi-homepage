@@ -206,6 +206,7 @@ class HomePage extends React.Component {
 										products={this.props.data.shop.products.edges}
 										addVariantToCart={this.addVariantToCart}
 										checkout={this.state.checkout}
+										createSurvey={this.props.globalFunctions.createSurvey}
 										form={form}
 										client={this.props.client}
 									/>

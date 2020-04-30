@@ -138,9 +138,27 @@ const GET_FORM = gql`
         formFields {
           name
           helpText
+          required
+          title
+          placeholder
+          image {
+            url
+          }
           choices
           fieldType
         }
+      }
+    }
+  }
+`;
+// Create survey
+const CREATE_SURVEY = gql`
+  mutation setSurvey($token: String!, $values: GenericScalar!) {
+    surveySurveyFormPage(token: $token, url: "/home/survey", values: $values) {
+      result
+      errors {
+        name
+        errors
       }
     }
   }
@@ -161,6 +179,23 @@ class App extends React.Component {
       // If there is no JSON Web Token, just login as anonymous user
       this.loginUser();
     }
+  };
+
+  createSurvey = (values) => {
+    this.props.client
+      .mutate({
+        mutation: CREATE_SURVEY,
+        variables: {
+          token: localStorage.getItem("jwt"),
+          values,
+        },
+      })
+      .then(({ data }) => {
+        console.log("Survey sent");
+      })
+      .catch((error) => {
+        console.error("Console not sent", error);
+      });
   };
 
   verifyToken = () => {
@@ -224,7 +259,7 @@ class App extends React.Component {
      * Ref: https://flaviocopes.com/how-to-get-timestamp-javascript/
      */
     let currentTS = ~~(Date.now() / 1000);
-    
+
     // Check if the token is still valid
     if (currentTS > exp) {
       // Token has expired
@@ -298,7 +333,11 @@ class App extends React.Component {
         <ScrollToTop>
           <div className="flyout">
             <main>
-              <Routes globalState={this.state} client={this.props.client} />
+              <Routes
+                globalState={this.state}
+                globalFunctions={{ createSurvey: this.createSurvey }}
+                client={this.props.client}
+              />
             </main>
             <Footer />
           </div>
