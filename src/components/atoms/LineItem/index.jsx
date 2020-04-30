@@ -19,23 +19,32 @@ class LineItem extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {};
     this.decrementQuantity = this.decrementQuantity.bind(this);
     this.incrementQuantity = this.incrementQuantity.bind(this);
   }
 
   decrementQuantity(lineItemId) {
-    this.props.updateLineItemInCart(
-      lineItemId,
-      this.props.lineItem.quantity - 1
-    );
+    this.setState({ loading: true }, () => {
+      this.props.updateLineItemInCart(
+        lineItemId,
+        this.props.lineItem.quantity - 1
+      );
+    });
   }
 
   incrementQuantity(lineItemId) {
-    this.props.updateLineItemInCart(
-      lineItemId,
-      this.props.lineItem.quantity + 1
-    );
+    this.setState({ loading: true }, () => {
+      this.props.updateLineItemInCart(
+        lineItemId,
+        this.props.lineItem.quantity + 1
+      );
+    });
   }
+
+  componentWillReceiveProps = () => {
+    this.state.loading && this.setState({ loading: false });
+  };
 
   render() {
     return (
@@ -52,7 +61,7 @@ class LineItem extends React.Component {
           </div>
           <div className="col">
             <div className="row flex-center">
-              <div className="col-auto text-left">
+              <div className="col text-left">
                 <p className="font-weight-bold mb-0">
                   {this.props.lineItem.title}
                 </p>
@@ -62,6 +71,7 @@ class LineItem extends React.Component {
                 <MDBBtn
                   color="danger"
                   size="sm"
+                  disabled={this.state.loading}
                   onClick={() =>
                     this.props.removeLineItemInCart(this.props.lineItem.id)
                   }
@@ -76,6 +86,7 @@ class LineItem extends React.Component {
                   <MDBBtn
                     color="primary"
                     size="sm"
+                    disabled={this.state.loading}
                     onClick={() =>
                       this.decrementQuantity(this.props.lineItem.id)
                     }
@@ -88,6 +99,7 @@ class LineItem extends React.Component {
                   <MDBBtn
                     color="primary"
                     size="sm"
+                    disabled={this.state.loading}
                     onClick={() =>
                       this.incrementQuantity(this.props.lineItem.id)
                     }

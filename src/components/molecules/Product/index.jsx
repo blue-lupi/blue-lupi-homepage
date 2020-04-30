@@ -75,15 +75,14 @@ class Shop extends React.Component {
   render() {
     const { product } = this.props;
 
-    console.log(this.state);
-
     return (
       <MDBCol key={this.props.id} md="4" className="product-item text-dark">
         <MDBCard className="mb-3">
           <MDBCardImage
             className="img-fluid m-auto pl-5 pr-5 pt-3"
             src={product.node.images.edges[0].node.src}
-            waves
+            alt={product.node.title}
+            waves={false}
           />
           <MDBCardBody>
             <MDBCardTitle className="text-center">
@@ -141,8 +140,10 @@ class Shop extends React.Component {
               <div className="text-center mt-3">
                 <p className="lead font-weight-bold">
                   €{" "}
-                  {formatter.format(product.node.variants.edges[this.state.variant.key].node
-                  .price * this.state.value)}
+                  {formatter.format(
+                    product.node.variants.edges[this.state.variant.key].node
+                      .price * this.state.value
+                  )}
                 </p>
               </div>
             )}
