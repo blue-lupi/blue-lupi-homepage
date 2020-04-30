@@ -70,12 +70,7 @@ class Hero extends React.Component {
                       duration="500ms"
                       delay="500ms"
                     >
-                      <Link
-                        to="shop"
-                        smooth={true}
-                        spy={true}
-                        duration={300}
-                      >
+                      <Link to="shop" smooth={true} spy={true} duration={300}>
                         <MDBBtn color="white" size="lg" rounded>
                           {data.slideButton.buttonTitle}
                           <MDBIcon icon="arrow-right" className="pl-3 fa-lg" />
@@ -156,14 +151,14 @@ class Hero extends React.Component {
                         duration="500ms"
                         delay="300ms"
                       >
-                        <span className="pt-2">An intellectual drink,</span>
+                        <span className="pt-2">Die Kaffeealternative</span>
                       </MDBAnimation>
                       <MDBAnimation
                         type="fadeInUp"
                         duration="500ms"
                         delay="200ms"
                       >
-                        <span>for the chosen ones.</span>
+                        <span>aus Österreich.</span>
                       </MDBAnimation>
                       {loaded && data.slideButton.buttonTitle && (
                         <MDBAnimation
