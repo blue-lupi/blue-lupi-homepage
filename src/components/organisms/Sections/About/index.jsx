@@ -70,7 +70,7 @@ class About extends React.Component {
           <MDBCol md="4" className="d-none d-xl-block">
             {this.renderCardsLeft(data)}
           </MDBCol>
-          <MDBCol md="2" className="text-center d-none d-xl-block">
+          <MDBCol md="2" className="text-center d-none d-xl-block d-block d-md-none">
             <Link to="subscription" smooth={true} spy={true} duration={300}>
               <div className="circle">
                 <div className="icon">
