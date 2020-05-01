@@ -497,7 +497,7 @@ class Blackwolf extends React.Component {
               )}
             </>
           )}
-          <div className="mt-5">
+          <div className="mt-5 text-center">
             <Wolf id="wolfsvg" />
             <Ground id="ground" />
           </div>
