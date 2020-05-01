@@ -57,6 +57,46 @@ class About extends React.Component {
     return rtn;
   };
 
+  renderCardsMobileTop = (data) => {
+    let cards = data.aboutCards;
+    let rtn = cards.map((card, i) => {
+      if (i < 2) {
+        return (
+          <MDBCard className="p-4" key={"r_" + i}>
+            <h3>{card.value.card_head}</h3>
+            <p
+              dangerouslySetInnerHTML={{ __html: card.value.card_paragraph }}
+            ></p>
+          </MDBCard>
+        );
+      } else {
+        return undefined;
+      }
+    });
+
+    return rtn;
+  };
+
+  renderCardsMobileBottom = (data) => {
+    let cards = data.aboutCards;
+    let rtn = cards.map((card, i) => {
+      if (i >= 2) {
+        return (
+          <MDBCard className="p-4" key={"r_" + i}>
+            <h3>{card.value.card_head}</h3>
+            <p
+              dangerouslySetInnerHTML={{ __html: card.value.card_paragraph }}
+            ></p>
+          </MDBCard>
+        );
+      } else {
+        return undefined;
+      }
+    });
+
+    return rtn;
+  };
+
   render() {
     const { data } = this.props;
 
@@ -65,12 +105,15 @@ class About extends React.Component {
         <h2 className="font-weight-bold text-center">{data.aboutHead}</h2>
         <MDBRow className="m-0 p-2 flex-center">
           <MDBCol md="6" className="d-block d-xl-none">
-            {this.renderCardsLeft(data)}
+            {this.renderCardsMobileTop(data)}
           </MDBCol>
           <MDBCol md="4" className="d-none d-xl-block">
             {this.renderCardsLeft(data)}
           </MDBCol>
-          <MDBCol md="2" className="text-center d-none d-xl-block d-block d-md-none">
+          <MDBCol
+            md="2"
+            className="text-center d-none d-xl-block d-block d-md-none"
+          >
             <Link to="subscription" smooth={true} spy={true} duration={300}>
               <div className="circle">
                 <div className="icon">
@@ -80,7 +123,7 @@ class About extends React.Component {
             </Link>
           </MDBCol>
           <MDBCol md="6" className="d-block d-xl-none">
-            {this.renderCardsRight(data)}
+            {this.renderCardsMobileBottom(data)}
           </MDBCol>
           <MDBCol md="4" className="d-none d-xl-block">
             {this.renderCardsRight(data)}
