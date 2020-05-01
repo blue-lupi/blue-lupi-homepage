@@ -121,7 +121,7 @@ class Hero extends React.Component {
                 <div className="hero-side customfont">
                   <Parallax
                     className="parallax"
-                    y={[-40, 40]}
+                    y={[-20, 20]}
                     tagOuter="figure"
                   >
                     <div>
