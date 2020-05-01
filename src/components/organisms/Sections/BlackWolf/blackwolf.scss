@@ -15,6 +15,14 @@
   #wolf {
     fill: #fff;
   }
+  #ground {
+    fill: white;
+    max-width: 100%;
+    width: 400px;
+    display: block;
+    margin: auto;
+    margin-top: -44px;
+  }
   .green-text {
     color: black !important;
     background: white;
@@ -31,8 +39,8 @@
     z-index: 0;
     background: linear-gradient(#001f3d, black);
   }
-  .btn{
-    &.active{
+  .btn {
+    &.active {
       background: #f9e093 !important;
     }
   }

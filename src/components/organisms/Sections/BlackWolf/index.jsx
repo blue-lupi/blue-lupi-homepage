@@ -11,6 +11,7 @@ import "./blackwolf.scss";
 
 //> Images
 import { ReactComponent as Wolf } from "../../../../assets/content/sections/sub/wolf.svg";
+import { ReactComponent as Ground } from "../../../../assets/content/sections/blackwolf/ground.svg";
 
 //> Components
 import { Product } from "../../../molecules";
@@ -498,6 +499,7 @@ class Blackwolf extends React.Component {
           )}
           <div className="mt-5">
             <Wolf id="wolfsvg" />
+            <Ground id="ground" />
           </div>
         </MDBContainer>
       </section>
