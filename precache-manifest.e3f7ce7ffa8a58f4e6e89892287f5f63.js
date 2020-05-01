@@ -1,31 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "56b7eb06e2b2d9b84487f58fce36e489",
+    "revision": "fc12a4054450d681017e3bde6decc930",
     "url": "./index.html"
   },
   {
-    "revision": "dfd32ff9b63c86ae682e",
-    "url": "./static/css/2.47e4665b.chunk.css"
+    "revision": "4a5a3158b90ec24149d0",
+    "url": "./static/css/2.a12779de.chunk.css"
   },
   {
-    "revision": "8a0897904240da8d4132",
-    "url": "./static/css/main.b3824714.chunk.css"
+    "revision": "eead3e6468723c8580f9",
+    "url": "./static/css/main.a7f57ffa.chunk.css"
   },
   {
-    "revision": "dfd32ff9b63c86ae682e",
-    "url": "./static/js/2.3a621e92.chunk.js"
+    "revision": "4a5a3158b90ec24149d0",
+    "url": "./static/js/2.98c78ae6.chunk.js"
   },
   {
-    "revision": "a0959542cd50b7cc5db51cdd0588d482",
-    "url": "./static/js/2.3a621e92.chunk.js.LICENSE"
+    "revision": "64f7e58d0b20d4d7a9a6188b47824605",
+    "url": "./static/js/2.98c78ae6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8a0897904240da8d4132",
-    "url": "./static/js/main.80587d2f.chunk.js"
+    "revision": "eead3e6468723c8580f9",
+    "url": "./static/js/main.3d0f9052.chunk.js"
   },
   {
-    "revision": "cc42a609889748cd3fa8",
-    "url": "./static/js/runtime-main.7071913a.js"
+    "revision": "70f8a2b5c648386b6b4b",
+    "url": "./static/js/runtime-main.3892b3e7.js"
   },
   {
     "revision": "11911410dca2de148f30954eb2fd5eab",
@@ -100,8 +100,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./static/media/fa-solid-900.ec763292.svg"
   },
   {
-    "revision": "c41108e3e38b5347afc80e64ffb8e5dd",
-    "url": "./static/media/ground.c41108e3.svg"
+    "revision": "72db390e46c5949830af00a41227e525",
+    "url": "./static/media/ground.72db390e.svg"
   },
   {
     "revision": "4f94995124818ccb934617036431de0b",
@@ -116,11 +116,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "./static/media/white.9b2828b0.jpg"
   },
   {
-    "revision": "e96931023f4110b12539c6c8a4b4ba48",
-    "url": "./static/media/wolf.e9693102.svg"
+    "revision": "e7993343528300dace232f376cb2327c",
+    "url": "./static/media/wolf.e7993343.svg"
   },
   {
-    "revision": "f57d8e9700870d76fb731541cf2a3f55",
-    "url": "./static/media/wolf.f57d8e97.svg"
+    "revision": "e96931023f4110b12539c6c8a4b4ba48",
+    "url": "./static/media/wolf.e9693102.svg"
   }
 ]);
