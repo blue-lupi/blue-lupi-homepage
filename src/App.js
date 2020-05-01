@@ -19,7 +19,111 @@ import Routes from "./Routes";
 const VERIFY_TOKEN = gql`
   mutation verify($token: String!) {
     verifyToken(token: $token) {
-      payload
+      token
+      refreshToken
+      survey {
+        id
+        contentType
+        ... on SurveySurveyFormPage {
+          id
+          slug
+          surveyHead
+          surveySubhead
+          thankYouText
+          formFields {
+            name
+            helpText
+            required
+            title
+            placeholder
+            image {
+              url
+            }
+            choices
+            fieldType
+          }
+        }
+      }
+      home {
+        id
+        title
+        ... on HomeHomePage {
+          id
+          title
+          city
+          zipCode
+          address
+          telephone
+          telefax
+          vatNumber
+          whatsappTelephone
+          whatsappContactline
+          shipping
+          gtc
+          cancellationPolicy
+          taxId
+          courtOfRegistry
+          placeOfRegistry
+          tradeRegisterNumber
+          ownership
+          email
+          copyrightholder
+          about
+          privacy
+          headers {
+            __typename
+            ... on Home_H_HeroBlock {
+              slideImage {
+                urlLink
+              }
+              slideButton {
+                buttonLink
+                buttonTitle
+                buttonPage {
+                  urlPath
+                }
+                buttonEmbed
+                id
+              }
+            }
+          }
+          sections {
+            ... on Home_S_WhyBlock {
+              whyHead
+              whyDisplayhead
+              whyColumns
+            }
+            ... on Home_S_InstagramBlock {
+              instagramId
+              instagramPc
+            }
+            ... on Home_S_ShopBlock {
+              shopHead
+              shopDisplayhead
+            }
+            ... on Home_S_StepsBlock {
+              stepsHead
+              stepsDisplayhead
+              stepsSteps
+            }
+            ... on Home_S_AboutBlock {
+              aboutHead
+              aboutDisplayhead
+              aboutCards
+            }
+            ... on Home_S_TrustedBlock {
+              trustedPartner
+            }
+            ... on Home_S_WolfBlock {
+              wolfHead
+              wolfSubhead
+            }
+            ... on Home_S_FAQBlock {
+              questions
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -27,8 +131,111 @@ const VERIFY_TOKEN = gql`
 const REFRESH_TOKEN = gql`
   mutation refresh($token: String!) {
     refreshToken(token: $token) {
-      payload
       token
+      refreshToken
+      survey {
+        id
+        contentType
+        ... on SurveySurveyFormPage {
+          id
+          slug
+          surveyHead
+          surveySubhead
+          thankYouText
+          formFields {
+            name
+            helpText
+            required
+            title
+            placeholder
+            image {
+              url
+            }
+            choices
+            fieldType
+          }
+        }
+      }
+      home {
+        id
+        title
+        ... on HomeHomePage {
+          id
+          title
+          city
+          zipCode
+          address
+          telephone
+          telefax
+          vatNumber
+          whatsappTelephone
+          whatsappContactline
+          shipping
+          gtc
+          cancellationPolicy
+          taxId
+          courtOfRegistry
+          placeOfRegistry
+          tradeRegisterNumber
+          ownership
+          email
+          copyrightholder
+          about
+          privacy
+          headers {
+            __typename
+            ... on Home_H_HeroBlock {
+              slideImage {
+                urlLink
+              }
+              slideButton {
+                buttonLink
+                buttonTitle
+                buttonPage {
+                  urlPath
+                }
+                buttonEmbed
+                id
+              }
+            }
+          }
+          sections {
+            ... on Home_S_WhyBlock {
+              whyHead
+              whyDisplayhead
+              whyColumns
+            }
+            ... on Home_S_InstagramBlock {
+              instagramId
+              instagramPc
+            }
+            ... on Home_S_ShopBlock {
+              shopHead
+              shopDisplayhead
+            }
+            ... on Home_S_StepsBlock {
+              stepsHead
+              stepsDisplayhead
+              stepsSteps
+            }
+            ... on Home_S_AboutBlock {
+              aboutHead
+              aboutDisplayhead
+              aboutCards
+            }
+            ... on Home_S_TrustedBlock {
+              trustedPartner
+            }
+            ... on Home_S_WolfBlock {
+              wolfHead
+              wolfSubhead
+            }
+            ... on Home_S_FAQBlock {
+              questions
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -37,115 +244,108 @@ const LOGIN_USER = gql`
   mutation tokenAuth {
     tokenAuth(username: "cisco", password: "ciscocisco") {
       token
-    }
-  }
-`;
-// Get homepage CMS data
-const GET_DATA = gql`
-  query getPage($token: String!) {
-    page(token: $token, url: "/home") {
-      ... on HomeHomePage {
+      refreshToken
+      survey {
         id
-        title
-        city
-        zipCode
-        address
-        telephone
-        telefax
-        vatNumber
-        whatsappTelephone
-        whatsappContactline
-        shipping
-        gtc
-        cancellationPolicy
-        taxId
-        courtOfRegistry
-        placeOfRegistry
-        tradeRegisterNumber
-        ownership
-        email
-        copyrightholder
-        about
-        privacy
-        headers {
-          __typename
-          ... on Home_H_HeroBlock {
-            slideImage {
-              urlLink
+        contentType
+        ... on SurveySurveyFormPage {
+          id
+          slug
+          surveyHead
+          surveySubhead
+          thankYouText
+          formFields {
+            name
+            helpText
+            required
+            title
+            placeholder
+            image {
+              url
             }
-            slideButton {
-              buttonLink
-              buttonTitle
-              buttonPage {
-                urlPath
-              }
-              buttonEmbed
-              id
-            }
-          }
-        }
-        sections {
-          ... on Home_S_WhyBlock {
-            whyHead
-            whyDisplayhead
-            whyColumns
-          }
-          ... on Home_S_InstagramBlock {
-            instagramId
-            instagramPc
-          }
-          ... on Home_S_ShopBlock {
-            shopHead
-            shopDisplayhead
-          }
-          ... on Home_S_StepsBlock {
-            stepsHead
-            stepsDisplayhead
-            stepsSteps
-          }
-          ... on Home_S_AboutBlock {
-            aboutHead
-            aboutDisplayhead
-            aboutCards
-          }
-          ... on Home_S_TrustedBlock {
-            trustedPartner
-          }
-          ... on Home_S_WolfBlock {
-            wolfHead
-            wolfSubhead
-          }
-          ... on Home_S_FAQBlock {
-            questions
+            choices
+            fieldType
           }
         }
       }
-    }
-  }
-`;
-// Individual coffee
-const GET_FORM = gql`
-  query getFormfield($token: String!) {
-    page(token: $token, url: "/home/survey") {
-      id
-      contentType
-      ... on SurveySurveyFormPage {
+      home {
         id
-        slug
-        surveyHead
-        surveySubhead
-        thankYouText
-        formFields {
-          name
-          helpText
-          required
+        title
+        ... on HomeHomePage {
+          id
           title
-          placeholder
-          image {
-            url
+          city
+          zipCode
+          address
+          telephone
+          telefax
+          vatNumber
+          whatsappTelephone
+          whatsappContactline
+          shipping
+          gtc
+          cancellationPolicy
+          taxId
+          courtOfRegistry
+          placeOfRegistry
+          tradeRegisterNumber
+          ownership
+          email
+          copyrightholder
+          about
+          privacy
+          headers {
+            __typename
+            ... on Home_H_HeroBlock {
+              slideImage {
+                urlLink
+              }
+              slideButton {
+                buttonLink
+                buttonTitle
+                buttonPage {
+                  urlPath
+                }
+                buttonEmbed
+                id
+              }
+            }
           }
-          choices
-          fieldType
+          sections {
+            ... on Home_S_WhyBlock {
+              whyHead
+              whyDisplayhead
+              whyColumns
+            }
+            ... on Home_S_InstagramBlock {
+              instagramId
+              instagramPc
+            }
+            ... on Home_S_ShopBlock {
+              shopHead
+              shopDisplayhead
+            }
+            ... on Home_S_StepsBlock {
+              stepsHead
+              stepsDisplayhead
+              stepsSteps
+            }
+            ... on Home_S_AboutBlock {
+              aboutHead
+              aboutDisplayhead
+              aboutCards
+            }
+            ... on Home_S_TrustedBlock {
+              trustedPartner
+            }
+            ... on Home_S_WolfBlock {
+              wolfHead
+              wolfSubhead
+            }
+            ... on Home_S_FAQBlock {
+              questions
+            }
+          }
         }
       }
     }
@@ -210,7 +410,9 @@ class App extends React.Component {
             this.isLogged(
               data.verifyToken.payload.exp,
               data.verifyToken.payload.origIat,
-              localStorage.getItem("jwt")
+              localStorage.getItem("jwt"),
+              data.verifyToken.home,
+              data.verifyToken.survey
             );
           } else {
             this.refreshToken();
@@ -220,7 +422,6 @@ class App extends React.Component {
         }
       })
       .catch((error) => {
-        console.error("Mutation error:", error);
         this.refreshToken();
       });
   };
@@ -232,7 +433,11 @@ class App extends React.Component {
       })
       .then(({ data }) => {
         if (data !== undefined) {
-          this.setLogged(data.tokenAuth.token);
+          this.setLogged(
+            data.tokenAuth.token,
+            data.tokenAuth.home,
+            data.tokenAuth.survey
+          );
         }
       })
       .catch((error) => {
@@ -240,20 +445,21 @@ class App extends React.Component {
       });
   };
 
-  setLogged = (token) => {
+  setLogged = (token, page, form) => {
     this.setState(
       {
         token,
         loaded: true,
+        page,
+        form,
       },
       () => {
-        this.fetchPageData(token);
         localStorage.setItem("jwt", token);
       }
     );
   };
 
-  isLogged = (exp, orig, token) => {
+  isLogged = (exp, orig, token, home) => {
     /**
      * Generate current timestamp
      * Ref: https://flaviocopes.com/how-to-get-timestamp-javascript/
@@ -266,7 +472,7 @@ class App extends React.Component {
       this.refreshToken(token);
     } else {
       // Only if anything has changed, update the data
-      this.setLogged(token);
+      this.setLogged(token, home);
     }
   };
 
@@ -287,47 +493,8 @@ class App extends React.Component {
       });
   };
 
-  fetchPageData = (token) => {
-    this.props.client
-      .query({
-        query: GET_DATA,
-        variables: { token },
-      })
-      .then(({ data }) => {
-        if (data.page) {
-          this.setState(
-            {
-              page: data.page,
-            },
-            () => this.fetchFormData(token)
-          );
-        }
-      })
-      .catch((error) => {
-        // Temp!
-        this.fetchFormData(token);
-      });
-  };
-
-  fetchFormData = (token) => {
-    this.props.client
-      .query({
-        query: GET_FORM,
-        variables: { token },
-      })
-      .then(({ data }) => {
-        if (data.page) {
-          this.setState({
-            form: data.page,
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error", error);
-      });
-  };
-
   render() {
+    console.log(this.state);
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <ScrollToTop>

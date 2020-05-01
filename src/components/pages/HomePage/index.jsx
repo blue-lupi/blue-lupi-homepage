@@ -81,7 +81,7 @@ class HomePage extends React.Component {
   };
 
   componentDidMount() {
-    document.title = "Urban Coffee - Blue Lupi";
+    document.title = "Blue Lupi";
     // Google Analytics
     ReactGA.initialize("UA-148740308-3");
     ReactGA.pageview(window.location.pathname + window.location.search);
@@ -168,7 +168,13 @@ class HomePage extends React.Component {
     if (this.props.globalState) {
       const form = this.props.globalState.form;
 
-      if (page && form && !this.props.loading && this.props.data.shop) {
+      if (
+        page &&
+        form &&
+        !this.props.loading &&
+        this.props.globalState.loaded &&
+        this.props.data.shop
+      ) {
         const pageSections = page.sections;
         let sections = pageSections.map((section, i) => {
           switch (section.__typename) {
@@ -191,22 +197,47 @@ class HomePage extends React.Component {
               );
             case "Home_S_AboutBlock":
               return (
-                <About data={section} key={i} client={this.props.client} />
+                <About
+                  data={section}
+                  key={i}
+                  client={this.props.client}
+                  token={this.props.globalState.token}
+                />
               );
             case "Home_S_StepsBlock":
               return (
-                <Steps data={section} key={i} client={this.props.client} />
+                <Steps
+                  data={section}
+                  key={i}
+                  client={this.props.client}
+                  token={this.props.globalState.token}
+                />
               );
             case "Home_S_InstagramBlock":
-              return <Gallery data={section} key={i} />;
+              return (
+                <Gallery
+                  data={section}
+                  key={i}
+                  token={this.props.globalState.token}
+                />
+              );
             case "Home_S_TrustedBlock":
               return (
-                <Trust data={section} key={i} client={this.props.client} />
+                <Trust
+                  data={section}
+                  key={i}
+                  client={this.props.client}
+                  token={this.props.globalState.token}
+                />
               );
             case "Home_S_WolfBlock":
               return (
                 <React.Fragment key={i}>
-                  <Sub data={section} key={i} />
+                  <Sub
+                    data={section}
+                    key={i}
+                    token={this.props.globalState.token}
+                  />
                   <Blackwolf
                     products={this.props.data.shop.products.edges}
                     addVariantToCart={this.addVariantToCart}
@@ -214,11 +245,18 @@ class HomePage extends React.Component {
                     createSurvey={this.props.globalFunctions.createSurvey}
                     form={form}
                     client={this.props.client}
+                    token={this.props.globalState.token}
                   />
                 </React.Fragment>
               );
             case "Home_S_FAQBlock":
-              return <FAQ data={section} key={i} />;
+              return (
+                <FAQ
+                  data={section}
+                  key={i}
+                  token={this.props.globalState.token}
+                />
+              );
             default:
               return null;
           }
