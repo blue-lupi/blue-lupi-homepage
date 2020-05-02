@@ -264,10 +264,9 @@ class HomePage extends React.Component {
               );
             case "Home_S_SmallTrustedBlock":
               return (
-                <div className="balckwolfsection">
+                <div className="balckwolfsection" key={i}>
                   <Trust
                     data={section}
-                    key={i}
                     size="sm"
                     client={this.props.client}
                     images={this.props.globalState.images}
