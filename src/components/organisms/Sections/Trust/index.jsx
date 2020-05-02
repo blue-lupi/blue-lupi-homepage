@@ -37,7 +37,13 @@ class Trust extends React.Component {
                       }).urlLink
                     }
                     alt="Partner logo"
-                    className="img-fluid my-3"
+                    className={
+                      size
+                        ? size === "sm"
+                          ? "img-fluid my-1"
+                          : "img-fluid my-3"
+                        : "img-fluid my-3"
+                    }
                   />
                 </a>
               </MDBCol>
