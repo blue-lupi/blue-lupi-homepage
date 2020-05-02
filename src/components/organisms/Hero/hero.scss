@@ -96,6 +96,10 @@
           background: rgba(0, 0, 0, 0.5);
           padding: 1rem 0;
         }
+        img {
+          max-height: 200px;
+          width: auto;
+        }
       }
     }
   }
