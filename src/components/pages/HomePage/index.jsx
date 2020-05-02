@@ -262,6 +262,18 @@ class HomePage extends React.Component {
                   images={this.props.globalState.images}
                 />
               );
+            case "Home_S_SmallTrustedBlock":
+              return (
+                <div className="balckwolfsection">
+                  <Trust
+                    data={section}
+                    key={i}
+                    size="sm"
+                    client={this.props.client}
+                    images={this.props.globalState.images}
+                  />
+                </div>
+              );
             default:
               return null;
           }

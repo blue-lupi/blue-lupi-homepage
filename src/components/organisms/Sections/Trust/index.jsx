@@ -11,10 +11,13 @@ import "./trust.scss";
 
 class Trust extends React.Component {
   render() {
-    const { data, images } = this.props;
+    const { data, images, size } = this.props;
 
     return (
-      <section id="trust">
+      <section
+        id="trust"
+        className={size && size === "sm" ? "trust-sm" : undefined}
+      >
         <MDBRow className="flex-center m-0">
           {data.trustedPartner.map((company, i) => {
             return (

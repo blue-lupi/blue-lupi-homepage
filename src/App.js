@@ -134,6 +134,9 @@ const LOGIN_USER = gql`
             ... on Home_S_FAQBlock {
               questions
             }
+            ... on Home_S_SmallTrustedBlock {
+              trustedPartner
+            }
           }
         }
       }
@@ -176,7 +179,7 @@ class App extends React.Component {
           this.initializeApp(
             data.tokenAuth.home,
             data.tokenAuth.survey,
-            data.tokenAuth.images,
+            data.tokenAuth.images
           );
         }
       })
