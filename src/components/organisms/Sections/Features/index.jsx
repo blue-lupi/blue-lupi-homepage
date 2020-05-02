@@ -9,20 +9,6 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 //> CSS
 import "./features.scss";
 
-//> Apollo
-import { gql } from "apollo-boost";
-import { Query } from "react-apollo";
-
-//> Queries
-// Get image by ID
-const GET_IMAGE = gql`
-  query getImage($token: String!, $id: Int!) {
-    image(token: $token, id: $id) {
-      urlLink
-    }
-  }
-`;
-
 class Features extends React.Component {
   renderReasons = (data) => {
     let width =
@@ -30,26 +16,16 @@ class Features extends React.Component {
     let rtn = data.whyColumns.map((reason, i) => {
       return (
         <MDBCol md={width} key={i}>
-          <Query
-            query={GET_IMAGE}
-            variables={{
-              token: this.props.token,
-              id: reason.value.Column_image,
-            }}
-            client={this.props.client}
-          >
-            {({ loading, error, data }) => {
-              if (loading) return null;
-              if (error) return null;
-              return (
-                <img
-                  src={process.env.REACT_APP_BASEURL + data.image.urlLink}
-                  className="img-fluid mb-3"
-                  alt={reason.value.Column_head}
-                />
-              );
-            }}
-          </Query>
+          <img
+            src={
+              process.env.REACT_APP_BASEURL +
+              this.props.images.find((image) => {
+                return parseInt(image.id) === reason.value.Column_image;
+              }).urlLink
+            }
+            className="img-fluid mb-3"
+            alt={reason.value.Column_head}
+          />
           <h2>{reason.value.Column_head}</h2>
           <p
             className="lead"

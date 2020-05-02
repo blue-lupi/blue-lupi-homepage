@@ -9,23 +9,9 @@ import { MDBRow, MDBCol } from "mdbreact";
 //> CSS
 import "./trust.scss";
 
-//> Apollo
-import { gql } from "apollo-boost";
-import { Query } from "react-apollo";
-
-//> Queries
-// Get image by ID
-const GET_IMAGE = gql`
-  query getImage($token: String!, $id: Int!) {
-    image(token: $token, id: $id) {
-      urlLink
-    }
-  }
-`;
-
 class Trust extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data, images } = this.props;
 
     return (
       <section id="trust">
@@ -38,28 +24,18 @@ class Trust extends React.Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Query
-                    query={GET_IMAGE}
-                    variables={{
-                      token: this.props.token,
-                      id: company.value.partner_logo,
-                    }}
-                    client={this.props.client}
-                  >
-                    {({ loading, error, data }) => {
-                      if (loading) return null;
-                      if (error) return null;
-                      return (
-                        <img
-                          src={
-                            process.env.REACT_APP_BASEURL + data.image.urlLink
-                          }
-                          alt="Partner logo"
-                          className="img-fluid my-3"
-                        />
-                      );
-                    }}
-                  </Query>
+                  <img
+                    src={
+                      process.env.REACT_APP_BASEURL +
+                      images.find((image) => {
+                        return (
+                          parseInt(image.id) === company.value.partner_logo
+                        );
+                      }).urlLink
+                    }
+                    alt="Partner logo"
+                    className="img-fluid my-3"
+                  />
                 </a>
               </MDBCol>
             );

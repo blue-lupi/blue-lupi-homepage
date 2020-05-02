@@ -9,20 +9,6 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 //> CSS
 import "./steps.scss";
 
-//> Apollo
-import { gql } from "apollo-boost";
-import { Query } from "react-apollo";
-
-//> Queries
-// Get image by ID
-const GET_IMAGE = gql`
-  query getImage($token: String!, $id: Int!) {
-    image(token: $token, id: $id) {
-      urlLink
-    }
-  }
-`;
-
 class Story extends React.Component {
   renderSteps = (data) => {
     let rtn = data.stepsSteps.map((step, i) => {
@@ -31,26 +17,16 @@ class Story extends React.Component {
         return (
           <React.Fragment key={i}>
             <MDBCol md="6">
-              <Query
-                query={GET_IMAGE}
-                variables={{
-                  token: this.props.token,
-                  id: step.value.step_image,
-                }}
-                client={this.props.client}
-              >
-                {({ loading, error, data }) => {
-                  if (loading) return null;
-                  if (error) return null;
-                  return (
-                    <img
-                      src={process.env.REACT_APP_BASEURL + data.image.urlLink}
-                      className="img-fluid mb-5"
-                      alt={step.value.step_head}
-                    />
-                  );
-                }}
-              </Query>
+              <img
+                src={
+                  process.env.REACT_APP_BASEURL +
+                  this.props.images.find((image) => {
+                    return parseInt(image.id) === step.value.step_image;
+                  }).urlLink
+                }
+                className="img-fluid mb-5"
+                alt={step.value.step_head}
+              />
             </MDBCol>
             <MDBCol md="6" className="pr-5 pl-5">
               <h2>{step.value.step_head}</h2>
@@ -69,27 +45,16 @@ class Story extends React.Component {
         return (
           <React.Fragment key={i}>
             <MDBCol md="6" className="d-block d-sm-none">
-              <Query
-                query={GET_IMAGE}
-                variables={{
-                  token: this.props.token,
-                  id: step.value.step_image,
-                }}
-                client={this.props.client}
-              >
-                {({ loading, error, data }) => {
-                  if (loading) return null;
-                  if (error) return null;
-
-                  return (
-                    <img
-                      src={process.env.REACT_APP_BASEURL + data.image.urlLink}
-                      className="img-fluid mb-5"
-                      alt={step.value.step_head}
-                    />
-                  );
-                }}
-              </Query>
+              <img
+                src={
+                  process.env.REACT_APP_BASEURL +
+                  this.props.images.find((image) => {
+                    return parseInt(image.id) === step.value.step_image;
+                  }).urlLink
+                }
+                className="img-fluid mb-5"
+                alt={step.value.step_head}
+              />
             </MDBCol>
             <MDBCol md="6" className="pr-5 pl-5">
               <h2>{step.value.step_head}</h2>
@@ -102,27 +67,16 @@ class Story extends React.Component {
               ></p>
             </MDBCol>
             <MDBCol md="6" className="d-none d-sm-block">
-              <Query
-                query={GET_IMAGE}
-                variables={{
-                  token: this.props.token,
-                  id: step.value.step_image,
-                }}
-                client={this.props.client}
-              >
-                {({ loading, error, data }) => {
-                  if (loading) return null;
-                  if (error) return null;
-
-                  return (
-                    <img
-                      src={process.env.REACT_APP_BASEURL + data.image.urlLink}
-                      className="img-fluid mb-5"
-                      alt={step.value.step_head}
-                    />
-                  );
-                }}
-              </Query>
+              <img
+                src={
+                  process.env.REACT_APP_BASEURL +
+                  this.props.images.find((image) => {
+                    return parseInt(image.id) === step.value.step_image;
+                  }).urlLink
+                }
+                className="img-fluid mb-5"
+                alt={step.value.step_head}
+              />
             </MDBCol>
           </React.Fragment>
         );

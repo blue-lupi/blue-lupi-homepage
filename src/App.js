@@ -30,6 +30,10 @@ const LOGIN_USER = gql`
     tokenAuth(username: "cisco", password: "ciscocisco") {
       token
       refreshToken
+      images {
+        id
+        urlLink
+      }
       survey {
         id
         contentType
@@ -167,13 +171,12 @@ class App extends React.Component {
         mutation: LOGIN_USER,
       })
       .then(({ data }) => {
-        console.log(data);
         if (data !== undefined) {
           this.setTokens(data.tokenAuth.token, data.tokenAuth.refreshToken);
           this.initializeApp(
-            data.tokenAuth.token,
             data.tokenAuth.home,
-            data.tokenAuth.survey
+            data.tokenAuth.survey,
+            data.tokenAuth.images,
           );
         }
       })
@@ -204,12 +207,12 @@ class App extends React.Component {
       });
   };
 
-  initializeApp = (token, page, form) => {
+  initializeApp = (page, form, images) => {
     this.setState({
-      token,
       loaded: true,
       page,
       form,
+      images,
     });
   };
 
@@ -220,7 +223,6 @@ class App extends React.Component {
         variables: { token: localStorage.getItem("refreshToken") },
       })
       .then(({ data }) => {
-        console.log(data);
         localStorage.setItem("token", data.refreshToken.token);
         localStorage.setItem("refreshToken", data.refreshToken.refreshToken);
       })
@@ -230,7 +232,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <Router basename={process.env.PUBLIC_URL}>
         <ScrollToTop>

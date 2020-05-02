@@ -36,7 +36,11 @@ class FAQ extends React.Component {
                     />
                   )}
                   <p
-                    className="lead clickable blue-text"
+                    className={
+                      this.state["faq" + i]
+                        ? "lead faq-item active"
+                        : "lead clickable faq-item"
+                    }
                     onClick={() => this.setState({ ["faq" + i]: true })}
                   >
                     {item.value.question_head}

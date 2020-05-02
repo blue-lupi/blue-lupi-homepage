@@ -167,14 +167,13 @@ class HomePage extends React.Component {
     });
     if (this.props.globalState) {
       const form = this.props.globalState.form;
-
       if (
         page &&
         form &&
         !this.props.loading &&
         this.props.globalState.loaded &&
         this.props.data.shop &&
-        this.props.globalState.token
+        this.props.globalState.images
       ) {
         const pageSections = page.sections;
         let sections = pageSections.map((section, i) => {
@@ -185,7 +184,7 @@ class HomePage extends React.Component {
                   data={section}
                   key={i}
                   client={this.props.client}
-                  token={this.props.globalState.token}
+                  images={this.props.globalState.images}
                 />
               );
             case "Home_S_ShopBlock":
@@ -207,7 +206,7 @@ class HomePage extends React.Component {
                   data={section}
                   key={i}
                   client={this.props.client}
-                  token={this.props.globalState.token}
+                  images={this.props.globalState.images}
                 />
               );
             case "Home_S_StepsBlock":
@@ -216,7 +215,7 @@ class HomePage extends React.Component {
                   data={section}
                   key={i}
                   client={this.props.client}
-                  token={this.props.globalState.token}
+                  images={this.props.globalState.images}
                 />
               );
             case "Home_S_InstagramBlock":
@@ -224,7 +223,7 @@ class HomePage extends React.Component {
                 <Gallery
                   data={section}
                   key={i}
-                  token={this.props.globalState.token}
+                  images={this.props.globalState.images}
                 />
               );
             case "Home_S_TrustedBlock":
@@ -233,7 +232,7 @@ class HomePage extends React.Component {
                   data={section}
                   key={i}
                   client={this.props.client}
-                  token={this.props.globalState.token}
+                  images={this.props.globalState.images}
                 />
               );
             case "Home_S_WolfBlock":
@@ -242,7 +241,7 @@ class HomePage extends React.Component {
                   <Sub
                     data={section}
                     key={i}
-                    token={this.props.globalState.token}
+                    images={this.props.globalState.images}
                   />
                   <Blackwolf
                     products={this.props.data.shop.products.edges}
@@ -251,7 +250,7 @@ class HomePage extends React.Component {
                     createSurvey={this.props.globalFunctions.createSurvey}
                     form={form}
                     client={this.props.client}
-                    token={this.props.globalState.token}
+                    images={this.props.globalState.images}
                   />
                 </React.Fragment>
               );
@@ -260,7 +259,7 @@ class HomePage extends React.Component {
                 <FAQ
                   data={section}
                   key={i}
-                  token={this.props.globalState.token}
+                  images={this.props.globalState.images}
                 />
               );
             default:
