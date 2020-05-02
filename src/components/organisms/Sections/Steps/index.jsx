@@ -44,7 +44,7 @@ class Story extends React.Component {
         // img R
         return (
           <React.Fragment key={i}>
-            <MDBCol md="6" className="d-block d-sm-none">
+            <MDBCol md="6" className="d-block d-md-none">
               <img
                 src={
                   process.env.REACT_APP_BASEURL +
@@ -66,7 +66,7 @@ class Story extends React.Component {
                 dangerouslySetInnerHTML={{ __html: step.value.step_paragraph }}
               ></p>
             </MDBCol>
-            <MDBCol md="6" className="d-none d-sm-block">
+            <MDBCol md="6" className="d-none d-md-block">
               <img
                 src={
                   process.env.REACT_APP_BASEURL +
