@@ -34,7 +34,7 @@ class Story extends React.Component {
               <Query
                 query={GET_IMAGE}
                 variables={{
-                  token: localStorage.getItem("jwt"),
+                  token: this.props.token,
                   id: step.value.step_image,
                 }}
                 client={this.props.client}
@@ -72,7 +72,7 @@ class Story extends React.Component {
               <Query
                 query={GET_IMAGE}
                 variables={{
-                  token: localStorage.getItem("jwt"),
+                  token: this.props.token,
                   id: step.value.step_image,
                 }}
                 client={this.props.client}
@@ -105,7 +105,7 @@ class Story extends React.Component {
               <Query
                 query={GET_IMAGE}
                 variables={{
-                  token: localStorage.getItem("jwt"),
+                  token: this.props.token,
                   id: step.value.step_image,
                 }}
                 client={this.props.client}

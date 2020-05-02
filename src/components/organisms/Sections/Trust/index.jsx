@@ -41,7 +41,7 @@ class Trust extends React.Component {
                   <Query
                     query={GET_IMAGE}
                     variables={{
-                      token: localStorage.getItem("jwt"),
+                      token: this.props.token,
                       id: company.value.partner_logo,
                     }}
                     client={this.props.client}

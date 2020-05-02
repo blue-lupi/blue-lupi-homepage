@@ -173,14 +173,20 @@ class HomePage extends React.Component {
         form &&
         !this.props.loading &&
         this.props.globalState.loaded &&
-        this.props.data.shop
+        this.props.data.shop &&
+        this.props.globalState.token
       ) {
         const pageSections = page.sections;
         let sections = pageSections.map((section, i) => {
           switch (section.__typename) {
             case "Home_S_WhyBlock":
               return (
-                <Features data={section} key={i} client={this.props.client} />
+                <Features
+                  data={section}
+                  key={i}
+                  client={this.props.client}
+                  token={this.props.globalState.token}
+                />
               );
             case "Home_S_ShopBlock":
               return (

@@ -15,227 +15,12 @@ import { ScrollToTop } from "./components/atoms";
 import Routes from "./Routes";
 
 //> Queries / Mutations
-// Verify the token
-const VERIFY_TOKEN = gql`
-  mutation verify($token: String!) {
-    verifyToken(token: $token) {
-      token
-      refreshToken
-      survey {
-        id
-        contentType
-        ... on SurveySurveyFormPage {
-          id
-          slug
-          surveyHead
-          surveySubhead
-          thankYouText
-          formFields {
-            name
-            helpText
-            required
-            title
-            placeholder
-            image {
-              url
-            }
-            choices
-            fieldType
-          }
-        }
-      }
-      home {
-        id
-        title
-        ... on HomeHomePage {
-          id
-          title
-          city
-          zipCode
-          address
-          telephone
-          telefax
-          vatNumber
-          whatsappTelephone
-          whatsappContactline
-          shipping
-          gtc
-          cancellationPolicy
-          taxId
-          courtOfRegistry
-          placeOfRegistry
-          tradeRegisterNumber
-          ownership
-          email
-          copyrightholder
-          about
-          privacy
-          headers {
-            __typename
-            ... on Home_H_HeroBlock {
-              slideImage {
-                urlLink
-              }
-              slideButton {
-                buttonLink
-                buttonTitle
-                buttonPage {
-                  urlPath
-                }
-                buttonEmbed
-                id
-              }
-            }
-          }
-          sections {
-            ... on Home_S_WhyBlock {
-              whyHead
-              whyDisplayhead
-              whyColumns
-            }
-            ... on Home_S_InstagramBlock {
-              instagramId
-              instagramPc
-            }
-            ... on Home_S_ShopBlock {
-              shopHead
-              shopDisplayhead
-            }
-            ... on Home_S_StepsBlock {
-              stepsHead
-              stepsDisplayhead
-              stepsSteps
-            }
-            ... on Home_S_AboutBlock {
-              aboutHead
-              aboutDisplayhead
-              aboutCards
-            }
-            ... on Home_S_TrustedBlock {
-              trustedPartner
-            }
-            ... on Home_S_WolfBlock {
-              wolfHead
-              wolfSubhead
-            }
-            ... on Home_S_FAQBlock {
-              questions
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 // Refresh the token
 const REFRESH_TOKEN = gql`
   mutation refresh($token: String!) {
-    refreshToken(token: $token) {
+    refreshToken(refreshToken: $token) {
       token
       refreshToken
-      survey {
-        id
-        contentType
-        ... on SurveySurveyFormPage {
-          id
-          slug
-          surveyHead
-          surveySubhead
-          thankYouText
-          formFields {
-            name
-            helpText
-            required
-            title
-            placeholder
-            image {
-              url
-            }
-            choices
-            fieldType
-          }
-        }
-      }
-      home {
-        id
-        title
-        ... on HomeHomePage {
-          id
-          title
-          city
-          zipCode
-          address
-          telephone
-          telefax
-          vatNumber
-          whatsappTelephone
-          whatsappContactline
-          shipping
-          gtc
-          cancellationPolicy
-          taxId
-          courtOfRegistry
-          placeOfRegistry
-          tradeRegisterNumber
-          ownership
-          email
-          copyrightholder
-          about
-          privacy
-          headers {
-            __typename
-            ... on Home_H_HeroBlock {
-              slideImage {
-                urlLink
-              }
-              slideButton {
-                buttonLink
-                buttonTitle
-                buttonPage {
-                  urlPath
-                }
-                buttonEmbed
-                id
-              }
-            }
-          }
-          sections {
-            ... on Home_S_WhyBlock {
-              whyHead
-              whyDisplayhead
-              whyColumns
-            }
-            ... on Home_S_InstagramBlock {
-              instagramId
-              instagramPc
-            }
-            ... on Home_S_ShopBlock {
-              shopHead
-              shopDisplayhead
-            }
-            ... on Home_S_StepsBlock {
-              stepsHead
-              stepsDisplayhead
-              stepsSteps
-            }
-            ... on Home_S_AboutBlock {
-              aboutHead
-              aboutDisplayhead
-              aboutCards
-            }
-            ... on Home_S_TrustedBlock {
-              trustedPartner
-            }
-            ... on Home_S_WolfBlock {
-              wolfHead
-              wolfSubhead
-            }
-            ... on Home_S_FAQBlock {
-              questions
-            }
-          }
-        }
-      }
     }
   }
 `;
@@ -366,19 +151,40 @@ const CREATE_SURVEY = gql`
 
 class App extends React.Component {
   componentDidMount = () => {
-    // Check if there is a JSON Web Token existent
-    if (localStorage.getItem("jwt") !== null) {
-      try {
-        // Verify Token
-        this.verifyToken();
-      } catch (e) {
-        // Try to refresh token
-        this.refreshToken();
-      }
-    } else {
-      // If there is no JSON Web Token, just login as anonymous user
-      this.loginUser();
-    }
+    // Get tokens and page data
+    this.tokenAuth();
+    // Refresh token every 2 minutes (120000 ms)
+    this.refreshInterval = window.setInterval(this.refreshToken, 120000);
+  };
+
+  componentWillUnmount = () => {
+    clearInterval(this.refreshInterval);
+  };
+
+  tokenAuth = () => {
+    this.props.client
+      .mutate({
+        mutation: LOGIN_USER,
+      })
+      .then(({ data }) => {
+        console.log(data);
+        if (data !== undefined) {
+          this.setTokens(data.tokenAuth.token, data.tokenAuth.refreshToken);
+          this.initializeApp(
+            data.tokenAuth.token,
+            data.tokenAuth.home,
+            data.tokenAuth.survey
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Could not log in as anonymous user.", error);
+      });
+  };
+
+  setTokens = (token, refreshToken) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("refreshToken", refreshToken);
   };
 
   createSurvey = (values) => {
@@ -394,102 +200,32 @@ class App extends React.Component {
         console.log("Survey sent");
       })
       .catch((error) => {
-        console.error("Console not sent", error);
+        console.error("Survey not sent", error);
       });
   };
 
-  verifyToken = () => {
-    this.props.client
-      .mutate({
-        mutation: VERIFY_TOKEN,
-        variables: { token: localStorage.getItem("jwt") },
-      })
-      .then(({ data }) => {
-        if (data !== undefined) {
-          if (data.verifyToken !== null) {
-            this.isLogged(
-              data.verifyToken.payload.exp,
-              data.verifyToken.payload.origIat,
-              localStorage.getItem("jwt"),
-              data.verifyToken.home,
-              data.verifyToken.survey
-            );
-          } else {
-            this.refreshToken();
-          }
-        } else {
-          this.refreshToken();
-        }
-      })
-      .catch((error) => {
-        this.refreshToken();
-      });
+  initializeApp = (token, page, form) => {
+    this.setState({
+      token,
+      loaded: true,
+      page,
+      form,
+    });
   };
 
-  loginUser = () => {
-    this.props.client
-      .mutate({
-        mutation: LOGIN_USER,
-      })
-      .then(({ data }) => {
-        if (data !== undefined) {
-          this.setLogged(
-            data.tokenAuth.token,
-            data.tokenAuth.home,
-            data.tokenAuth.survey
-          );
-        }
-      })
-      .catch((error) => {
-        console.error("Mutation error:", error);
-      });
-  };
-
-  setLogged = (token, page, form) => {
-    this.setState(
-      {
-        token,
-        loaded: true,
-        page,
-        form,
-      },
-      () => {
-        localStorage.setItem("jwt", token);
-      }
-    );
-  };
-
-  isLogged = (exp, orig, token, home) => {
-    /**
-     * Generate current timestamp
-     * Ref: https://flaviocopes.com/how-to-get-timestamp-javascript/
-     */
-    let currentTS = ~~(Date.now() / 1000);
-
-    // Check if the token is still valid
-    if (currentTS > exp) {
-      // Token has expired
-      this.refreshToken(token);
-    } else {
-      // Only if anything has changed, update the data
-      this.setLogged(token, home);
-    }
-  };
-
-  refreshToken = (token) => {
+  refreshToken = () => {
     this.props.client
       .mutate({
         mutation: REFRESH_TOKEN,
-        variables: { token },
+        variables: { token: localStorage.getItem("refreshToken") },
       })
       .then(({ data }) => {
-        if (data !== undefined) {
-          this.setLogged(data.refreshToken.token);
-        }
+        console.log(data);
+        localStorage.setItem("token", data.refreshToken.token);
+        localStorage.setItem("refreshToken", data.refreshToken.refreshToken);
       })
       .catch((error) => {
-        // If refresh token fails, log in as anonymous user
-        this.loginUser();
+        console.log("Refresh token fail");
       });
   };
 
