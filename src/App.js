@@ -13,7 +13,7 @@ import MessengerCustomerChat from "react-messenger-customer-chat";
 import { gql } from "apollo-boost";
 
 //> Components
-import { Footer } from "./components/molecules";
+import { Footer, CookieModal } from "./components/molecules";
 import { ScrollToTop } from "./components/atoms";
 // Routes
 import Routes from "./Routes";
@@ -162,6 +162,8 @@ const CREATE_SURVEY = gql`
 `;
 
 class App extends React.Component {
+  state = {};
+
   componentDidMount = () => {
     // Get tokens and page data
     this.tokenAuth();
@@ -250,8 +252,9 @@ class App extends React.Component {
                 globalFunctions={{ createSurvey: this.createSurvey }}
                 client={this.props.client}
               />
+              <CookieModal />
             </main>
-            <Footer />
+            {this.state.page && this.state.form && <Footer />}
           </div>
         </ScrollToTop>
         <MessengerCustomerChat

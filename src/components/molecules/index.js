@@ -3,8 +3,9 @@
 import Footer from "./Footer";
 import Cart from "./Cart";
 import Product from "./Product";
+import CookieModal from "./CookieModal";
 
-export { Footer, Cart, Product };
+export { Footer, Cart, Product, CookieModal };
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
