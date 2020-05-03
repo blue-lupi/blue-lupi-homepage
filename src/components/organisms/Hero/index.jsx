@@ -102,7 +102,13 @@ class Hero extends React.Component {
           <MDBCol lg="6" className="p-0">
             <MDBAnimation type="fadeInLeft" duration="900ms">
               <MDBView
-                src={localImage}
+                src={
+                  loaded
+                    ? data.slideLoadimage
+                      ? process.env.REACT_APP_BASEURL + data.slideImage.urlLink
+                      : localImage
+                    : localImage
+                }
                 className="move"
               >
                 <MDBMask

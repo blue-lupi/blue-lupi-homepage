@@ -86,6 +86,7 @@ const LOGIN_USER = gql`
           headers {
             __typename
             ... on Home_H_HeroBlock {
+              slideLoadimage
               slideImage {
                 urlLink
               }
