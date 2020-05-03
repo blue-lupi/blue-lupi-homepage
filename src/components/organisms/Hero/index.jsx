@@ -26,7 +26,8 @@ import lupiLogoWhite from "../../../assets/logo_white_text.png";
 // Coffee center image
 import coffeeMug from "../../../assets/content/coffee_lupi.png";
 // Placeholder image
-import placeholderImage from "../../../assets/content/bg/white.jpg";
+//import placeholderImage from "../../../assets/content/bg/white.jpg";
+import localImage from "../../../assets/content/bg/bg.jpg";
 
 class Hero extends React.Component {
   render() {
@@ -101,11 +102,7 @@ class Hero extends React.Component {
           <MDBCol lg="6" className="p-0">
             <MDBAnimation type="fadeInLeft" duration="900ms">
               <MDBView
-                src={
-                  loaded
-                    ? process.env.REACT_APP_BASEURL + data.slideImage.urlLink
-                    : placeholderImage
-                }
+                src={localImage}
                 className="move"
               >
                 <MDBMask
