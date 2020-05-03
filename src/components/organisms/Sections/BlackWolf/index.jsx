@@ -106,6 +106,11 @@ class Blackwolf extends React.Component {
                                   <p className="lead font-weight-bold mb-0 mt-3">
                                     {field.title}
                                   </p>
+                                  <p className="my-0">
+                                    <small className="text-muted">
+                                      Mehrere Antworten möglich
+                                    </small>
+                                  </p>
                                   <p className="mb-2">{field.helpText}</p>
                                   <div className="d-flex justify-content-center flex-wrap-wrap">
                                     {field.choices
