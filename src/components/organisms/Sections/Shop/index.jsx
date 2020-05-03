@@ -72,7 +72,7 @@ class Shop extends React.Component {
       >
         <MDBContainer>
           {this.props.showCollection && (
-            <h2 className="text-center font-weight-bold mb-4">
+            <h2 className="text-center font-weight-bold mb-5">
               {this.props.collection}
             </h2>
           )}
