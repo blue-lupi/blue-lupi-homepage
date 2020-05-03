@@ -4,6 +4,10 @@ import React from "react";
 // DOM bindings for React Router
 import { BrowserRouter as Router } from "react-router-dom";
 
+//> Additional
+// Facebook messenger
+import MessengerCustomerChat from "react-messenger-customer-chat";
+
 //> Backend Connection
 // Apollo
 import { gql } from "apollo-boost";
@@ -250,6 +254,11 @@ class App extends React.Component {
             <Footer />
           </div>
         </ScrollToTop>
+        <MessengerCustomerChat
+          pageId={process.env.REACT_APP_FB_PAGEID}
+          appId={process.env.REACT_APP_FB_APPID}
+          htmlRef={window.location.pathname}
+        />
       </Router>
     );
   }
