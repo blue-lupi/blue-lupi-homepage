@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "./static/css/main.e207f5e9.chunk.css",
-    "main.js": "./static/js/main.04c29a1f.chunk.js",
-    "main.js.map": "./static/js/main.04c29a1f.chunk.js.map",
+    "main.js": "./static/js/main.1d3d86c3.chunk.js",
+    "main.js.map": "./static/js/main.1d3d86c3.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.3892b3e7.js",
     "runtime-main.js.map": "./static/js/runtime-main.3892b3e7.js.map",
     "static/css/2.a12779de.chunk.css": "./static/css/2.a12779de.chunk.css",
     "static/js/2.550dab4e.chunk.js": "./static/js/2.550dab4e.chunk.js",
     "static/js/2.550dab4e.chunk.js.map": "./static/js/2.550dab4e.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.d40fd65896b94fed444af597396b077d.js": "./precache-manifest.d40fd65896b94fed444af597396b077d.js",
+    "precache-manifest.f2fb5e52c056232b1550b2b73a32574c.js": "./precache-manifest.f2fb5e52c056232b1550b2b73a32574c.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.a12779de.chunk.css.map": "./static/css/2.a12779de.chunk.css.map",
     "static/css/main.e207f5e9.chunk.css.map": "./static/css/main.e207f5e9.chunk.css.map",
     "static/js/2.550dab4e.chunk.js.LICENSE.txt": "./static/js/2.550dab4e.chunk.js.LICENSE.txt",
     "static/media/mdb.css": "./static/media/arrow_right.8ef6a08c.svg",
+    "static/media/bg.jpg": "./static/media/bg.95b880c1.jpg",
     "static/media/coffee_lupi.png": "./static/media/coffee_lupi.d062d53c.png",
     "static/media/all.min.css": "./static/media/fa-solid-900.ec763292.svg",
     "static/media/ground.72db390e.svg": "./static/media/ground.72db390e.svg",
     "static/media/logo_white_text.png": "./static/media/logo_white_text.4f949951.png",
     "static/media/moonandwolf.7a637196.svg": "./static/media/moonandwolf.7a637196.svg",
-    "static/media/white.jpg": "./static/media/white.9b2828b0.jpg",
     "static/media/wolf.e7993343.svg": "./static/media/wolf.e7993343.svg",
     "static/media/wolf.e9693102.svg": "./static/media/wolf.e9693102.svg"
   },
@@ -29,6 +29,6 @@
     "static/css/2.a12779de.chunk.css",
     "static/js/2.550dab4e.chunk.js",
     "static/css/main.e207f5e9.chunk.css",
-    "static/js/main.04c29a1f.chunk.js"
+    "static/js/main.1d3d86c3.chunk.js"
   ]
 }
