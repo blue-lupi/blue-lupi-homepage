@@ -13,6 +13,7 @@ class Features extends React.Component {
   renderReasons = (data) => {
     let width =
       data.whyColumns.length === 4 || data.whyColumns.length === 8 ? "3" : "4";
+
     let rtn = data.whyColumns.map((reason, i) => {
       return (
         <MDBCol md={width} key={i}>
