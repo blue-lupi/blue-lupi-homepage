@@ -81,7 +81,7 @@ class HomePage extends React.Component {
   };
 
   componentDidMount() {
-    document.title = "Blue Lupi";
+    document.title = "Blue Lupi - DIE KAFFEEALTERNATIVE AUS ÖSTERREICH";
     // Google Analytics
     ReactGA.initialize("UA-148740308-3");
     ReactGA.pageview(window.location.pathname + window.location.search);
