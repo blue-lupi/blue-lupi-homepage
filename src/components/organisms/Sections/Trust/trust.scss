@@ -1,8 +1,17 @@
 #trust {
   background-color: #f6ede0;
+  img {
+    max-height: 70px;
+  }
+  &.trust-sm {
+    background-color: white;
+    img {
+      max-height: 40px;
+    }
+  }
 }
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

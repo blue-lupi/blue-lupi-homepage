@@ -9,26 +9,18 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { gql } from "apollo-boost";
 
 //> Components
-import { Footer } from "./components/molecules";
+import { Footer, CookieModal } from "./components/molecules";
 import { ScrollToTop } from "./components/atoms";
 // Routes
 import Routes from "./Routes";
 
 //> Queries / Mutations
-// Verify the token
-const VERIFY_TOKEN = gql`
-  mutation verify($token: String!) {
-    verifyToken(token: $token) {
-      payload
-    }
-  }
-`;
 // Refresh the token
 const REFRESH_TOKEN = gql`
   mutation refresh($token: String!) {
-    refreshToken(token: $token) {
-      payload
+    refreshToken(refreshToken: $token) {
       token
+      refreshToken
     }
   }
 `;
@@ -37,258 +29,211 @@ const LOGIN_USER = gql`
   mutation tokenAuth {
     tokenAuth(username: "cisco", password: "ciscocisco") {
       token
-    }
-  }
-`;
-// Get homepage CMS data
-const GET_DATA = gql`
-  query getPage($token: String!) {
-    page(token: $token, url: "/home") {
-      ... on HomeHomePage {
+      refreshToken
+      images {
         id
-        title
-        city
-        zipCode
-        address
-        telephone
-        telefax
-        vatNumber
-        whatsappTelephone
-        whatsappContactline
-        shipping
-        gtc
-        cancellationPolicy
-        taxId
-        courtOfRegistry
-        placeOfRegistry
-        tradeRegisterNumber
-        ownership
-        email
-        copyrightholder
-        about
-        privacy
-        headers {
-          __typename
-          ... on Home_H_HeroBlock {
-            slideImage {
-              urlLink
+        urlLink
+      }
+      survey {
+        id
+        contentType
+        ... on SurveySurveyFormPage {
+          id
+          slug
+          surveyHead
+          surveySubhead
+          thankYouText
+          formFields {
+            name
+            helpText
+            required
+            title
+            placeholder
+            image {
+              url
             }
-            slideButton {
-              buttonLink
-              buttonTitle
-              buttonPage {
-                urlPath
-              }
-              buttonEmbed
-              id
-            }
+            choices
+            fieldType
           }
         }
-        sections {
-          ... on Home_S_WhyBlock {
-            whyHead
-            whyDisplayhead
-            whyColumns
+      }
+      home {
+        id
+        title
+        ... on HomeHomePage {
+          id
+          title
+          city
+          zipCode
+          address
+          telephone
+          telefax
+          vatNumber
+          whatsappTelephone
+          whatsappContactline
+          shipping
+          gtc
+          cancellationPolicy
+          taxId
+          courtOfRegistry
+          placeOfRegistry
+          tradeRegisterNumber
+          ownership
+          email
+          copyrightholder
+          about
+          privacy
+          headers {
+            __typename
+            ... on Home_H_HeroBlock {
+              slideLoadimage
+              slideImage {
+                urlLink
+              }
+              slideButton {
+                buttonLink
+                buttonTitle
+                buttonPage {
+                  urlPath
+                }
+                buttonEmbed
+                id
+              }
+            }
           }
-          ... on Home_S_InstagramBlock {
-            instagramId
-            instagramPc
-          }
-          ... on Home_S_ShopBlock {
-            shopHead
-            shopDisplayhead
-          }
-          ... on Home_S_StepsBlock {
-            stepsHead
-            stepsDisplayhead
-            stepsSteps
-          }
-          ... on Home_S_AboutBlock {
-            aboutHead
-            aboutDisplayhead
-            aboutCards
-          }
-          ... on Home_S_TrustedBlock {
-            trustedPartner
-          }
-          ... on Home_S_WolfBlock {
-            wolfHead
-            wolfSubhead
-          }
-          ... on Home_S_FAQBlock {
-            questions
+          sections {
+            ... on Home_S_WhyBlock {
+              whyHead
+              whyDisplayhead
+              whyColumns
+            }
+            ... on Home_S_InstagramBlock {
+              instagramId
+              instagramPc
+            }
+            ... on Home_S_ShopBlock {
+              shopHead
+              shopDisplayhead
+            }
+            ... on Home_S_StepsBlock {
+              stepsHead
+              stepsDisplayhead
+              stepsSteps
+            }
+            ... on Home_S_AboutBlock {
+              aboutHead
+              aboutDisplayhead
+              aboutCards
+            }
+            ... on Home_S_TrustedBlock {
+              trustedPartner
+            }
+            ... on Home_S_WolfBlock {
+              wolfHead
+              wolfSubhead
+            }
+            ... on Home_S_FAQBlock {
+              questions
+            }
+            ... on Home_S_SmallTrustedBlock {
+              trustedPartner
+            }
           }
         }
       }
     }
   }
 `;
-// Individual coffee
-const GET_FORM = gql`
-  query getFormfield($token: String!) {
-    page(token: $token, url: "/home/survey") {
-      id
-      contentType
-      ... on SurveySurveyFormPage {
-        id
-        slug
-        surveyHead
-        surveySubhead
-        thankYouText
-        formFields {
-          name
-          helpText
-          choices
-          fieldType
-        }
+// Create survey
+const CREATE_SURVEY = gql`
+  mutation setSurvey($token: String!, $values: GenericScalar!) {
+    surveySurveyFormPage(token: $token, url: "/home/survey", values: $values) {
+      result
+      errors {
+        name
+        errors
       }
     }
   }
 `;
 
 class App extends React.Component {
+  state = {};
+
   componentDidMount = () => {
-    // Check if there is a JSON Web Token existent
-    if (localStorage.getItem("jwt") !== null) {
-      try {
-        // Verify Token
-        this.verifyToken();
-      } catch (e) {
-        // Try to refresh token
-        this.refreshToken();
-      }
-    } else {
-      // If there is no JSON Web Token, just login as anonymous user
-      this.loginUser();
-    }
+    // Get tokens and page data
+    this.tokenAuth();
+    // Refresh token every 2 minutes (120000 ms)
+    this.refreshInterval = window.setInterval(this.refreshToken, 120000);
   };
 
-  verifyToken = () => {
-    this.props.client
-      .mutate({
-        mutation: VERIFY_TOKEN,
-        variables: { token: localStorage.getItem("jwt") },
-      })
-      .then(({ data }) => {
-        if (data !== undefined) {
-          if (data.verifyToken !== null) {
-            this.isLogged(
-              data.verifyToken.payload.exp,
-              data.verifyToken.payload.origIat,
-              localStorage.getItem("jwt")
-            );
-          } else {
-            this.refreshToken();
-          }
-        } else {
-          this.refreshToken();
-        }
-      })
-      .catch((error) => {
-        console.error("Mutation error:", error);
-        this.refreshToken();
-      });
+  componentWillUnmount = () => {
+    clearInterval(this.refreshInterval);
   };
 
-  loginUser = () => {
+  tokenAuth = () => {
     this.props.client
       .mutate({
         mutation: LOGIN_USER,
       })
       .then(({ data }) => {
         if (data !== undefined) {
-          this.setLogged(data.tokenAuth.token);
-        }
-      })
-      .catch((error) => {
-        console.error("Mutation error:", error);
-      });
-  };
-
-  setLogged = (token) => {
-    this.setState(
-      {
-        token,
-        loaded: true,
-      },
-      () => {
-        this.fetchPageData(token);
-        localStorage.setItem("jwt", token);
-      }
-    );
-  };
-
-  isLogged = (exp, orig, token) => {
-    /**
-     * Generate current timestamp
-     * Ref: https://flaviocopes.com/how-to-get-timestamp-javascript/
-     */
-    let currentTS = ~~(Date.now() / 1000);
-    
-    // Check if the token is still valid
-    if (currentTS > exp) {
-      // Token has expired
-      this.refreshToken(token);
-    } else {
-      // Only if anything has changed, update the data
-      this.setLogged(token);
-    }
-  };
-
-  refreshToken = (token) => {
-    this.props.client
-      .mutate({
-        mutation: REFRESH_TOKEN,
-        variables: { token },
-      })
-      .then(({ data }) => {
-        if (data !== undefined) {
-          this.setLogged(data.refreshToken.token);
-        }
-      })
-      .catch((error) => {
-        // If refresh token fails, log in as anonymous user
-        this.loginUser();
-      });
-  };
-
-  fetchPageData = (token) => {
-    this.props.client
-      .query({
-        query: GET_DATA,
-        variables: { token },
-      })
-      .then(({ data }) => {
-        if (data.page) {
-          this.setState(
-            {
-              page: data.page,
-            },
-            () => this.fetchFormData(token)
+          this.setTokens(data.tokenAuth.token, data.tokenAuth.refreshToken);
+          this.initializeApp(
+            data.tokenAuth.home,
+            data.tokenAuth.survey,
+            data.tokenAuth.images
           );
         }
       })
       .catch((error) => {
-        // Temp!
-        this.fetchFormData(token);
+        console.error("Could not log in as anonymous user.", error);
       });
   };
 
-  fetchFormData = (token) => {
+  setTokens = (token, refreshToken) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("refreshToken", refreshToken);
+  };
+
+  createSurvey = (values) => {
     this.props.client
-      .query({
-        query: GET_FORM,
-        variables: { token },
+      .mutate({
+        mutation: CREATE_SURVEY,
+        variables: {
+          token: localStorage.getItem("jwt"),
+          values,
+        },
       })
       .then(({ data }) => {
-        if (data.page) {
-          this.setState({
-            form: data.page,
-          });
-        }
+        console.log("Survey sent");
       })
       .catch((error) => {
-        console.error("Error", error);
+        console.error("Survey not sent", error);
+      });
+  };
+
+  initializeApp = (page, form, images) => {
+    this.setState({
+      loaded: true,
+      page,
+      form,
+      images,
+    });
+  };
+
+  refreshToken = () => {
+    this.props.client
+      .mutate({
+        mutation: REFRESH_TOKEN,
+        variables: { token: localStorage.getItem("refreshToken") },
+      })
+      .then(({ data }) => {
+        localStorage.setItem("token", data.refreshToken.token);
+        localStorage.setItem("refreshToken", data.refreshToken.refreshToken);
+      })
+      .catch((error) => {
+        console.log("Refresh token fail");
       });
   };
 
@@ -298,9 +243,14 @@ class App extends React.Component {
         <ScrollToTop>
           <div className="flyout">
             <main>
-              <Routes globalState={this.state} client={this.props.client} />
+              <Routes
+                globalState={this.state}
+                globalFunctions={{ createSurvey: this.createSurvey }}
+                client={this.props.client}
+              />
+              <CookieModal />
             </main>
-            <Footer />
+            {this.state.page && this.state.form && <Footer />}
           </div>
         </ScrollToTop>
       </Router>
@@ -312,5 +262,5 @@ export default App;
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

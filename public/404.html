@@ -1,32 +1,72 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Urban Coffee - Blue Lupi</title>
-		<script type="text/javascript">
-			var segmentCount = 0;
-			var l = window.location;
+  <head>
+    <meta charset="utf-8" />
+    <!-- Primary Meta Tags -->
+    <title>Blue Lupi - DIE KAFFEEALTERNATIVE AUS ÖSTERREICH</title>
+    <meta
+      name="title"
+      content="Blue Lupi - DIE KAFFEEALTERNATIVE
+  AUS ÖSTERREICH"
+    />
+    <meta
+      name="description"
+      content="Du hast keine Lust mehr auf herkömmlichen Kaffee? Oder bist du 
+      auf der Suche nach einer leckeren, koffeinfreien Alternative?"
+    />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.kaffeerudel.at/" />
+    <meta
+      property="og:title"
+      content="Blue Lupi - DIE KAFFEEALTERNATIVE AUS ÖSTERREICH"
+    />
+    <meta
+      property="og:description"
+      content="Du hast keine Lust mehr auf herkömmlichen Kaffee? Oder bist du 
+      auf der Suche nach einer leckeren, koffeinfreien Alternative?"
+    />
+    <meta property="og:image" content="https://www.kaffeerudel.at/fav/og.jpg" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.kaffeerudel.at/" />
+    <meta
+      property="twitter:title"
+      content="Blue Lupi - DIE KAFFEEALTERNATIVE AUS ÖSTERREICH"
+    />
+    <meta
+      property="twitter:description"
+      content="Du hast keine Lust mehr auf herkömmlichen Kaffee? Oder bist du 
+      auf der Suche nach einer leckeren, koffeinfreien Alternative?"
+    />
+    <meta
+      property="twitter:image"
+      content="https://www.kaffeerudel.at/fav/og.jpg"
+    />
+    <script type="text/javascript">
+      var segmentCount = 0;
+      var l = window.location;
 
-			l.replace(
-				l.protocol +
-					"//" +
-					l.hostname +
-					(l.port ? ":" + l.port : "") +
-					l.pathname
-						.split("/")
-						.slice(0, 1 + segmentCount)
-						.join("/") +
-					"/?p=/" +
-					l.pathname
-						.slice(1)
-						.split("/")
-						.slice(segmentCount)
-						.join("/")
-						.replace(/&/g, "~and~") +
-					(l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
-					l.hash
-			);
-		</script>
-	</head>
-	<body></body>
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + segmentCount)
+            .join("/") +
+          "/?p=/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(segmentCount)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&q=" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body></body>
 </html>

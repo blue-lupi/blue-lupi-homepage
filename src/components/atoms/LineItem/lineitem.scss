@@ -1,19 +1,22 @@
-.line-item{
+.line-item {
   list-style: none;
   border-bottom: 1px #dedede solid;
-  img{
+  img {
     max-width: 80px;
     height: auto;
   }
-  .btn{
+  .btn {
     padding: 0.5rem 1rem;
   }
-  .flex-center{
+  .flex-center {
     height: auto;
+  }
+  .col-auto {
+    padding-right: 0.3rem;
   }
 }
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

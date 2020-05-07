@@ -1,8 +1,16 @@
 #faq {
   background-color: white;
+  .faq-item {
+    transition: all 0.2s ease;
+    color: #1976d2;
+    font-weight: bold;
+    &.active {
+      color: #212529;
+    }
+  }
 }
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

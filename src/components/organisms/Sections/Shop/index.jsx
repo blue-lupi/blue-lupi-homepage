@@ -59,16 +59,20 @@ class Shop extends React.Component {
 
     return (
       <section
-        id="shop"
+        id={
+          this.props.collection === "Das Kaffeerudel - Spezialitätenkaffee"
+            ? "rudelshop"
+            : "shop"
+        }
         className={
-          this.props.collection === "Black Wolf Coffee - Spezialitätenkaffee"
+          this.props.collection === "Das Kaffeerudel - Spezialitätenkaffee"
             ? "blackwolf balckwolfsection"
             : "bluelupi"
         }
       >
         <MDBContainer>
           {this.props.showCollection && (
-            <h2 className="text-center font-weight-bold mb-3">
+            <h2 className="text-center font-weight-bold mb-5">
               {this.props.collection}
             </h2>
           )}
@@ -129,5 +133,5 @@ export default Shop;
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

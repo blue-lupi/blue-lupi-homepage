@@ -2,12 +2,10 @@
   background: black;
   color: white;
   position: relative;
-
   .container {
     position: relative;
     z-index: 1;
   }
-
   #wolfsvg {
     transform: scaleX(-1);
     height: 150px;
@@ -17,7 +15,15 @@
   #wolf {
     fill: #fff;
   }
-
+  #ground {
+    fill: white;
+    max-width: 100%;
+    width: 100%;
+    height: 50px;
+    display: block;
+    margin: auto;
+    margin-top: -42px;
+  }
   .green-text {
     color: black !important;
     background: white;
@@ -25,7 +31,6 @@
     padding: 0.7rem 2rem;
     border-radius: 4rem;
   }
-
   &:after {
     content: "";
     height: 400px;
@@ -35,9 +40,14 @@
     z-index: 0;
     background: linear-gradient(#001f3d, black);
   }
+  .btn {
+    &.active {
+      background: #f9e093 !important;
+    }
+  }
 }
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

@@ -1,5 +1,7 @@
 #hero {
-  font-family: "Heavitas", "Arial Black", Helvetica;
+  .customfont{
+    font-family: "Heavitas", "Arial Black", Helvetica;
+  }
   // Background of the entire section
   .row {
     background-color: $gold;
@@ -83,11 +85,21 @@
     height: 100%;
     z-index: 1;
     .circle {
-      height: 650px;
-      width: 650px;
+      max-width: 100%;
+      max-width: 700px;
       margin: auto;
       img {
         width: 100%;
+      }
+      &.mobile {
+        h2 {
+          background: rgba(0, 0, 0, 0.5);
+          padding: 1rem 0;
+        }
+        img {
+          max-height: 200px;
+          width: auto;
+        }
       }
     }
   }
@@ -99,11 +111,11 @@
   }
   // Animate image
   .move {
-      animation: fadeIn ease 3s;
-      -webkit-animation: fadeIn ease 3s;
-      -moz-animation: fadeIn ease 3s;
-      -o-animation: fadeIn ease 3s;
-      -ms-animation: fadeIn ease 3s;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
   }
   @keyframes fadeIn {
     0% {
@@ -153,5 +165,5 @@
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

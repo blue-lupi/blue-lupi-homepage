@@ -9,71 +9,55 @@ import { MDBRow, MDBCol } from "mdbreact";
 //> CSS
 import "./trust.scss";
 
-//> Apollo
-import { gql } from "apollo-boost";
-import { Query } from "react-apollo";
-
-//> Queries
-// Get image by ID
-const GET_IMAGE = gql`
-	query getImage($token: String!, $id: Int!) {
-		image(token: $token, id: $id) {
-			urlLink
-		}
-	}
-`;
-
 class Trust extends React.Component {
-	render() {
-		const { data } = this.props;
+  render() {
+    const { data, images, size } = this.props;
 
-		return (
-			<section id="trust">
-				<MDBRow className="flex-center m-0">
-					{data.trustedPartner.map((company, i) => {
-						return (
-							<MDBCol key={i} md="2" className="text-center">
-								<a
-									href={company.value.partner_link}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<Query
-										query={GET_IMAGE}
-										variables={{
-											token: localStorage.getItem("jwt"),
-											id: company.value.partner_logo,
-										}}
-										client={this.props.client}
-									>
-										{({ loading, error, data }) => {
-											if (loading) return null;
-											if (error) return null;
-
-											return (
-												<img
-													src={
-														process.env.REACT_APP_BASEURL + data.image.urlLink
-													}
-													alt="Partner logo"
-													className="img-fluid"
-												/>
-											);
-										}}
-									</Query>
-								</a>
-							</MDBCol>
-						);
-					})}
-				</MDBRow>
-			</section>
-		);
-	}
+    return (
+      <section
+        id="trust"
+        className={size && size === "sm" ? "trust-sm" : undefined}
+      >
+        <MDBRow className="flex-center m-0">
+          {data.trustedPartner.map((company, i) => {
+            return (
+              <MDBCol key={i} md="2" className="text-center">
+                <a
+                  href={company.value.partner_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={
+                      process.env.REACT_APP_BASEURL +
+                      images.find((image) => {
+                        return (
+                          parseInt(image.id) === company.value.partner_logo
+                        );
+                      }).urlLink
+                    }
+                    alt="Partner logo"
+                    className={
+                      size
+                        ? size === "sm"
+                          ? "img-fluid my-1"
+                          : "img-fluid my-3"
+                        : "img-fluid my-3"
+                    }
+                  />
+                </a>
+              </MDBCol>
+            );
+          })}
+        </MDBRow>
+      </section>
+    );
+  }
 }
 
 export default Trust;
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */

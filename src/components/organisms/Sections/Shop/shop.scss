@@ -1,8 +1,9 @@
-#shop {
+#shop,
+#rudelshop {
+  margin-top: -1px;
   // Black wolf coffee
   &.blackwolf {
     background: black !important;
-    border-top: 50px white solid;
     .card {
       box-shadow: none;
       z-index: 2;
@@ -57,5 +58,5 @@
 
 /** 
  * SPDX-License-Identifier: (EUPL-1.2)
- * Copyright © 2019 Werbeagentur Christian Aichner
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
  */
