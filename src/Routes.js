@@ -46,6 +46,12 @@ class Routes extends React.Component {
           path="/privacy"
           render={(props) => <MessagePage {...this.props} />}
         />
+        <Route
+          exact
+          path="/:param"
+          render={(props) => (
+            <HomePage client={this.props.client} {...this.props} />
+          )}
         />
         <Route component={HomePage} />
       </Switch>

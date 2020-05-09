@@ -16,7 +16,6 @@ class Trust extends React.Component {
     return (
       <section
         id="trust"
-        className={size && size === "sm" ? "trust-sm" : undefined}
       >
         <MDBRow className="flex-center m-0">
           {data.trustedPartner.map((company, i) => {

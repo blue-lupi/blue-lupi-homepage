@@ -250,7 +250,12 @@ class App extends React.Component {
               />
               <CookieModal />
             </main>
-            {this.state.page && this.state.form && <Footer />}
+            {this.state.page && this.state.form && (
+              <Footer
+                sections={this.state.page.sections}
+                images={this.state.images}
+              />
+            )}
           </div>
         </ScrollToTop>
       </Router>

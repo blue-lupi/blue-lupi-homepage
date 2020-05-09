@@ -1,6 +1,8 @@
 //> React
 // Contains all the functionality necessary to define React components
 import React from "react";
+// Router DOM bindings
+import { withRouter } from "react-router-dom";
 
 //> Additional
 // Prop types
@@ -54,6 +56,7 @@ class HomePage extends React.Component {
       isNewCustomer: false,
       products: [],
       checkout: { lineItems: { edges: [] } },
+      param: false,
     };
 
     this.handleCartClose = this.handleCartClose.bind(this);
@@ -81,10 +84,35 @@ class HomePage extends React.Component {
   };
 
   componentDidMount() {
+    // Set title
     document.title = "Blue Lupi - DIE KAFFEEALTERNATIVE AUS ÖSTERREICH";
+
+    // Get page redirect
+    const { match } = this.props;
+
+    // Check if there is a redirect
+    if (match && match.params.param) {
+      const param = match.params.param;
+
+      // Set param and initialize Shopify
+      this.setState(
+        {
+          param:
+            param === "blue" ? "blue" : param === "black" ? "black" : false,
+        },
+        () => this.initShopify()
+      );
+    } else {
+      // Initialize Shopify
+      this.initShopify();
+    }
     // Google Analytics
     ReactGA.initialize("UA-148740308-3");
     ReactGA.pageview(window.location.pathname + window.location.search);
+  }
+
+  initShopify = () => {
+    // Create Shopify checkout
     this.props
       .createCheckout({
         variables: {
@@ -96,7 +124,7 @@ class HomePage extends React.Component {
           checkout: res.data.checkoutCreate.checkout,
         });
       });
-  }
+  };
 
   handleCartOpen() {
     this.setState({
@@ -140,6 +168,8 @@ class HomePage extends React.Component {
   }
 
   render() {
+    const { param } = this.state;
+
     if (this.props.data.error) {
       // Display error message
     }
@@ -151,20 +181,23 @@ class HomePage extends React.Component {
       ? page.headers
       : [{ __typename: "Home_H_HeroBlock" }];
 
-    let headers = pageHeaders.map((header, i) => {
-      switch (header.__typename) {
-        case "Home_H_HeroBlock":
-          return (
-            <Hero
-              handleCartOpen={this.handleCartOpen}
-              data={header}
-              key={"head" + i}
-            />
-          );
-        default:
-          return null;
-      }
-    });
+    let headers =
+      param === "blue" || !param
+        ? pageHeaders.map((header, i) => {
+            switch (header.__typename) {
+              case "Home_H_HeroBlock":
+                return (
+                  <Hero
+                    handleCartOpen={this.handleCartOpen}
+                    data={header}
+                    key={"head" + i}
+                  />
+                );
+              default:
+                return null;
+            }
+          })
+        : null;
     if (this.props.globalState) {
       const form = this.props.globalState.form;
       if (
@@ -179,81 +212,128 @@ class HomePage extends React.Component {
         let sections = pageSections.map((section, i) => {
           switch (section.__typename) {
             case "Home_S_WhyBlock":
-              return (
-                <Features
-                  data={section}
-                  key={i}
-                  client={this.props.client}
-                  images={this.props.globalState.images}
-                />
-              );
-            case "Home_S_ShopBlock":
-              return (
-                <React.Fragment key={i}>
-                  <Shop
-                    products={this.props.data.shop.products.edges}
-                    addVariantToCart={this.addVariantToCart}
-                    checkout={this.state.checkout}
+              if (param === "blue" || !param) {
+                return (
+                  <Features
                     data={section}
-                    collection={section.shopHead}
-                    showCollection={section.shopDisplayhead}
+                    key={i}
+                    client={this.props.client}
+                    images={this.props.globalState.images}
                   />
-                </React.Fragment>
-              );
+                );
+              } else {
+                return null;
+              }
+            case "Home_S_ShopBlock":
+              if (
+                (param === "blue" || !param) &&
+                section.shopHead !== "Das Kaffeerudel - Spezialitätenkaffee"
+              ) {
+                return (
+                  <React.Fragment key={i}>
+                    <Shop
+                      products={this.props.data.shop.products.edges}
+                      addVariantToCart={this.addVariantToCart}
+                      checkout={this.state.checkout}
+                      data={section}
+                      collection={section.shopHead}
+                      showCollection={section.shopDisplayhead}
+                    />
+                  </React.Fragment>
+                );
+              } else if (
+                (param === "black" || !param) &&
+                section.shopHead === "Das Kaffeerudel - Spezialitätenkaffee"
+              ) {
+                return (
+                  <React.Fragment key={i}>
+                    <Shop
+                      products={this.props.data.shop.products.edges}
+                      addVariantToCart={this.addVariantToCart}
+                      checkout={this.state.checkout}
+                      data={section}
+                      collection={section.shopHead}
+                      showCollection={section.shopDisplayhead}
+                    />
+                  </React.Fragment>
+                );
+              } else {
+                return null;
+              }
             case "Home_S_AboutBlock":
-              return (
-                <About
-                  data={section}
-                  key={i}
-                  client={this.props.client}
-                  images={this.props.globalState.images}
-                />
-              );
+              if (param === "blue" || !param) {
+                return (
+                  <About
+                    data={section}
+                    key={i}
+                    client={this.props.client}
+                    images={this.props.globalState.images}
+                  />
+                );
+              } else {
+                return null;
+              }
             case "Home_S_StepsBlock":
-              return (
-                <Steps
-                  data={section}
-                  key={i}
-                  client={this.props.client}
-                  images={this.props.globalState.images}
-                />
-              );
+              if (param === "blue" || !param) {
+                return (
+                  <Steps
+                    data={section}
+                    key={i}
+                    client={this.props.client}
+                    images={this.props.globalState.images}
+                  />
+                );
+              } else {
+                return null;
+              }
             case "Home_S_InstagramBlock":
-              return (
-                <Gallery
-                  data={section}
-                  key={i}
-                  images={this.props.globalState.images}
-                />
-              );
-            case "Home_S_TrustedBlock":
-              return (
-                <Trust
-                  data={section}
-                  key={i}
-                  client={this.props.client}
-                  images={this.props.globalState.images}
-                />
-              );
-            case "Home_S_WolfBlock":
-              return (
-                <React.Fragment key={i}>
-                  <Sub
+              if (param === "blue" || !param) {
+                return (
+                  <Gallery
                     data={section}
                     key={i}
                     images={this.props.globalState.images}
                   />
-                  <Blackwolf
-                    products={this.props.data.shop.products.edges}
-                    addVariantToCart={this.addVariantToCart}
-                    checkout={this.state.checkout}
-                    createSurvey={this.props.globalFunctions.createSurvey}
-                    form={form}
+                );
+              } else {
+                return null;
+              }
+            case "Home_S_TrustedBlock":
+              if (param === "blue" || !param) {
+                return (
+                  <Trust
+                    data={section}
+                    key={i}
                     client={this.props.client}
                     images={this.props.globalState.images}
                   />
-                </React.Fragment>
-              );
+                );
+              } else {
+                return null;
+              }
+            case "Home_S_WolfBlock":
+              if (param === "black" || !param) {
+                return (
+                  <React.Fragment key={i}>
+                    <Sub
+                      data={section}
+                      key={i}
+                      images={this.props.globalState.images}
+                    />
+                    <Blackwolf
+                      products={this.props.data.shop.products.edges}
+                      addVariantToCart={this.addVariantToCart}
+                      checkout={this.state.checkout}
+                      createSurvey={this.props.globalFunctions.createSurvey}
+                      form={form}
+                      client={this.props.client}
+                      images={this.props.globalState.images}
+                    />
+                  </React.Fragment>
+                );
+              } else {
+                return null;
+              }
             case "Home_S_FAQBlock":
               return (
                 <FAQ
@@ -261,17 +341,6 @@ class HomePage extends React.Component {
                   key={i}
                   images={this.props.globalState.images}
                 />
-              );
-            case "Home_S_SmallTrustedBlock":
-              return (
-                <div className="balckwolfsection" key={i}>
-                  <Trust
-                    data={section}
-                    size="sm"
-                    client={this.props.client}
-                    images={this.props.globalState.images}
-                  />
-                </div>
               );
             default:
               return null;
@@ -289,7 +358,13 @@ class HomePage extends React.Component {
           />
         );
         sections.push(cart);
-        return headers.concat(sections);
+        if (headers) {
+          // Return Hero shot and sections
+          return headers.concat(sections);
+        } else {
+          // Return only sections
+          return sections;
+        }
       } else {
         return headers;
       }
@@ -372,7 +447,7 @@ const HomePageWithDataAndMutation = compose(
   graphql(checkoutLineItemsUpdate, { name: "checkoutLineItemsUpdate" }),
   graphql(checkoutLineItemsRemove, { name: "checkoutLineItemsRemove" }),
   graphql(checkoutCustomerAssociate, { name: "checkoutCustomerAssociate" })
-)(HomePage);
+)(withRouter(HomePage));
 
 export default HomePageWithDataAndMutation;
 

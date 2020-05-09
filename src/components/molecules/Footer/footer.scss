@@ -1,30 +1,51 @@
 // Footer
 footer {
+  li {
+    color: #212529;
+    background: rgba(0, 0, 0, 0.1);
+    transition: all 0.1s ease;
+    padding: 1rem !important;
+    align-items: center;
+    margin: 0.3rem 0;
+    border: 1px lightgrey solid;
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .badge {
+      box-shadow: none;
+    }
+  }
   // Custom pulsating heart
   .pulse {
     -webkit-animation: pulse 1s infinite;
     animation: pulse 1s infinite;
   }
-
-  // Footer link icons
-  ul li i {
-    width: 30px;
-    text-align: center;
-    padding-right: 0.5rem;
+  .trusted {
+    img {
+      margin: 0 0.3rem;
+      max-height: 50px;
+    }
   }
-
-  // Footer column headers
-  .title {
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-
-  // Column header separator
+  .underlined {
+    &:hover {
+      color: darken(#f61a42, 20%) !important;
+    }
+  } // Column header separator
   .col-md-3,
   .col-md-4 {
     hr {
       width: 60px;
       height: 1px;
+    }
+  } // Footer link icons
+  ul li i {
+    width: 30px;
+    text-align: center;
+    padding-right: 0.5rem;
+  }
+  .btn{
+    i{
+      margin-right: .3rem;
     }
   }
 }
