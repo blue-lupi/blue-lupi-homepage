@@ -7,8 +7,6 @@ import { withRouter } from "react-router-dom";
 //> Additional
 // Prop types
 import PropTypes from "prop-types";
-// Analytics
-import ReactGA from "react-ga";
 
 //> Apollo and GraphQL
 import { graphql } from "react-apollo";
@@ -106,9 +104,6 @@ class HomePage extends React.Component {
       // Initialize Shopify
       this.initShopify();
     }
-    // Google Analytics
-    ReactGA.initialize("UA-148740308-3");
-    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   initShopify = () => {
@@ -238,6 +233,7 @@ class HomePage extends React.Component {
                       data={section}
                       collection={section.shopHead}
                       showCollection={section.shopDisplayhead}
+                      googleAnalytics={this.props.globalFunctions.googleAnalytics}
                     />
                   </React.Fragment>
                 );
@@ -254,6 +250,7 @@ class HomePage extends React.Component {
                       data={section}
                       collection={section.shopHead}
                       showCollection={section.shopDisplayhead}
+                      googleAnalytics={this.props.globalFunctions.googleAnalytics}
                     />
                   </React.Fragment>
                 );
@@ -328,6 +325,7 @@ class HomePage extends React.Component {
                       form={form}
                       client={this.props.client}
                       images={this.props.globalState.images}
+                      googleAnalytics={this.props.globalFunctions.googleAnalytics}
                     />
                   </React.Fragment>
                 );
@@ -355,6 +353,7 @@ class HomePage extends React.Component {
             handleCartClose={this.handleCartClose}
             customerAccessToken={this.state.customerAccessToken}
             key={"cart"}
+            googleAnalytics={this.props.globalFunctions.googleAnalytics}
           />
         );
         sections.push(cart);

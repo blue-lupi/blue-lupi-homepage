@@ -4,6 +4,10 @@ import React from "react";
 // DOM bindings for React Router
 import { BrowserRouter as Router } from "react-router-dom";
 
+//> Additional
+// Analytics
+import ReactGA from "react-ga";
+
 //> Backend Connection
 // Apollo
 import { gql } from "apollo-boost";
@@ -157,6 +161,12 @@ const CREATE_SURVEY = gql`
   }
 `;
 
+//> Number formatting
+const formatter = new Intl.NumberFormat("de-DE", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 class App extends React.Component {
   state = {};
 
@@ -165,10 +175,84 @@ class App extends React.Component {
     this.tokenAuth();
     // Refresh token every 2 minutes (120000 ms)
     this.refreshInterval = window.setInterval(this.refreshToken, 120000);
+
+    // Create custom user id for tracking
+    let userId = localStorage.getItem("userId");
+    if (!userId) {
+      const sha256 = require("js-sha256");
+      userId = sha256.create();
+      localStorage.setItem("userId", userId);
+    }
+
+    // Check cookies
+    let cookie = localStorage.getItem("cookie");
+    if (cookie) {
+      cookie = JSON.parse(cookie);
+      if (cookie.marketing || cookie.statistics) {
+        // Google Analytics
+        ReactGA.initialize("UA-148740308-3", {
+          gaOptions: {
+            userId,
+          },
+        });
+        this.registerPageView();
+      }
+    }
   };
 
   componentWillUnmount = () => {
     clearInterval(this.refreshInterval);
+  };
+
+  registerPageView = () => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  };
+
+  registerInCard = (collection, title) => {
+    console.log(`${collection} ${title}`);
+    ReactGA.event({
+      category: "Shop",
+      action: "Item put in card",
+      label: `${collection} ${title}`,
+    });
+  };
+
+  registerCheckout = (lineItems) => {
+    const cart = lineItems.map((item, i) => {
+      return {
+        quantity: item.props.lineItem.quantity,
+        title: item.props.lineItem.title,
+        variant: item.props.lineItem.variant.title,
+        price:
+          "EUR " +
+          formatter.format(
+            parseFloat(item.props.lineItem.quantity) *
+              parseFloat(item.props.lineItem.variant.price)
+          ),
+      };
+    });
+
+    ReactGA.event({
+      category: "Shop",
+      action: "Checkout started",
+      label: JSON.stringify(cart),
+    });
+  };
+
+  registerQuestionnaireStart = () => {
+    console.log("Started");
+    ReactGA.event({
+      category: "Questionnaire",
+      action: "Questionnaire started",
+    });
+  };
+
+  registerQuestionnaireComplete = () => {
+    console.log("Complete");
+    ReactGA.event({
+      category: "Questionnaire",
+      action: "Questionnaire completed",
+    });
   };
 
   tokenAuth = () => {
@@ -201,7 +285,7 @@ class App extends React.Component {
       .mutate({
         mutation: CREATE_SURVEY,
         variables: {
-          token: localStorage.getItem("jwt"),
+          token: localStorage.getItem("token"),
           values,
         },
       })
@@ -245,7 +329,18 @@ class App extends React.Component {
             <main>
               <Routes
                 globalState={this.state}
-                globalFunctions={{ createSurvey: this.createSurvey }}
+                globalFunctions={{
+                  createSurvey: this.createSurvey,
+                  googleAnalytics: {
+                    registerCheckout: this.registerCheckout,
+                    registerInCard: this.registerInCard,
+                    registerQuestionnairePutInCard: this
+                      .registerQuestionnairePutInCard,
+                    registerQuestionnaireComplete: this
+                      .registerQuestionnaireComplete,
+                    registerQuestionnaireStart: this.registerQuestionnaireStart,
+                  },
+                }}
                 client={this.props.client}
               />
               <CookieModal />

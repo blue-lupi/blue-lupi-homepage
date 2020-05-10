@@ -73,7 +73,7 @@ class Shop extends React.Component {
   };
 
   render() {
-    const { product } = this.props;
+    const { product, googleAnalytics } = this.props;
 
     return (
       <MDBCol key={this.props.id} md="4" className="product-item text-dark">
@@ -154,12 +154,17 @@ class Shop extends React.Component {
                   product.node.variants.edges.length < 2 &&
                   !product.node.variants.edges[0].node.availableForSale
                 }
-                onClick={() =>
+                onClick={() => {
+                  console.log(product);
+                  googleAnalytics.registerInCard(
+                    product.node.collections.edges[0].node.title,
+                    product.node.variants.edges[this.state.variant.key].node.title
+                  );
                   this.props.addVariantToCart(
                     this.state.variant.id,
                     this.state.value
-                  )
-                }
+                  );
+                }}
               >
                 In den Einkaufswagen
               </MDBBtn>

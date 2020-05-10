@@ -104,7 +104,7 @@ class Cart extends React.Component {
                   (this.props.checkout.totalPrice
                     ? this.props.checkout.totalPrice >= freeShipping
                       ? freeShipping
-                      : parseInt(this.props.checkout.totalPrice)
+                      : parseFloat(this.props.checkout.totalPrice)
                     : 0)
               )}{" "}
               €
@@ -115,7 +115,7 @@ class Cart extends React.Component {
               this.props.checkout.totalPrice
                 ? this.props.checkout.totalPrice >= freeShipping
                   ? freeShipping
-                  : parseInt(this.props.checkout.totalPrice)
+                  : parseFloat(this.props.checkout.totalPrice)
                 : 0
             }
             max={freeShipping}
@@ -177,7 +177,10 @@ class Cart extends React.Component {
             <MDBBtn
               color="success"
               size="lg"
-              onClick={this.openCheckout}
+              onClick={() => {
+                this.props.googleAnalytics.registerCheckout(lineItems);
+                this.openCheckout();
+              }}
               disabled={lineItems.length < 1 || !this.state.agb}
             >
               <MDBIcon icon="check" className="pr-2" size="lg" />
