@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.3e25cdfd.chunk.css",
-    "main.js": "./static/js/main.cafe62ee.chunk.js",
-    "main.js.map": "./static/js/main.cafe62ee.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.7071913a.js",
-    "runtime-main.js.map": "./static/js/runtime-main.7071913a.js.map",
-    "static/css/2.47e4665b.chunk.css": "./static/css/2.47e4665b.chunk.css",
-    "static/js/2.71e889c5.chunk.js": "./static/js/2.71e889c5.chunk.js",
-    "static/js/2.71e889c5.chunk.js.map": "./static/js/2.71e889c5.chunk.js.map",
+    "main.css": "./static/css/main.2c9e68bf.chunk.css",
+    "main.js": "./static/js/main.33c7917c.chunk.js",
+    "main.js.map": "./static/js/main.33c7917c.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.3892b3e7.js",
+    "runtime-main.js.map": "./static/js/runtime-main.3892b3e7.js.map",
+    "static/css/2.f6a64bf9.chunk.css": "./static/css/2.f6a64bf9.chunk.css",
+    "static/js/2.a90fd1d3.chunk.js": "./static/js/2.a90fd1d3.chunk.js",
+    "static/js/2.a90fd1d3.chunk.js.map": "./static/js/2.a90fd1d3.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.0797b82776390b20512c0b9f91cece71.js": "./precache-manifest.0797b82776390b20512c0b9f91cece71.js",
+    "precache-manifest.9ce6a19f2a28e880fd2efcd416104b22.js": "./precache-manifest.9ce6a19f2a28e880fd2efcd416104b22.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/2.47e4665b.chunk.css.map": "./static/css/2.47e4665b.chunk.css.map",
-    "static/css/main.3e25cdfd.chunk.css.map": "./static/css/main.3e25cdfd.chunk.css.map",
-    "static/js/2.71e889c5.chunk.js.LICENSE": "./static/js/2.71e889c5.chunk.js.LICENSE",
+    "static/css/2.f6a64bf9.chunk.css.map": "./static/css/2.f6a64bf9.chunk.css.map",
+    "static/css/main.2c9e68bf.chunk.css.map": "./static/css/main.2c9e68bf.chunk.css.map",
+    "static/js/2.a90fd1d3.chunk.js.LICENSE.txt": "./static/js/2.a90fd1d3.chunk.js.LICENSE.txt",
     "static/media/mdb.css": "./static/media/arrow_right.8ef6a08c.svg",
     "static/media/bg.jpg": "./static/media/bg.95b880c1.jpg",
     "static/media/coffee_lupi.png": "./static/media/coffee_lupi.d062d53c.png",
@@ -25,10 +25,10 @@
     "static/media/wolf.e9693102.svg": "./static/media/wolf.e9693102.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7071913a.js",
-    "static/css/2.47e4665b.chunk.css",
-    "static/js/2.71e889c5.chunk.js",
-    "static/css/main.3e25cdfd.chunk.css",
-    "static/js/main.cafe62ee.chunk.js"
+    "static/js/runtime-main.3892b3e7.js",
+    "static/css/2.f6a64bf9.chunk.css",
+    "static/js/2.a90fd1d3.chunk.js",
+    "static/css/main.2c9e68bf.chunk.css",
+    "static/js/main.33c7917c.chunk.js"
   ]
 }
