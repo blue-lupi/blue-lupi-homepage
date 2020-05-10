@@ -189,13 +189,18 @@ class App extends React.Component {
     if (cookie) {
       cookie = JSON.parse(cookie);
       if (cookie.marketing || cookie.statistics) {
-        // Google Analytics
-        ReactGA.initialize("UA-148740308-3", {
-          gaOptions: {
-            userId,
-          },
-        });
-        this.registerPageView();
+        if (
+          window.location.hostname !== "localhost" &&
+          window.location.hostname !== "127.0.0.1"
+        ) {
+          // Google Analytics
+          ReactGA.initialize("UA-148740308-3", {
+            gaOptions: {
+              userId,
+            },
+          });
+          this.registerPageView();
+        }
       }
     }
   };
