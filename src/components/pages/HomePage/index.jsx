@@ -163,7 +163,7 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const { param } = this.state;
+    let { param } = this.state;
 
     if (this.props.data.error) {
       // Display error message
@@ -175,6 +175,9 @@ class HomePage extends React.Component {
     const pageHeaders = page
       ? page.headers
       : [{ __typename: "Home_H_HeroBlock" }];
+
+    // Disable splitting functionality
+    param = false;
 
     let headers =
       param === "blue" || !param
@@ -233,7 +236,9 @@ class HomePage extends React.Component {
                       data={section}
                       collection={section.shopHead}
                       showCollection={section.shopDisplayhead}
-                      googleAnalytics={this.props.globalFunctions.googleAnalytics}
+                      googleAnalytics={
+                        this.props.globalFunctions.googleAnalytics
+                      }
                     />
                   </React.Fragment>
                 );
@@ -250,7 +255,9 @@ class HomePage extends React.Component {
                       data={section}
                       collection={section.shopHead}
                       showCollection={section.shopDisplayhead}
-                      googleAnalytics={this.props.globalFunctions.googleAnalytics}
+                      googleAnalytics={
+                        this.props.globalFunctions.googleAnalytics
+                      }
                     />
                   </React.Fragment>
                 );
@@ -325,7 +332,9 @@ class HomePage extends React.Component {
                       form={form}
                       client={this.props.client}
                       images={this.props.globalState.images}
-                      googleAnalytics={this.props.globalFunctions.googleAnalytics}
+                      googleAnalytics={
+                        this.props.globalFunctions.googleAnalytics
+                      }
                     />
                   </React.Fragment>
                 );
