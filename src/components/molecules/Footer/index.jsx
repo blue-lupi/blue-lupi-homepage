@@ -40,13 +40,13 @@ class Footer extends React.Component {
     return (
       <MDBFooter color="white" className="font-small text-dark pt-4">
         <MDBContainer className="text-center text-md-left py-3">
-          <MDBRow>
-            <MDBCol md="6" className="text-left">
-              <p className="font-weight-bold lead">Zahlungsarten</p>
+          <MDBRow className="d-flex justify-content-center">
+            <MDBCol md="5" className="text-left">
+              <p className="font-weight-bold lead mb-2">Zahlungsarten</p>
               <div className="trusted"></div>
             </MDBCol>
-            <MDBCol md="6" className="text-left">
-              <p className="font-weight-bold lead">Bei uns kaufen Sie sicher</p>
+            <MDBCol md="4" className="text-left">
+              <p className="font-weight-bold lead mb-2">Bei uns kaufen Sie sicher</p>
               <div className="trusted">
                 {trusted &&
                   trusted.trustedPartner.map((partner, i) => {
@@ -82,28 +82,16 @@ class Footer extends React.Component {
               <Link to="agb">
                 <li className="list-unstyled">Nutzungsbedingungen</li>
               </Link>
+            </MDBCol>
+            <MDBCol md="3" className="text-center">
+              <p className="font-weight-bold lead text-left mb-2">
+                Sicheres Gefühl
+              </p>
               <Link to="cancellation">
                 <li className="list-unstyled">Widerruf</li>
               </Link>
               <Link to="shipping">
                 <li className="list-unstyled">Versand</li>
-              </Link>
-            </MDBCol>
-            <MDBCol md="3" className="text-center">
-              <p className="font-weight-bold lead text-left mb-2">
-                Nützliches
-              </p>
-              <Link to="partnershop">
-                <li className="list-unstyled">Shop eröffnen</li>
-              </Link>
-              <Link to="partner">
-                <li className="list-unstyled">Affiliate Partner werden</li>
-              </Link>
-              <Link to="partnerlist">
-                <li className="list-unstyled">Unsere Partner</li>
-              </Link>
-              <Link to="faq">
-                <li className="list-unstyled">FAQ</li>
               </Link>
             </MDBCol>
             <MDBCol md="3" className="text-left">
@@ -126,11 +114,12 @@ class Footer extends React.Component {
               </div>
               <p className="font-weight-bold mt-3">Kontakt per E-Mail</p>
               <div>
-              <a href="mailto:office@blue-lupi.at"></a>
-                <MDBBtn color="elegant" className="w-100 m-0">
-                  <MDBIcon far icon="envelope" />
-                  E-Mail
-                </MDBBtn>
+                <a href="mailto:office@blue-lupi.at">
+                  <MDBBtn color="elegant" className="w-100 m-0">
+                    <MDBIcon far icon="envelope" />
+                    E-Mail
+                  </MDBBtn>
+                </a>
               </div>
             </MDBCol>
           </MDBRow>
