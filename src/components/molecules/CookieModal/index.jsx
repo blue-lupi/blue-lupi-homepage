@@ -5,7 +5,6 @@ import React from "react";
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
 import {
-  MDBContainer,
   MDBBtn,
   MDBModal,
   MDBModalBody,
@@ -13,7 +12,6 @@ import {
   MDBFormInline,
   MDBRow,
   MDBCol,
-  MDBInput,
 } from "mdbreact";
 
 //> CSS
@@ -46,7 +44,7 @@ class ModalPage extends React.Component {
         marketing: this.state.marketing ? true : false,
       })
     );
-    this.setState({ modal1: false });
+    this.setState({ modal1: false }, () => this.props.saveCookie());
   }
 
   toggle = (nr) => () => {
@@ -81,42 +79,48 @@ class ModalPage extends React.Component {
             Website.
           </p>
           <div className="my-4">
-            <div class="custom-control custom-checkbox">
+            <div className="custom-control custom-checkbox">
               <input
                 type="checkbox"
-                class="custom-control-input"
+                className="custom-control-input"
                 id="cookieEssential"
                 checked={this.state.essential}
                 disabled
               />
-              <label class="custom-control-label" for="cookieEssential">
+              <label className="custom-control-label" htmlFor="cookieEssential">
                 Essenziell
               </label>
             </div>
             <MDBFormInline className="d-flex justify-content-center mt-2">
-              <div class="custom-control custom-checkbox mr-3">
+              <div className="custom-control custom-checkbox mr-3">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   id="cookieMarketing"
                   checked={this.state.marketing}
                   name="marketing"
                   onChange={(e) => this.checkBoxCheck(e)}
                 />
-                <label class="custom-control-label" for="cookieMarketing">
+                <label
+                  className="custom-control-label"
+                  htmlFor="cookieMarketing"
+                >
                   Marketing
                 </label>
               </div>
-              <div class="custom-control custom-checkbox">
+              <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   id="cookieStatistics"
                   name="statistics"
                   checked={this.state.statistics}
                   onChange={(e) => this.checkBoxCheck(e)}
                 />
-                <label class="custom-control-label" for="cookieStatistics">
+                <label
+                  className="custom-control-label"
+                  htmlFor="cookieStatistics"
+                >
                   Statistiken
                 </label>
               </div>

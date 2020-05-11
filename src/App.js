@@ -175,7 +175,15 @@ class App extends React.Component {
     this.tokenAuth();
     // Refresh token every 2 minutes (120000 ms)
     this.refreshInterval = window.setInterval(this.refreshToken, 120000);
+    // Initialize Analytics
+    this.checkCookies();
+  };
 
+  componentWillUnmount = () => {
+    clearInterval(this.refreshInterval);
+  };
+
+  checkCookies = () => {
     // Create custom user id for tracking
     let userId = localStorage.getItem("userId");
     if (!userId) {
@@ -205,8 +213,8 @@ class App extends React.Component {
     }
   };
 
-  componentWillUnmount = () => {
-    clearInterval(this.refreshInterval);
+  saveCookie = () => {
+    this.checkCookies();
   };
 
   registerPageView = () => {
@@ -348,7 +356,7 @@ class App extends React.Component {
                 }}
                 client={this.props.client}
               />
-              <CookieModal />
+              <CookieModal saveCookie={this.saveCookie} />
             </main>
             {this.state.page && this.state.form && (
               <Footer
