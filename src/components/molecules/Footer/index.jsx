@@ -46,7 +46,9 @@ class Footer extends React.Component {
               <div className="trusted"></div>
             </MDBCol>
             <MDBCol md="4" className="text-left">
-              <p className="font-weight-bold lead mb-2">Bei uns kaufen Sie sicher</p>
+              <p className="font-weight-bold lead mb-2">
+                Bei uns kaufen Sie sicher
+              </p>
               <div className="trusted">
                 {trusted &&
                   trusted.trustedPartner.map((partner, i) => {
@@ -136,7 +138,7 @@ class Footer extends React.Component {
                 ></i>
                 by
                 <a
-                  href="https://www.aichner-christian.com"
+                  href="https://www.aichner-christian.com/?ref=macnik"
                   target="_blank"
                   className="ml-1 text-dark underlined"
                   rel="noopener noreferrer"
