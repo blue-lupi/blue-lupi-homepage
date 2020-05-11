@@ -42,6 +42,12 @@ class LineItem extends React.Component {
     });
   }
 
+  removeItem(id) {
+    this.setState({ loading: true }, () => {
+      this.props.removeLineItemInCart(id);
+    });
+  }
+
   componentWillReceiveProps = () => {
     this.state.loading && this.setState({ loading: false });
   };
@@ -72,9 +78,7 @@ class LineItem extends React.Component {
                   color="danger"
                   size="sm"
                   disabled={this.state.loading}
-                  onClick={() =>
-                    this.props.removeLineItemInCart(this.props.lineItem.id)
-                  }
+                  onClick={() => this.removeItem(this.props.lineItem.id)}
                 >
                   <MDBIcon icon="times" />
                 </MDBBtn>

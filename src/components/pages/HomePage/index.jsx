@@ -121,9 +121,10 @@ class HomePage extends React.Component {
       });
   };
 
-  handleCartOpen() {
+  handleCartOpen(showLoading) {
     this.setState({
       isCartOpen: true,
+      showLoading: showLoading === false ? false : true,
     });
   }
 
@@ -359,6 +360,7 @@ class HomePage extends React.Component {
             updateLineItemInCart={this.updateLineItemInCart}
             checkout={this.state.checkout}
             isCartOpen={this.state.isCartOpen}
+            showLoading={this.state.showLoading}
             handleCartClose={this.handleCartClose}
             customerAccessToken={this.state.customerAccessToken}
             key={"cart"}

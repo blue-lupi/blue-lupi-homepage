@@ -46,7 +46,7 @@ class Hero extends React.Component {
             <div className="mask"></div>
           </div>
         </div>
-        <span onClick={this.props.handleCartOpen}>
+        <span onClick={() => this.props.handleCartOpen(false)}>
           <div className="menu-icon">
             <div className="view">
               <MDBIcon icon="shopping-basket" className="fa-2x" />
