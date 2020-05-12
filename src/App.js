@@ -230,17 +230,21 @@ class App extends React.Component {
   };
 
   registerInCard = (collection, title) => {
+    // Facebook Pixel
+    ReactPixel.track("AddToCard");
     // Google Analytics
     ReactGA.event({
       category: "Shop",
       action: "Item put in card",
       label: `${collection} ${title}`,
     });
-    // Facebook Pixel
-    ReactPixel.track("AddToCard");
   };
 
   registerCheckout = (lineItems) => {
+    // Facebook Pixel
+    ReactPixel.track("InitiateCheckout");
+
+    // Get cart configuration
     const cart = lineItems.map((item, i) => {
       return {
         quantity: item.props.lineItem.quantity,
@@ -261,28 +265,26 @@ class App extends React.Component {
       action: "Checkout started",
       label: JSON.stringify(cart),
     });
-    // Facebook Pixel
-    ReactPixel.track("InitiateCheckout");
   };
 
   registerQuestionnaireStart = () => {
+    // Facebook Pixel
+    ReactPixel.trackCustom("InitiateQuestionnaire");
     // Google Analytics
     ReactGA.event({
       category: "Questionnaire",
       action: "Questionnaire started",
     });
-    // Facebook Pixel
-    ReactPixel.trackCustom("InitiateQuestionnaire");
   };
 
   registerQuestionnaireComplete = () => {
+    // Facebook Pixel
+    ReactPixel.track("CompleteQuestionnaire");
     // Google Analytics
     ReactGA.event({
       category: "Questionnaire",
       action: "Questionnaire completed",
     });
-    // Facebook Pixel
-    ReactPixel.track("CompleteQuestionnaire");
   };
 
   tokenAuth = () => {
