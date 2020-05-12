@@ -58,6 +58,7 @@ class Cart extends React.Component {
 
   openCheckout() {
     let checkoutURL = this.props.checkout.webUrl;
+
     window.open(checkoutURL);
   }
 
