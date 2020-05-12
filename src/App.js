@@ -193,6 +193,7 @@ class App extends React.Component {
       const sha256 = require("js-sha256");
 
       userId = sha256.create();
+
       localStorage.setItem("userId", userId);
     }
 

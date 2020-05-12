@@ -18,12 +18,6 @@ import {
 //> CSS
 import "./footer.scss";
 
-//> Images
-/*import payPalImg from "../../../assets/content/trusted/paypal.png";
-import masterCardImg from "../../../assets/content/trusted/mastercard.png";
-import visaCardImg from "../../../assets/content/trusted/visa.png";
-import sofortImg from "../../../assets/content/trusted/sofort.png";*/
-
 class Footer extends React.Component {
   state = {};
 
