@@ -7,6 +7,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 //> Additional
 // Analytics
 import ReactGA from "react-ga";
+// Facebook Pixel
+import ReactPixel from "react-facebook-pixel";
 
 //> Backend Connection
 // Apollo
@@ -207,7 +209,13 @@ class App extends React.Component {
               userId,
             },
           });
-          this.registerPageView();
+          ReactGA.pageview(window.location.pathname + window.location.search);
+
+          // Facebook Pixel
+          if (cookie.marketing) {
+            ReactPixel.init("232610764688272");
+            ReactPixel.pageView();
+          }
         }
       }
     }
@@ -217,17 +225,15 @@ class App extends React.Component {
     this.checkCookies();
   };
 
-  registerPageView = () => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  };
-
   registerInCard = (collection, title) => {
-    console.log(`${collection} ${title}`);
+    // Google Analytics
     ReactGA.event({
       category: "Shop",
       action: "Item put in card",
       label: `${collection} ${title}`,
     });
+    // Facebook Pixel
+    ReactPixel.track("AddToCard");
   };
 
   registerCheckout = (lineItems) => {
@@ -245,27 +251,34 @@ class App extends React.Component {
       };
     });
 
+    // Google Analytics
     ReactGA.event({
       category: "Shop",
       action: "Checkout started",
       label: JSON.stringify(cart),
     });
+    // Facebook Pixel
+    ReactPixel.track("InitiateCheckout");
   };
 
   registerQuestionnaireStart = () => {
-    console.log("Started");
+    // Google Analytics
     ReactGA.event({
       category: "Questionnaire",
       action: "Questionnaire started",
     });
+    // Facebook Pixel
+    ReactPixel.trackCustom("InitiateQuestionnaire");
   };
 
   registerQuestionnaireComplete = () => {
-    console.log("Complete");
+    // Google Analytics
     ReactGA.event({
       category: "Questionnaire",
       action: "Questionnaire completed",
     });
+    // Facebook Pixel
+    ReactPixel.track("CompleteQuestionnaire");
   };
 
   tokenAuth = () => {
