@@ -146,6 +146,9 @@ const LOGIN_USER = gql`
             ... on Home_S_SmallTrustedBlock {
               trustedPartner
             }
+            ... on Home_S_SmallTrustedPBlock {
+              trustedPaymentmethods
+            }
           }
         }
       }
@@ -381,7 +384,7 @@ class App extends React.Component {
             </main>
             {this.state.page && this.state.form && (
               <Footer
-                sections={this.state.page.sections}
+                sections={this.state.page.footers}
                 images={this.state.images}
               />
             )}

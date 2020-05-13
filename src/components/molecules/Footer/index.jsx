@@ -30,6 +30,12 @@ class Footer extends React.Component {
       sections.find(
         (section) => section.__typename === "Home_S_SmallTrustedBlock"
       );
+    // Get payment methods logos
+    const payment =
+      sections &&
+      sections.find(
+        (section) => section.__typename === "Home_S_SmallTrustedPBlock"
+      );
 
     return (
       <MDBFooter color="white" className="font-small text-dark pt-4">
@@ -37,7 +43,31 @@ class Footer extends React.Component {
           <MDBRow className="d-flex justify-content-center">
             <MDBCol md="5" className="text-left">
               <p className="font-weight-bold lead mb-2">Zahlungsarten</p>
-              <div className="trusted"></div>
+              <div className="trusted">
+                {payment &&
+                  payment.trustedPaymentmethods.map((method, i) => {
+                    return (
+                      <a
+                        href={method.value.partner_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={i}
+                      >
+                        <img
+                          src={
+                            process.env.REACT_APP_BASEURL +
+                            images.find((image) => {
+                              return (
+                                parseInt(image.id) === method.value.partner_logo
+                              );
+                            }).urlLink
+                          }
+                          alt="Payment method"
+                        />
+                      </a>
+                    );
+                  })}
+              </div>
             </MDBCol>
             <MDBCol md="4" className="text-left">
               <p className="font-weight-bold lead mb-2">
@@ -47,18 +77,25 @@ class Footer extends React.Component {
                 {trusted &&
                   trusted.trustedPartner.map((partner, i) => {
                     return (
-                      <img
-                        src={
-                          process.env.REACT_APP_BASEURL +
-                          images.find((image) => {
-                            return (
-                              parseInt(image.id) === partner.value.partner_logo
-                            );
-                          }).urlLink
-                        }
-                        alt="Partner"
+                      <a
+                        href={partner.value.partner_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         key={i}
-                      />
+                      >
+                        <img
+                          src={
+                            process.env.REACT_APP_BASEURL +
+                            images.find((image) => {
+                              return (
+                                parseInt(image.id) ===
+                                partner.value.partner_logo
+                              );
+                            }).urlLink
+                          }
+                          alt="Partner"
+                        />
+                      </a>
                     );
                   })}
               </div>
