@@ -43,7 +43,7 @@ class Footer extends React.Component {
           <MDBRow className="d-flex justify-content-center">
             <MDBCol md="5" className="text-left">
               <p className="font-weight-bold lead mb-2">Zahlungsarten</p>
-              <div className="trusted">
+              <div className="payment">
                 {payment &&
                   payment.trustedPaymentmethods.map((method, i) => {
                     return (

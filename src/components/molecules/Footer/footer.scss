@@ -26,6 +26,12 @@ footer {
       max-height: 50px;
     }
   }
+  .payment{
+    img {
+      margin: 0 0.3rem;
+      max-height: 35px;
+    }
+  }
   .underlined {
     &:hover {
       color: #f44336 !important;
