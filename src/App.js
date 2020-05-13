@@ -141,6 +141,8 @@ const LOGIN_USER = gql`
             ... on Home_S_FAQBlock {
               questions
             }
+          }
+          footers {
             ... on Home_S_SmallTrustedBlock {
               trustedPartner
             }
