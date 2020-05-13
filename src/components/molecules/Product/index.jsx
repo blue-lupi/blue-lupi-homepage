@@ -147,6 +147,20 @@ class Shop extends React.Component {
                 </p>
               </div>
             )}
+            {product.node.collections.edges.length > 0 &&
+              product.node.collections.edges[0].node.title === "Personal" ? (
+                <div className="text-center mt-3">
+                  <p className="text-muted">
+                    Lieferzeit: 7-9 Tage
+                  </p>
+                </div>
+              ) : (
+                <div className="text-center mt-3">
+                  <p className="text-muted">
+                    Lieferzeit: 3-5 Tage
+                  </p>
+                </div>
+              )}
             <div className="text-center mt-3">
               <MDBBtn
                 color="lupi-blue"
