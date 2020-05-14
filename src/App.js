@@ -4,6 +4,12 @@ import React from "react";
 // DOM bindings for React Router
 import { BrowserRouter as Router } from "react-router-dom";
 
+//> Additional
+// Analytics
+import ReactGA from "react-ga";
+// Facebook Pixel
+import ReactPixel from "react-facebook-pixel";
+
 //> Backend Connection
 // Apollo
 import { gql } from "apollo-boost";
@@ -135,8 +141,13 @@ const LOGIN_USER = gql`
             ... on Home_S_FAQBlock {
               questions
             }
+          }
+          footers {
             ... on Home_S_SmallTrustedBlock {
               trustedPartner
+            }
+            ... on Home_S_SmallTrustedPBlock {
+              trustedPaymentmethods
             }
           }
         }
@@ -157,6 +168,12 @@ const CREATE_SURVEY = gql`
   }
 `;
 
+//> Number formatting
+const formatter = new Intl.NumberFormat("de-DE", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 class App extends React.Component {
   state = {};
 
@@ -165,10 +182,117 @@ class App extends React.Component {
     this.tokenAuth();
     // Refresh token every 2 minutes (120000 ms)
     this.refreshInterval = window.setInterval(this.refreshToken, 120000);
+    // Initialize Analytics
+    this.checkCookies();
   };
 
   componentWillUnmount = () => {
     clearInterval(this.refreshInterval);
+  };
+
+  checkCookies = () => {
+    // Create custom user id for tracking
+    let userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      const sha256 = require("js-sha256");
+
+      userId = sha256.create();
+
+      localStorage.setItem("userId", userId);
+    }
+
+    // Check cookies
+    let cookie = localStorage.getItem("cookie");
+
+    if (cookie) {
+      cookie = JSON.parse(cookie);
+      if (cookie.marketing || cookie.statistics) {
+        if (
+          window.location.hostname !== "localhost" &&
+          window.location.hostname !== "127.0.0.1"
+        ) {
+          // Google Analytics
+          ReactGA.initialize("UA-148740308-3", {
+            gaOptions: {
+              userId,
+            },
+          });
+          ReactGA.pageview(window.location.pathname + window.location.search);
+
+          // Facebook Pixel
+          if (cookie.marketing) {
+            ReactPixel.init("232610764688272");
+            ReactPixel.pageView();
+          }
+        }
+      }
+    }
+  };
+
+  saveCookie = () => {
+    this.checkCookies();
+  };
+
+  registerInCard = (collection, title) => {
+    // Facebook Pixel
+    ReactPixel.track("AddToCard");
+
+    // Google Analytics
+    ReactGA.event({
+      category: "Shop",
+      action: "Item put in card",
+      label: `${collection} ${title}`,
+    });
+  };
+
+  registerCheckout = (lineItems) => {
+    // Facebook Pixel
+    ReactPixel.track("InitiateCheckout");
+
+    // Get cart configuration
+    const cart = lineItems.map((item, i) => {
+      return {
+        quantity: item.props.lineItem.quantity,
+        title: item.props.lineItem.title,
+        variant: item.props.lineItem.variant.title,
+        price:
+          "EUR " +
+          formatter.format(
+            parseFloat(item.props.lineItem.quantity) *
+              parseFloat(item.props.lineItem.variant.price)
+          ),
+      };
+    });
+
+    // Google Analytics
+    ReactGA.event({
+      category: "Shop",
+      action: "Checkout started",
+      label: JSON.stringify(cart),
+    });
+  };
+
+  registerQuestionnaireStart = () => {
+    // Facebook Pixel
+    ReactPixel.trackCustom("InitiateQuestionnaire");
+
+    // Google Analytics
+    ReactGA.event({
+      category: "Questionnaire",
+      action: "Questionnaire started",
+    });
+  };
+
+  registerQuestionnaireComplete = () => {
+    // Facebook Pixel
+    ReactPixel.track("CompleteQuestionnaire");
+    
+    // Google Analytics
+    ReactGA.event({
+      category: "Questionnaire",
+      action: "Questionnaire completed",
+    });
   };
 
   tokenAuth = () => {
@@ -201,7 +325,7 @@ class App extends React.Component {
       .mutate({
         mutation: CREATE_SURVEY,
         variables: {
-          token: localStorage.getItem("jwt"),
+          token: localStorage.getItem("token"),
           values,
         },
       })
@@ -245,12 +369,28 @@ class App extends React.Component {
             <main>
               <Routes
                 globalState={this.state}
-                globalFunctions={{ createSurvey: this.createSurvey }}
+                globalFunctions={{
+                  createSurvey: this.createSurvey,
+                  googleAnalytics: {
+                    registerCheckout: this.registerCheckout,
+                    registerInCard: this.registerInCard,
+                    registerQuestionnairePutInCard: this
+                      .registerQuestionnairePutInCard,
+                    registerQuestionnaireComplete: this
+                      .registerQuestionnaireComplete,
+                    registerQuestionnaireStart: this.registerQuestionnaireStart,
+                  },
+                }}
                 client={this.props.client}
               />
-              <CookieModal />
+              <CookieModal saveCookie={this.saveCookie} />
             </main>
-            {this.state.page && this.state.form && <Footer />}
+            {this.state.page && this.state.form && (
+              <Footer
+                sections={this.state.page.footers}
+                images={this.state.images}
+              />
+            )}
           </div>
         </ScrollToTop>
       </Router>

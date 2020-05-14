@@ -60,6 +60,14 @@ class Blackwolf extends React.Component {
     }
   };
 
+  componentDidUpdate = () => {
+    if (this.state.activeField === 1) {
+      const { googleAnalytics } = this.props;
+
+      googleAnalytics.registerQuestionnaireStart();
+    }
+  };
+
   onClick = (name, value, i) => {
     this.setState({
       selected: {
@@ -468,9 +476,10 @@ class Blackwolf extends React.Component {
               ) : (
                 <>
                   {!this.state.sent &&
-                    this.setState({ sent: true }, () =>
-                      this.props.createSurvey(this.state.survey)
-                    )}
+                    this.setState({ sent: true }, () => {
+                      this.props.googleAnalytics.registerQuestionnaireComplete();
+                      this.props.createSurvey(this.state.survey);
+                    })}
                   <h3 className="green-text font-weight-bold">
                     Ihr persönlicher Black Wolf
                   </h3>
@@ -491,6 +500,7 @@ class Blackwolf extends React.Component {
                             product={product}
                             addVariantToCart={this.props.addVariantToCart}
                             checkout={this.state.checkout}
+                            googleAnalytics={this.props.googleAnalytics}
                           />
                         );
                       } else {

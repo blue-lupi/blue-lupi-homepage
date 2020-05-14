@@ -73,7 +73,7 @@ class Shop extends React.Component {
   };
 
   render() {
-    const { product } = this.props;
+    const { product, googleAnalytics } = this.props;
 
     return (
       <MDBCol key={this.props.id} md="4" className="product-item text-dark">
@@ -147,6 +147,20 @@ class Shop extends React.Component {
                 </p>
               </div>
             )}
+            {product.node.collections.edges.length > 0 &&
+              product.node.collections.edges[0].node.title === "Personal" ? (
+                <div className="text-center mt-3">
+                  <p className="text-muted">
+                    Lieferzeit: 7-9 Tage
+                  </p>
+                </div>
+              ) : (
+                <div className="text-center mt-3">
+                  <p className="text-muted">
+                    Lieferzeit: 3-5 Tage
+                  </p>
+                </div>
+              )}
             <div className="text-center mt-3">
               <MDBBtn
                 color="lupi-blue"
@@ -154,12 +168,17 @@ class Shop extends React.Component {
                   product.node.variants.edges.length < 2 &&
                   !product.node.variants.edges[0].node.availableForSale
                 }
-                onClick={() =>
+                onClick={() => {
+                  googleAnalytics.registerInCard(
+                    product.node.collections.edges[0].node.title,
+                    product.node.variants.edges[this.state.variant.key].node
+                      .title
+                  );
                   this.props.addVariantToCart(
                     this.state.variant.id,
                     this.state.value
-                  )
-                }
+                  );
+                }}
               >
                 In den Einkaufswagen
               </MDBBtn>

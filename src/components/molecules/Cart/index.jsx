@@ -40,13 +40,35 @@ class Cart extends React.Component {
 
     this.state = {
       agb: false,
+      loading: true,
     };
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    // Check if line items changed
+    if (
+      JSON.stringify(this.props.checkout.lineItems) !==
+      JSON.stringify(nextProps.checkout.lineItems)
+    ) {
+      this.setState({
+        loading: false,
+      });
+    }
+  };
+
   openCheckout() {
     let checkoutURL = this.props.checkout.webUrl;
+
     window.open(checkoutURL);
   }
+
+  toggle = () => {
+    if (this.props.isCartOpen) {
+      this.setState({ loading: true }, () => this.props.handleCartClose());
+    } else {
+      this.props.handleCartClose();
+    }
+  };
 
   render() {
     let lineItems = this.props.checkout.lineItems.edges.map((lineItem) => {
@@ -65,14 +87,22 @@ class Cart extends React.Component {
         fullHeight
         position="right"
         backdrop={true}
+        fade={false}
         className="modal-cart modal-white text-dark"
         isOpen={this.props.isCartOpen}
-        toggle={this.props.handleCartClose}
+        toggle={this.toggle}
       >
-        <MDBModalHeader tag="p" toggle={this.props.handleCartClose}>
+        <MDBModalHeader tag="p" toggle={this.toggle}>
           Was Sie genießen werden
         </MDBModalHeader>
         <MDBModalBody className="text-center">
+          {this.state.loading && this.props.showLoading && (
+            <div className="slider">
+              <div className="line"></div>
+              <div className="subline inc"></div>
+              <div className="subline dec"></div>
+            </div>
+          )}
           {lineItems && lineItems.length > 0 && lineItems}
           {lineItems && lineItems.length < 1 && (
             <>
@@ -80,11 +110,7 @@ class Cart extends React.Component {
                 Noch keine Spezialitäten im Warenkorb.
               </p>
               <div className="mb-3">
-                <MDBBtn
-                  color="elegant"
-                  outline
-                  onClick={this.props.handleCartClose}
-                >
+                <MDBBtn color="elegant" outline onClick={this.toggle}>
                   <MDBIcon icon="angle-left" className="pr-2" />
                   Weitere kaufen
                 </MDBBtn>
@@ -104,7 +130,7 @@ class Cart extends React.Component {
                   (this.props.checkout.totalPrice
                     ? this.props.checkout.totalPrice >= freeShipping
                       ? freeShipping
-                      : parseInt(this.props.checkout.totalPrice)
+                      : parseFloat(this.props.checkout.totalPrice)
                     : 0)
               )}{" "}
               €
@@ -115,7 +141,7 @@ class Cart extends React.Component {
               this.props.checkout.totalPrice
                 ? this.props.checkout.totalPrice >= freeShipping
                   ? freeShipping
-                  : parseInt(this.props.checkout.totalPrice)
+                  : parseFloat(this.props.checkout.totalPrice)
                 : 0
             }
             max={freeShipping}
@@ -177,7 +203,10 @@ class Cart extends React.Component {
             <MDBBtn
               color="success"
               size="lg"
-              onClick={this.openCheckout}
+              onClick={() => {
+                this.props.googleAnalytics.registerCheckout(lineItems);
+                this.openCheckout();
+              }}
               disabled={lineItems.length < 1 || !this.state.agb}
             >
               <MDBIcon icon="check" className="pr-2" size="lg" />

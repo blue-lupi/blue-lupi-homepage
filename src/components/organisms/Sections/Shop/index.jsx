@@ -56,6 +56,7 @@ class Shop extends React.Component {
 
   render() {
     const { products } = this.state;
+    const { googleAnalytics } = this.props;
 
     return (
       <section
@@ -88,6 +89,7 @@ class Shop extends React.Component {
                         product={product}
                         addVariantToCart={this.props.addVariantToCart}
                         checkout={this.state.checkout}
+                        googleAnalytics={googleAnalytics}
                       />
                     );
                   case "Bluelupi im Spar-Abo":
@@ -98,6 +100,7 @@ class Shop extends React.Component {
                         product={product}
                         addVariantToCart={this.props.addVariantToCart}
                         checkout={this.state.checkout}
+                        googleAnalytics={googleAnalytics}
                       />
                     );
                   case "Lupinenkaffee Kapseln":
@@ -108,6 +111,7 @@ class Shop extends React.Component {
                         product={product}
                         addVariantToCart={this.props.addVariantToCart}
                         checkout={this.state.checkout}
+                        googleAnalytics={googleAnalytics}
                       />
                     );
                   default:
@@ -118,6 +122,7 @@ class Shop extends React.Component {
                         product={product}
                         addVariantToCart={this.props.addVariantToCart}
                         checkout={this.state.checkout}
+                        googleAnalytics={googleAnalytics}
                       />
                     );
                 }
