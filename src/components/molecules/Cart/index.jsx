@@ -157,7 +157,7 @@ class Cart extends React.Component {
               {formatter.format(this.props.checkout.subtotalPrice)} €
             </MDBCol>
             <MDBCol size="12" className="text-left">
-              <small className="text-muted">inkl. Steuer</small>
+              <small className="text-muted">inkl. MwSt.</small>
             </MDBCol>
             <MDBCol size="6" className="font-weight-bold text-left">
               Gesamt
