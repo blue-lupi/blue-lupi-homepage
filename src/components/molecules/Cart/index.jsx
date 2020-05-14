@@ -147,23 +147,23 @@ class Cart extends React.Component {
             max={freeShipping}
             className="my-1"
           />
-          <small>(Kostenloser Versand: {freeShipping}€)</small>
+          <small>(Kostenloser Versand: {freeShipping} €)</small>
           <hr />
           <MDBRow className="totals">
             <MDBCol size="6" className="text-left">
               Zwischensumme
             </MDBCol>
             <MDBCol size="6" className="text-right">
-              € {formatter.format(this.props.checkout.subtotalPrice)}
+              {formatter.format(this.props.checkout.subtotalPrice)} €
             </MDBCol>
             <MDBCol size="12" className="text-left">
-              <small className="text-muted">inkl. Steuer</small>
+              <small className="text-muted">inkl. MwSt.</small>
             </MDBCol>
             <MDBCol size="6" className="font-weight-bold text-left">
               Gesamt
             </MDBCol>
             <MDBCol size="6" className="font-weight-bold text-right">
-              € {formatter.format(this.props.checkout.totalPrice)}
+              {formatter.format(this.props.checkout.totalPrice)} €
             </MDBCol>
           </MDBRow>
           <div className="px-3">

@@ -213,7 +213,7 @@ class App extends React.Component {
           window.location.hostname !== "127.0.0.1"
         ) {
           // Google Analytics
-          ReactGA.initialize("UA-148740308-3", {
+          ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS, {
             gaOptions: {
               userId,
             },
@@ -222,7 +222,7 @@ class App extends React.Component {
 
           // Facebook Pixel
           if (cookie.marketing) {
-            ReactPixel.init("232610764688272");
+            ReactPixel.init(process.env.REACT_APP_FB_PIXEL);
             ReactPixel.pageView();
           }
         }
@@ -287,7 +287,7 @@ class App extends React.Component {
   registerQuestionnaireComplete = () => {
     // Facebook Pixel
     ReactPixel.track("CompleteQuestionnaire");
-    
+
     // Google Analytics
     ReactGA.event({
       category: "Questionnaire",

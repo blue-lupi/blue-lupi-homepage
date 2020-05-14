@@ -38,7 +38,7 @@ class Footer extends React.Component {
       );
 
     return (
-      <MDBFooter color="white" className="font-small text-dark pt-4">
+      <MDBFooter color="white" className="font-small text-dark pt-4 balckwolfsection">
         <MDBContainer className="text-center text-md-left py-3">
           <MDBRow className="d-flex justify-content-center">
             <MDBCol md="5" className="text-left">

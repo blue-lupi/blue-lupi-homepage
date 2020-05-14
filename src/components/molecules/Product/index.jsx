@@ -13,6 +13,7 @@ import {
   MDBCardBody,
   MDBBtn,
   MDBIcon,
+  MDBBadge,
 } from "mdbreact";
 
 //> CSS
@@ -95,22 +96,79 @@ class Shop extends React.Component {
                 (parseInt(gramm) / 6)
             );
           } else {
-            return null;
+            // 10 capsules with 60g each
+            const gramm = 60;
+
+            return formatter.format(
+              variant.edges[this.state.variant.key].node.price /
+                (parseInt(gramm) / 6)
+            );
           }
         }
       }
     }
   };
 
-  renderCalculatedPricePerCub = (variants) => {
-    const price = this.calculatePricePerCup(variants);
+  renderCalculatedPricePerCub = (variant) => {
+    const price = this.calculatePricePerCup(variant);
 
     if (price) {
       return (
         <div className="text-center text-muted border p-2">
-          <MDBIcon icon="mug-hot" /> € {price} pro Tasse
+          <span className="d-block mb-0">
+            <MDBIcon icon="mug-hot" /> {price} € pro Tasse
+          </span>
+          {variant.edges[this.state.variant.key].node.title.includes("Abo") && (
+            <MDBBadge
+              color="green"
+              className="d-inline-block mt-1 p-2 z-depth-0"
+            >
+              <MDBIcon icon="award" className="mr-1" />
+              Best offer
+            </MDBBadge>
+          )}
         </div>
       );
+    } else {
+      return null;
+    }
+  };
+
+  calculatePricePerKilo = (variant) => {
+    if (this.state.variant) {
+      const title = variant.edges[this.state.variant.key].node.title;
+
+      if (title) {
+        const parts = title.split("g");
+
+        if (!isNaN(parts[0])) {
+          return formatter.format(
+            (variant.edges[this.state.variant.key].node.price /
+              parseInt(parts[0])) *
+              1000
+          );
+        } else {
+          if (parts[0].includes("k")) {
+            const kg = parts[0].split("k");
+
+            return formatter.format(
+              variant.edges[this.state.variant.key].node.price / parseInt(kg)
+            );
+          } else {
+            return formatter.format(
+              (variant.edges[this.state.variant.key].node.price / 60) * 1000
+            );
+          }
+        }
+      }
+    }
+  };
+
+  renderCalculatedPricePerKilo = (variant) => {
+    const price = this.calculatePricePerKilo(variant);
+
+    if (price) {
+      return <span>({price} € pro kg)</span>;
     } else {
       return null;
     }
@@ -129,9 +187,12 @@ class Shop extends React.Component {
             waves={false}
           />
           <MDBCardBody>
-            <MDBCardTitle className="text-center">
-              {product.node.title}
-            </MDBCardTitle>
+            {product.node.collections.edges.length > 0 &&
+              product.node.collections.edges[0].node.title !== "Personal" && (
+                <MDBCardTitle className="text-center">
+                  {product.node.title}
+                </MDBCardTitle>
+              )}
             <MDBCardText
               className="text-center"
               dangerouslySetInnerHTML={{ __html: product.node.descriptionHtml }}
@@ -182,12 +243,17 @@ class Shop extends React.Component {
             )}
             {this.state.variant && (
               <div className="text-center mt-3">
-                <p className="lead font-weight-bold">
-                  €{" "}
+                <p className="lead font-weight-bold mb-0 price">
                   {formatter.format(
                     product.node.variants.edges[this.state.variant.key].node
                       .price * this.state.value
-                  )}
+                  )}{" "}
+                  €
+                </p>
+                <p className="text-muted kg-price">
+                  <small>
+                    {this.renderCalculatedPricePerKilo(product.node.variants)}
+                  </small>
                 </p>
               </div>
             )}
@@ -202,8 +268,10 @@ class Shop extends React.Component {
               </div>
             )}
             {this.renderCalculatedPricePerCub(product.node.variants)}
-
-            <div className="text-center mt-3">
+            <div className="text-center mt-2">
+              <small className="text-muted">Alle Preise inkl. MwSt.</small>
+            </div>
+            <div className="text-center mt-1">
               <MDBBtn
                 color="lupi-blue"
                 disabled={
@@ -226,14 +294,6 @@ class Shop extends React.Component {
               </MDBBtn>
             </div>
           </MDBCardBody>
-          {/*<MDBCardFooter className="text-center">
-            <MDBBtn
-            color="lupi-blue"
-            onClick={() => this.props.addVariantToCart(this.state.variant.id, this.state.value)}
-            >
-            Add to card
-            </MDBBtn>
-          </MDBCardFooter>*/}
         </MDBCard>
       </MDBCol>
     );
