@@ -186,9 +186,12 @@ class Shop extends React.Component {
             waves={false}
           />
           <MDBCardBody>
-            <MDBCardTitle className="text-center">
-              {product.node.title}
-            </MDBCardTitle>
+            {product.node.collections.edges.length > 0 &&
+              product.node.collections.edges[0].node.title !== "Personal" && (
+                <MDBCardTitle className="text-center">
+                  {product.node.title}
+                </MDBCardTitle>
+              )}
             <MDBCardText
               className="text-center"
               dangerouslySetInnerHTML={{ __html: product.node.descriptionHtml }}
@@ -244,7 +247,7 @@ class Shop extends React.Component {
                     product.node.variants.edges[this.state.variant.key].node
                       .price * this.state.value
                   )}{" "}
-                  € <span>inkl. MwSt.</span>
+                  €
                 </p>
                 <p className="text-muted kg-price">
                   <small>
@@ -264,7 +267,10 @@ class Shop extends React.Component {
               </div>
             )}
             {this.renderCalculatedPricePerCub(product.node.variants)}
-            <div className="text-center mt-3">
+            <div className="text-center mt-2">
+              <small className="text-muted">Alle Preise inkl. MwSt.</small>
+            </div>
+            <div className="text-center mt-1">
               <MDBBtn
                 color="lupi-blue"
                 disabled={
