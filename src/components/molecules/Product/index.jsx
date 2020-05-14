@@ -150,6 +150,7 @@ class Shop extends React.Component {
         } else {
           if (parts[0].includes("k")) {
             const kg = parts[0].split("k");
+
             return formatter.format(
               variant.edges[this.state.variant.key].node.price / parseInt(kg)
             );
