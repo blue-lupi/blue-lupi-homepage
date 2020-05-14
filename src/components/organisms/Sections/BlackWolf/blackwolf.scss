@@ -45,6 +45,41 @@
       background: #f9e093 !important;
     }
   }
+  // Product
+  .product-item {
+    .card {
+      background: lighten(black, 10%);
+      color: white;
+      // Image
+      .view {
+        img {
+          width: 100%;
+          height: auto;
+          max-height: none;
+          padding: 0 !important;
+        }
+      }
+      // Product info text
+      .card-text {
+        color: lighten(lightgrey, 5%) !important;
+      }
+      .text-muted {
+        color: lighten(lightgrey, 1%) !important;
+      }
+      button:after,
+      button:before {
+        background-color: white !important;
+      }
+      .btn {
+        background: white;
+        color: #212529;
+        border: 5px lighten(#2d1f17, 20%) solid;
+        &:hover{
+          border: 5px lighten(#2d1f17, 30%) solid;
+        }
+      }
+    }
+  }
 }
 
 /** 
