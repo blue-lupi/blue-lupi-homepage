@@ -72,6 +72,17 @@
   .view .mask {
     cursor: default;
   }
+
+  .price{
+    span{
+      font-size: 12px;
+      font-weight: lighter;
+    }
+  }
+
+  .kg-price{
+    color: lightgrey !important;
+  }
 }
 
 /** 
