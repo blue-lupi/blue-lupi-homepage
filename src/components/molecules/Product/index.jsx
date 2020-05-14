@@ -12,6 +12,7 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBBtn,
+  MDBIcon,
 } from "mdbreact";
 
 //> CSS
@@ -70,6 +71,49 @@ class Shop extends React.Component {
         key: parseInt(e.target.value),
       },
     });
+  };
+
+  calculatePricePerCup = (variant) => {
+    if (this.state.variant) {
+      const title = variant.edges[this.state.variant.key].node.title;
+
+      if (title) {
+        const parts = title.split("g");
+
+        if (!isNaN(parts[0])) {
+          return formatter.format(
+            variant.edges[this.state.variant.key].node.price /
+              (parseInt(parts[0]) / 6)
+          );
+        } else {
+          if (parts[0].includes("k")) {
+            const kg = parts[0].split("k");
+            const gramm = parseInt(kg) * 1000;
+
+            return formatter.format(
+              variant.edges[this.state.variant.key].node.price /
+                (parseInt(gramm) / 6)
+            );
+          } else {
+            return null;
+          }
+        }
+      }
+    }
+  };
+
+  renderCalculatedPricePerCub = (variants) => {
+    const price = this.calculatePricePerCup(variants);
+
+    if (price) {
+      return (
+        <div className="text-center text-muted border p-2">
+          <MDBIcon icon="mug-hot" /> € {price} pro Tasse
+        </div>
+      );
+    } else {
+      return null;
+    }
   };
 
   render() {
@@ -148,19 +192,17 @@ class Shop extends React.Component {
               </div>
             )}
             {product.node.collections.edges.length > 0 &&
-              product.node.collections.edges[0].node.title === "Personal" ? (
-                <div className="text-center mt-3">
-                  <p className="text-muted">
-                    Lieferzeit: 7-9 Tage
-                  </p>
-                </div>
-              ) : (
-                <div className="text-center mt-3">
-                  <p className="text-muted">
-                    Lieferzeit: 3-5 Tage
-                  </p>
-                </div>
-              )}
+            product.node.collections.edges[0].node.title === "Personal" ? (
+              <div className="text-center mt-3">
+                <p className="text-muted">Lieferzeit: 7-9 Tage</p>
+              </div>
+            ) : (
+              <div className="text-center mt-3">
+                <p className="text-muted">Lieferzeit: 3-5 Tage</p>
+              </div>
+            )}
+            {this.renderCalculatedPricePerCub(product.node.variants)}
+
             <div className="text-center mt-3">
               <MDBBtn
                 color="lupi-blue"
