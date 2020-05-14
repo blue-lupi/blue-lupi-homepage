@@ -108,7 +108,7 @@ class Shop extends React.Component {
     if (price) {
       return (
         <div className="text-center text-muted border p-2">
-          <MDBIcon icon="mug-hot" /> € {price} pro Tasse
+          <MDBIcon icon="mug-hot" /> {price} € pro Tasse
         </div>
       );
     } else {
@@ -183,11 +183,11 @@ class Shop extends React.Component {
             {this.state.variant && (
               <div className="text-center mt-3">
                 <p className="lead font-weight-bold">
-                  €{" "}
                   {formatter.format(
                     product.node.variants.edges[this.state.variant.key].node
                       .price * this.state.value
-                  )}
+                  )}{" "}
+                  €
                 </p>
               </div>
             )}

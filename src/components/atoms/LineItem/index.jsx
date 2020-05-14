@@ -43,7 +43,7 @@ class LineItem extends React.Component {
   }
 
   removeItem(id) {
-    this.setState({ loading: true }, () => {
+    this.setState({ loading: true, removed: true }, () => {
       this.props.removeLineItemInCart(id);
     });
   }
@@ -54,7 +54,20 @@ class LineItem extends React.Component {
 
   render() {
     return (
-      <li className="line-item mt-2 pb-2">
+      <li
+        className={
+          this.state.removed
+            ? "line-item mt-2 pb-2 position-relative move"
+            : "line-item mt-2 pb-2 position-relative"
+        }
+      >
+        {this.state.loading && (
+          <div className="slider position-absolute">
+            <div className="line"></div>
+            <div className="subline inc"></div>
+            <div className="subline dec"></div>
+          </div>
+        )}
         <div className="row">
           <div className="col-auto">
             {this.props.lineItem.variant.image && (
@@ -113,11 +126,11 @@ class LineItem extends React.Component {
                 </div>
               </div>
               <div className="col text-right">
-                €{" "}
                 {formatter.format(
                   this.props.lineItem.quantity *
                     this.props.lineItem.variant.price
-                )}
+                )}{" "}
+                €
               </div>
             </div>
           </div>
