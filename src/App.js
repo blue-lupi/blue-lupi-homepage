@@ -237,6 +237,7 @@ class App extends React.Component {
   registerInCard = (collection, title) => {
     // Facebook Pixel
     ReactPixel.track("AddToCard");
+
     // Google Analytics
     ReactGA.event({
       category: "Shop",
@@ -275,6 +276,7 @@ class App extends React.Component {
   registerQuestionnaireStart = () => {
     // Facebook Pixel
     ReactPixel.trackCustom("InitiateQuestionnaire");
+
     // Google Analytics
     ReactGA.event({
       category: "Questionnaire",
@@ -285,6 +287,7 @@ class App extends React.Component {
   registerQuestionnaireComplete = () => {
     // Facebook Pixel
     ReactPixel.track("CompleteQuestionnaire");
+    
     // Google Analytics
     ReactGA.event({
       category: "Questionnaire",
