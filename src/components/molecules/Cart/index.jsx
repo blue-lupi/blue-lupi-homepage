@@ -158,6 +158,7 @@ class Cart extends React.Component {
             </MDBCol>
             <MDBCol size="12" className="text-left">
               <small className="text-muted">inkl. MwSt.</small>
+              <small className="text-muted d-block">zzgl. Lieferkosten</small>
             </MDBCol>
             <MDBCol size="6" className="font-weight-bold text-left">
               Gesamt
