@@ -124,7 +124,7 @@ class Footer extends React.Component {
                 <li className="list-unstyled">Widerruf</li>
               </Link>
               <Link to="shipping">
-                <li className="list-unstyled">Versand</li>
+                <li className="list-unstyled">Versand- und Zahlungsinformationen</li>
               </Link>
             </MDBCol>
             <MDBCol md="3" className="text-left">
@@ -185,7 +185,7 @@ class Footer extends React.Component {
                 Version v{process.env.REACT_APP_VERSION}
                 <span className="pl-2 pr-2">·</span>
                 <a
-                  href="https://github.com/blue-lupi/blue-lupi-homepage"
+                  href="https://github.com/blue-lupi/front"
                   rel="noopener noreferrer"
                   target="_blank"
                   className="text-dark"
@@ -195,7 +195,7 @@ class Footer extends React.Component {
                 </a>
                 <span className="pl-2 pr-2">·</span>
                 <a
-                  href="https://github.com/blue-lupi/blue-lupi-homepage/issues/new?template=bug_report.md"
+                  href="https://github.com/blue-lupi/front/issues/new?template=bug_report.md"
                   rel="noopener noreferrer"
                   target="_blank"
                   className="text-dark"

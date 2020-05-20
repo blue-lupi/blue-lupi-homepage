@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.blue-lupi.at" target="_blank" rel="noopener noreferrer">
-    <img src="https://github.com/blue-lupi/blue-lupi-homepage/blob/master/src/assets/logo_blue.png?raw=true" alt="Blue Lupi Logo" height="250" style="max-width: 100%">
+    <img src="https://github.com/blue-lupi/front/blob/master/src/assets/logo_blue.png?raw=true" alt="Blue Lupi Logo" height="250" style="max-width: 100%">
   </a>
 </p>
 
@@ -10,12 +10,12 @@
   The "Kaffeerudel / Blue Lupi" website built with React.js including Shopify integration.
   <br>
   <br>
-  <a href="https://github.com/blue-lupi/blue-lupi-homepage/issues/new?template=bug_report.md">Report bug</a>
+  <a href="https://github.com/blue-lupi/front/issues/new?template=bug_report.md">Report bug</a>
   ·
-  <a href="https://github.com/blue-lupi/blue-lupi-homepage/issues/new?template=feature_request.md">Request feature</a>
+  <a href="https://github.com/blue-lupi/front/issues/new?template=feature_request.md">Request feature</a>
   <br>
   <br>
-  <a href="https://www.codacy.com/app/blue-lupi/blue-lupi-homepage">
+  <a href="https://www.codacy.com/app/blue-lupi/front">
     <img src="https://api.codacy.com/project/badge/Grade/579c145ee6cf4d7e8ae7c1c78a13617a" />
   </a>
   <a href="https://liberapay.com/aichner/donate">
@@ -44,8 +44,8 @@
 
 ## [](#quick-start)Quick start
 
-- Clone the repository: `git clone https://github.com/blue-lupi/blue-lupi-homepage.git blue-lupi-homepage`
-- Go to the new folder `cd blue-lupi-homepage`
+- Clone the repository: `git clone https://github.com/blue-lupi/front.git front`
+- Go to the new folder `cd front`
 - (Optional) For a better experience purchase MDB React Pro and change the source of `"mdbreact"` in the `package.json`
 - Run `npm install`
 - Start with `npm start`
@@ -55,16 +55,16 @@ The demo site will now be accessible at [http://localhost:3000/](http://localhos
 ## [](#bug-and-feature-requests)Bugs and feature requests
 
 Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not
-addressed yet, [please open a new issue](https://github.com/blue-lupi/blue-lupi-homepage/issues/new/choose).
+addressed yet, [please open a new issue](https://github.com/blue-lupi/front/issues/new/choose).
 
 ## [](#contributing)Contributing
 
-![GitHub last commit](https://img.shields.io/github/last-commit/blue-lupi/blue-lupi-homepage)
-![GitHub issues](https://img.shields.io/github/issues-raw/blue-lupi/blue-lupi-homepage)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/blue-lupi/blue-lupi-homepage?color=green)
+![GitHub last commit](https://img.shields.io/github/last-commit/blue-lupi/front)
+![GitHub issues](https://img.shields.io/github/issues-raw/blue-lupi/front)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/blue-lupi/front?color=green)
 
 Please read through our
-[contributing guidelines](https://github.com/blue-lupi/blue-lupi-homepage/blob/master/CONTRIBUTING.md). Included are
+[contributing guidelines](https://github.com/blue-lupi/front/blob/master/CONTRIBUTING.md). Included are
 directions for opening issues, coding standards, and notes on development.
 
 All HTML and CSS should conform to the [Code Guide](https://github.com/mdo/code-guide), maintained by
@@ -81,7 +81,7 @@ Get updates on our development and chat/talk with the project maintainers and co
 
 ## [](#versioning)Versioning
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/blue-lupi/blue-lupi-homepage)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/blue-lupi/front)
 
 For transparency into our release cycle and in striving to maintain backward compatibility, this repository is
 maintained under [the Semantic Versioning guidelines](https://semver.org/). Sometimes we screw up, but we adhere to
