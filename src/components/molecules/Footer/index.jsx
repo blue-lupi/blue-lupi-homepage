@@ -124,7 +124,7 @@ class Footer extends React.Component {
                 <li className="list-unstyled">Widerruf</li>
               </Link>
               <Link to="shipping">
-                <li className="list-unstyled">Versand</li>
+                <li className="list-unstyled">Versand- und Zahlungsinformationen</li>
               </Link>
             </MDBCol>
             <MDBCol md="3" className="text-left">
