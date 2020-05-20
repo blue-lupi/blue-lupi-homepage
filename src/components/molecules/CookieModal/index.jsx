@@ -1,6 +1,8 @@
 //> React
 // Contains all the functionality necessary to define React components
 import React from "react";
+// Router DOM bindings
+import { Link } from "react-router-dom";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
@@ -10,8 +12,6 @@ import {
   MDBModalBody,
   MDBIcon,
   MDBFormInline,
-  MDBRow,
-  MDBCol,
 } from "mdbreact";
 
 //> CSS
@@ -76,7 +76,10 @@ class ModalPage extends React.Component {
           <p className="text-muted">
             Wir verwenden auf unserer Website Cookies, um die Benutzererfahrung
             zu verbessern. Einige davon sind essenziell für den Betrieb der
-            Website.
+            Website.{" "}
+            <Link to="/privacy" target="_blank">
+              Details anzeigen
+            </Link>
           </p>
           <div className="my-4">
             <div className="custom-control custom-checkbox">
@@ -126,19 +129,15 @@ class ModalPage extends React.Component {
               </div>
             </MDBFormInline>
           </div>
-          <MDBRow className="justify-content-center align-items-center">
-            <MDBCol md="6">
-              <MDBBtn color="success" onClick={() => this.checkAll()}>
-                <MDBIcon icon="check-circle" />
-                Alle akzeptieren
-              </MDBBtn>
-            </MDBCol>
-            <MDBCol md="6">
-              <MDBBtn color="white" onClick={() => this.save()}>
-                Auswahl speichern
-              </MDBBtn>
-            </MDBCol>
-          </MDBRow>
+          <div className="d-block">
+            <MDBBtn color="success" onClick={() => this.checkAll()}>
+              <MDBIcon icon="check-circle" />
+              Alle akzeptieren
+            </MDBBtn>
+            <MDBBtn color="white" size="sm" onClick={() => this.save()}>
+              Auswahl speichern
+            </MDBBtn>
+          </div>
         </MDBModalBody>
       </MDBModal>
     );

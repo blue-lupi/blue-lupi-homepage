@@ -6,7 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 
 //> MDB
 // "Material Design for Bootstrap" is a great UI design framework
-import { MDBContainer, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBBtn, MDBIcon } from "mdbreact";
 
 class MessagePage extends React.Component {
   render() {
@@ -43,6 +43,58 @@ class MessagePage extends React.Component {
                 </MDBBtn>
               </Link>
               <p dangerouslySetInnerHTML={{ __html: data.privacy }}></p>
+              <hr />
+              {localStorage.getItem("cookie") ? (
+                <>
+                  <p className="green-text">Sie haben Cookies akzeptiert.</p>
+                  <p>
+                    <MDBIcon icon="check-circle" className="green-text mr-2" />
+                    Essenziell
+                  </p>
+                  {JSON.parse(localStorage.getItem("cookie")).marketing ? (
+                    <p>
+                      <MDBIcon
+                        icon="check-circle"
+                        className="green-text mr-2"
+                      />
+                      Marketing
+                    </p>
+                  ) : (
+                    <p>
+                      <MDBIcon icon="times-circle" className="red-text mr-2" />
+                      Marketing
+                    </p>
+                  )}
+                  {JSON.parse(localStorage.getItem("cookie")).statistics ? (
+                    <p>
+                      <MDBIcon
+                        icon="check-circle"
+                        className="green-text mr-2"
+                      />
+                      Statistiken
+                    </p>
+                  ) : (
+                    <p>
+                      <MDBIcon icon="times-circle" className="red-text mr-2" />
+                      Statistiken
+                    </p>
+                  )}
+                  <MDBBtn
+                    onClick={() => {
+                      localStorage.removeItem("cookie");
+                      window.location.reload();
+                    }}
+                    color="danger"
+                    size="sm"
+                  >
+                    Einwilligung zurückziehen
+                  </MDBBtn>
+                </>
+              ) : (
+                <p className="red-text">
+                  Sie haben die Cookies nicht akzeptiert.
+                </p>
+              )}
             </div>
           )}
           {this.props.location.pathname === "/agb" && (
