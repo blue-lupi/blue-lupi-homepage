@@ -4,8 +4,9 @@ import Footer from "./Footer";
 import Cart from "./Cart";
 import Product from "./Product";
 import CookieModal from "./CookieModal";
+import NavBar from "./NavBar";
 
-export { Footer, Cart, Product, CookieModal };
+export { Footer, Cart, Product, CookieModal, NavBar };
 
 /**
  * SPDX-License-Identifier: (EUPL-1.2)

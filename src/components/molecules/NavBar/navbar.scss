@@ -1,0 +1,25 @@
+.navlogo {
+  width: 50px;
+  margin: auto;
+  height: auto;
+  display: block;
+  margin-left: 0.2em;
+}
+.navbar {
+  box-shadow: none;
+  .navbar-nav {
+    margin-right: 1em;
+    font-size: larger;
+    .nav-item {
+      background-color: transparent;
+    }
+    .nav-link {
+      background-color: transparent;
+    }
+  }
+}
+
+/**
+ * SPDX-License-Identifier: (EUPL-1.2)
+ * Copyright © 2019-2020 Werbeagentur Christian Aichner
+ */

@@ -13,6 +13,8 @@ package-lock.json
 # Environment variables
 .env
 
+# MDB React Pro
+mdb*
 # All editor configs but vscode
 .editorconfig
 .idea
