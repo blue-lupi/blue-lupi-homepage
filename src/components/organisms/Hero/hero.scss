@@ -54,7 +54,14 @@
   .hero-right {
     padding-left: 12em;
     .gradienttext {
-      background: linear-gradient(to right, #ffeba8 0%, #ff943d 100%);
+      background: linear-gradient(
+        120deg,
+        #bf953f,
+        #fcf6ba,
+        #b39229,
+        #fbf5b7,
+        #b39229
+      );
       background-clip: initial;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
