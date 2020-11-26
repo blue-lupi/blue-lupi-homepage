@@ -94,12 +94,15 @@ class Blackwolf extends React.Component {
     return (
       <section id="blackwolf" className="pb-0 balckwolfsection">
         <MDBContainer className="text-center">
-          <h2 className="text-center font-weight-bold">{form.surveyHead}</h2>
+          {/*<h2 className="text-center font-weight-bold">{form.surveyHead}</h2>
           <p
             className="lead mb-5"
             dangerouslySetInnerHTML={{ __html: form.surveySubhead }}
-          ></p>
-          {form.formFields && (
+          ></p>*/}
+          <MDBBtn color="white" size="lg" href="https://www.kaffeerudel.at">
+            Jetzt entdecken
+          </MDBBtn>
+          {/*form.formFields && (
             <>
               {this.state.activeField < form.formFields.length ? (
                 <>
@@ -511,8 +514,8 @@ class Blackwolf extends React.Component {
                 </>
               )}
             </>
-          )}
-          <div className="mt-5 text-center">
+                  )*/}
+          <div className="my-5 text-center">
             <Wolf id="wolfsvg" />
             <Ground id="ground" />
           </div>

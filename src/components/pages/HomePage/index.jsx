@@ -243,25 +243,6 @@ class HomePage extends React.Component {
                     />
                   </React.Fragment>
                 );
-              } else if (
-                (param === "black" || !param) &&
-                section.shopHead === "Das Kaffeerudel - Spezialitätenkaffee"
-              ) {
-                return (
-                  <React.Fragment key={i}>
-                    <Shop
-                      products={this.props.data.shop.products.edges}
-                      addVariantToCart={this.addVariantToCart}
-                      checkout={this.state.checkout}
-                      data={section}
-                      collection={section.shopHead}
-                      showCollection={section.shopDisplayhead}
-                      googleAnalytics={
-                        this.props.globalFunctions.googleAnalytics
-                      }
-                    />
-                  </React.Fragment>
-                );
               } else {
                 return null;
               }
