@@ -13,8 +13,7 @@ export default class extends React.Component {
     try {
       // Hack from https://stackoverflow.com/a/47243409/2217533
       const response = await fetch(
-        `https://www.instagram.com/graphql/query?query_id=17888483320059182&variables={"id":"
-        ${this.props.userId}","first":${this.props.photoCount},"after":null}`
+        `https://www.instagram.com/graphql/query?query_id=17888483320059182&variables={"id":"${this.props.userId}","first":${this.props.photoCount},"after":null}`
       );
 
       const { data } = await response.json();
